@@ -1,13 +1,46 @@
 <!doctype html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title> Chain Reaction Sign Up </title>
-    <link rel="stylesheet" href=#>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> Chain Reaction Sign Up </title>
+  <link rel="stylesheet" href=#>
 </head>
 
 <body>
-<h1> Chain Reaction Sign Up. </h1>
+  <h1> Chain Reaction Sign Up. </h1>
+
+  <fieldset name="userinfo">
+    <legend><b>User information</b></legend>
+    <table>
+      <tr>
+        <td><label for="name">First Name</label></td>
+        <td><input type="text" name="firstname" id="firstname" size="40">
+      </tr>
+      <tr>
+        <td><label for="name">Last Name</label></td>
+        <td><input type="text" name="lastname" id="lastname" size="40">
+      </tr>
+      <tr>
+        <td><label for="addr">Email Address</label></td>
+        <td><input type="text" name="email" id="email" size="40">
+      </tr>
+      <tr >
+        <td><label> Password: </label></td>
+        <td><input type="text"  name="password" value="" />
+        </td>  
+      <tr id="cofm_row" >
+        <td><label>Confirm password: </label></td>
+        <td><input type="text"  name="cofm_password" value="" />
+        </td>  
+    </table>
+
+    <button type="submit" value="Submit">Sign Up</button>
+    <button type="reset" value="Reset">Clear</button>
+  </fieldset>
+
+
 </body>
+
 </html>
