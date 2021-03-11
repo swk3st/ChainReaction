@@ -1,0 +1,9 @@
+@import url(“https://fonts.googleapis.com/css?family=Merriweather”);
+.merri{
+    font-family:'Merriweather';
+}
+
+@import url(“https://fonts.googleapis.com/css?family=Playfair+Display”);
+.playfair{
+    font-family: 'Playfair Display', serif;
+}

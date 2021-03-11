@@ -1,9 +1,3 @@
-.test {
-    flex-basis: 33%;       /* assume 4 columns with equal width */  
-    border: 2px solid silver;
-    padding: 10px;
-  } 
-
 .user_card {
     height: 400px;
     width: 350px;
@@ -39,3 +33,4 @@
     border-radius: 75%;
     border: 2px solid white;
 }
+
