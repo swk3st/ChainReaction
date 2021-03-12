@@ -38,7 +38,16 @@ p {
 :root {
     --norm-font-one: 'Merriweather', 'serif';
     --norm-font-two: 'Playfair Display', 'serif';
-    --fancy-font-one: 'RetroFunk';
-    --fancy-font-two: 'Bratsy';
-    --fancy-font-three: 'GvTime';
+    --big-font-one: 'RetroFunk';
+    --big-font-two: 'Bratsy';
+    --big-font-three: 'GvTime';
+    --colorA: #415238;                              /*FOR LACK OF CURRENT NAME*/
+    --primary-background-color: #6AA374;
+    --colorB: #ADC698;                              /*FOR LACK OF CURRENT NAME*/
+    --colorC: #C05746;                              /*FOR LACK OF CURRENT NAME*/
+    --big-font-color: #C45852;
+    --norm-font-color: #C98B2C;
+    --primary-button-color: #E9C382;
+    --secondary-button-color: #DB9F45;
+
 }
