@@ -1,9 +1,44 @@
-@import url(“https://fonts.googleapis.com/css?family=Merriweather”);
-.merri{
-    font-family:'Merriweather';
+/* To use this css file in your css file
+import the file directly into your custom css file, placed at the top of the file
+Example:
+    @import url('main.css');
+    // rest of doc 
+To use the main variables (requries this file to be imported)
+Use this type of syntax
+p {
+    font-family: var(--norm-font-one);
+} */
+
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300&family=Playfair+Display&display=swap');
+
+@font-face {
+    font-family: 'RetroFunk';
+    src: url('retrofunk.woff2') format('woff2'),
+         url('retrofunk.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 }
 
-@import url(“https://fonts.googleapis.com/css?family=Playfair+Display”);
-.playfair{
-    font-family: 'Playfair Display', serif;
+@font-face {
+    font-family: 'Bratsy';
+    src: url('bratsy.woff2') format('woff2'),
+         url('bratsy.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GvTime';
+    src: url('gvtime.woff2') format('woff2'),
+         url('gvtime.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+:root {
+    --norm-font-one: 'Merriweather', 'serif';
+    --norm-font-two: 'Playfair Display', 'serif';
+    --fancy-font-one: 'RetroFunk';
+    --fancy-font-two: 'Bratsy';
+    --fancy-font-three: 'GvTime';
 }
