@@ -9,6 +9,13 @@ p {
     font-family: var(--norm-font-one);
 } */
 
+body,html{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: #ADC698;
+}
+
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300&family=Playfair+Display&display=swap');
 
 @font-face {
