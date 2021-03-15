@@ -4,12 +4,12 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title> Chain Reaction Waiting Room </title>
+    <title> Waiting Room </title>
     <link rel="stylesheet" href="..\css\gameplay.css">
 </head>
 
 <body>
-<h1 id="waitingText"> WAITING ROOM </h1>
+<h1 id="waitingText"> WAITING... </h1>
 <div class="waiting-room-container">
     <p grid-row-start=1 class="room-code">Room Code</p>
     <div class="team-group" grid-row-start=2>
@@ -30,5 +30,17 @@
         <button class="big-button" grid-row-start=3>Start</button>
     </a>
 </div>
+<script>
+    var arr = [" WAITING ", " WAITING. ", " WAITING.. ", " WAITING... "];
+    var count = 0;
+    var element = document.getElementById("waitingText");
+    var interval = setInterval(function () {
+        element.innerHTML = arr[count];
+        count++;
+        if(count > arr.length - 1) {
+            count = 0;
+        }
+    }, 1000);
+</script>
 </body>
 </html>
