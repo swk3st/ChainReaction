@@ -1,21 +1,24 @@
+@import url("main.css");
+
 * {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
+    font-family: var(--norm-font-one);
 }
 
 *::before, *::after {
     box-sizing: border-box;
 }
 
-:root {
+/* :root {
     --backgroundColor: rgba(246, 241, 209);
     --colorShadeA: rgb(106, 163, 137);
     --colorShadeB: rgb(121, 186, 156);
     --colorShadeC: rgb(150, 232, 195);
     --colorShadeD: rgb(187, 232, 211);
     --colorShadeE: rgb(205, 255, 232);
-}
+} */
   
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700");
 
@@ -23,7 +26,15 @@ body {
     font-family: 'OpenSans', sans-serif;
     font-size: 1rem;
     min-height: 100vh;
-    background: var(--backgroundColor);
+    background: var(--primary-background-color);
+}
+
+h1 {
+    text-align: center;
+    padding-top: 10%;
+    font-family: var(--norm-font-two);
+    font-size: 72px;
+    /* color: var(--big-font-color); */
 }
 
 button {
@@ -32,7 +43,7 @@ button {
     cursor: pointer;
     border: 0;
     font-size: 1.5rem;
-    color:var(--colorShadeA);
+    color:var(--colorA);
     font-weight: 700;
     font-family: inherit;
     outline: none;
@@ -40,15 +51,16 @@ button {
   
 button.big-button {
     padding: 1em 2em;
-    border: 2px solid var(--colorShadeA);
+    border: 2px solid var(--colorA);
     border-radius: 1em;
-    background: var(--colorShadeE);
+    /* background: var(--secondary-button-color); */
+    background: var(--primary-button-color);
     transform-style: preserve-3d;
     transition: all 175ms cubic-bezier(0, 0, 1, 1);
 }  
   
 button.big-button:hover {
-    background: var(--colorShadeD);
+    background: var(--secondary-button-color);
     transform: translate(0, -0.375em);
 }
   
@@ -59,7 +71,7 @@ button.big-button:active {
 .normal-create-container {
     display: flex;
     width: 100vw;
-    height: 100vh;
+    height: 50vh;
     align-items: center;
     justify-content: space-around;
 }
