@@ -78,8 +78,8 @@ button.big-button:active {
 
 .waiting-room-container {
     display: grid;
-    width: 100vw;
-    height: 100vh;
+    /* width: 100vw; */
+    height: 50vh;
     grid-template-rows: 1fr 3fr 1fr;
     align-items: center;
     justify-content: center;
