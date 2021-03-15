@@ -23,7 +23,6 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700");
 
 body {
-    font-family: 'OpenSans', sans-serif;
     font-size: 1rem;
     min-height: 100vh;
     background: var(--primary-background-color);
@@ -132,4 +131,24 @@ button.big-button:active {
 .guess-selection {
     grid-column: 1 / span 1;
     grid-row: 3 / span 1;
+}
+
+.code-text {
+    outline: none;
+    line-height: 50px;
+    background: lightgray;
+    box-shadow: inset 0px 1px 3px 0px rgba(0, 0, 0, 0.08);
+    border-radius: 8%;
+    padding: 0 20px;
+    font-size: 16px;
+    color: #666;
+    transition: all 0.4s ease;
+}
+
+.codeplay-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 15px;
 }
