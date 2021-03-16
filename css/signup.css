@@ -39,38 +39,52 @@ input {
   }
   
   /* The message box is shown when the user clicks on the password field */
+  h2{
+    font-family: 'Merriweather';
+    font-weight: bold;
+    font-size: 16px;
+  }
   #message {
     display:none;
-    background: #f1f1f1;
     color: #000;
     position: relative;
     padding: 20px;
-    margin-top: 10px;
+    margin-top: 2px;
   }
   
   #message p {
-    padding: 10px 35px;
-    font-size: 18px;
+    padding: 5px 15px;
+    font-size: 14px;
+    font-family: 'Merriweather';
   }
   
   /* Add a green text color and a checkmark when the requirements are right */
   .valid {
-    color: green;
+    color: #415238;
   }
   
+
+
   .valid:before {
-    position: relative;
-    left: -35px;
-    content: "&#10004;";
+    background-image: url('../resources/check.png');
+    background-size: 10px 20px;
+    display: inline-block;
+    width: 10px; 
+    height: 20px;
+    content:"";
   }
   
-  /* Add a red text color and an "x" icon when the requirements are wrong */
   .invalid {
     color: red;
   }
   
   .invalid:before {
-    position: relative;
-    left: -35px;
-    content: "&#10006;";
+    background-image: url('../resources/x.png');
+    background-size: 10px 20px;
+    display: inline-block;
+    width: 10px; 
+    height: 20px;
+    left: 1px;
+    content:"";
   }
+  

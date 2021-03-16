@@ -16,6 +16,7 @@ body,html{
     background-color: #ADC698;
 }
 
+
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300&family=Playfair+Display&display=swap');
 
 @font-face {
@@ -57,4 +58,14 @@ body,html{
     --primary-button-color: #E9C382;
     --secondary-button-color: #DB9F45;
 
+}
+
+.footer{
+    left: 0;
+    bottom: 100;
+    width: 100%;
+    background-color: #c9c7bc;
+    color: black;
+    text-align: center;
+  }
 }
