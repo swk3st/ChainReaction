@@ -1,0 +1,244 @@
+@import url("main.css");
+
+body, html{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: var(--primary-background-color);
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: var(--norm-font-one);
+}
+
+*::before, *::after {
+    box-sizing: border-box;
+}
+
+/* :root {
+    --backgroundColor: rgba(246, 241, 209);
+    --colorShadeA: rgb(106, 163, 137);
+    --colorShadeB: rgb(121, 186, 156);
+    --colorShadeC: rgb(150, 232, 195);
+    --colorShadeD: rgb(187, 232, 211);
+    --colorShadeE: rgb(205, 255, 232);
+} */
+  
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700");
+
+body {
+    font-size: 1rem;
+    min-height: 100vh;
+}
+
+h1 {
+    text-align: center;
+    padding-top: 5%;
+    font-family: var(--norm-font-two);
+    font-size: 72px;
+    /* color: var(--big-font-color); */
+}
+
+button {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    border: 0;
+    font-size: 1.5rem;
+    color:var(--colorA);
+    font-weight: 700;
+    font-family: inherit;
+    outline: none;
+}
+  
+button.big-button {
+    padding: 1em 2em;
+    border: 2px solid var(--colorA);
+    border-radius: 1em;
+    /* background: var(--secondary-button-color); */
+    background: var(--primary-button-color);
+    transform-style: preserve-3d;
+    transition: all 175ms cubic-bezier(0, 0, 1, 1);
+}  
+  
+button.big-button:hover {
+    background: var(--secondary-button-color);
+    transform: translate(0, -0.375em);
+}
+  
+button.big-button:active {
+    transform: translate(0em, 0.75em);
+}
+
+.normal-create-container {
+    display: flex;
+    width: 100vw;
+    height: 50vh;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.waiting-room-container {
+    display: grid;
+    /* width: 100vw; */
+    height: 50vh;
+    grid-template-rows: 1fr 3fr 1fr;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+}
+
+.team-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 50vw;
+}
+
+.team-grouping {
+    display: grid;
+    grid-template-rows: 2fr 1fr 1fr 1fr;
+    justify-content: center;
+}
+
+.gameplay-container {
+    display: grid;
+    width: 100vw;
+    height: 60vh;
+    grid-template-columns: 2fr 1fr 2fr;
+    grid-template-rows: 2fr 1fr 2fr 1fr;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+}
+
+.round-number {
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 1;
+    font-size: xx-large;
+    text-decoration: underline;
+}
+
+.scoreboard {
+    grid-column: 2 / span 2;
+    grid-row: 1 / span 1;
+    font-size: xx-large;
+    text-decoration: underline;
+}
+
+.chain {
+    grid-column: 2 / span 2;
+    grid-row: 2 / span 2;
+    font-size: 150%;
+}
+
+/* table.chain, td.chain {
+    border: 2px solid black;
+    padding: 1px;
+    width: 100%;
+    height: 100%;
+} */
+
+.guess-selection {
+    grid-column: 1 / span 1;
+    grid-row: 3 / span 1;
+    padding: 5%;
+}
+
+.code-text {
+    outline: none;
+    line-height: 50px;
+    background: lightgray;
+    box-shadow: inset 0px 1px 3px 0px rgba(0, 0, 0, 0.08);
+    border-radius: 8%;
+    padding: 0 20px;
+    font-size: 16px;
+    color: #666;
+    transition: all 0.4s ease;
+}
+
+.codeplay-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 15px;
+}
+
+.custom-create-container {
+    margin-top: 1%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    height: auto;
+}
+
+.left-select {
+    grid-column: 1 / span 1;
+}
+
+.middle-select {
+    grid-column: 2 / span 1;
+    font-size: 24px;
+    font-weight: bolder;
+}
+
+.right-select {
+    grid-column: 3 / span 1;
+}
+
+.chain-table {
+    display: table;
+    background-color: #1d3798;
+    color: white;
+    border: 1px solid black;
+    text-transform: capitalize;
+    border-radius: 3px;
+    padding: 5px 10px;
+}
+
+tr:first-child, tr:last-child {
+    color: yellow;
+}
+
+td {
+    border-top: 1px dashed yellow;
+    border-bottom: 1px dashed yellow;
+}
+
+td:first-child {
+    border-top: none;
+}
+/* 
+td:last-child {
+    border-bottom: none;
+} */
+
+.direction-button {
+    opacity: 0.8;
+    margin: 5%;
+    padding: 0.5em 1em;
+    background-color: var(--primary-button-color);
+    border-radius: 3px;
+    border: 1px solid var(--colorA); 
+}
+
+.direction-button:hover {
+    opacity: 0.9;
+}
+
+.direction-button:active {
+    opacity: 1;
+}
+
+.use-chain, .confirmation-chain {
+    display: inline;
+}
+
+.confirmation-chain {
+    font-size: 24px;
+}
