@@ -132,15 +132,15 @@ button.big-button:active {
 .chain {
     grid-column: 2 / span 2;
     grid-row: 2 / span 2;
-    font-size: large;
+    font-size: 150%;
 }
 
-table.chain, td.chain {
+/* table.chain, td.chain {
     border: 2px solid black;
     padding: 1px;
     width: 100%;
     height: 100%;
-}
+} */
 
 .guess-selection {
     grid-column: 1 / span 1;
@@ -169,15 +169,57 @@ table.chain, td.chain {
 }
 
 .custom-create-container {
-    display: flex;
-    flex-direction: row;
-    /* justify-content: center; */
-    /* align-items: center; */
-    /* justify-items: space-around; */
-}
-
-.left-select, .middle-select, .right-select {
-    display: inline-block;
-    width: 5px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
     height: auto;
 }
+
+.left-select {
+    grid-column: 1 / span 1;
+}
+
+.middle-select {
+    grid-column: 2 / span 1;
+    font-size: 24px;
+}
+
+.right-select {
+    grid-column: 3 / span 1;
+}
+
+/* .left-select, .middle-select, .right-select {
+    border: 2px solid black;
+    padding: 1px;
+    background-color: #1d3798;
+    color: white;
+} */
+
+.chain-table {
+    display: table;
+    background-color: #1d3798;
+    color: white;
+    border: 1px solid black;
+    text-transform: capitalize;
+    border-radius: 3px;
+    padding: 5px 10px;
+}
+
+tr:first-child, tr:last-child {
+    color: yellow;
+}
+
+td {
+    border-top: 1px dashed yellow;
+    border-bottom: 1px dashed yellow;
+}
+
+td:first-child {
+    border-top: none;
+}
+/* 
+td:last-child {
+    border-bottom: none;
+} */
