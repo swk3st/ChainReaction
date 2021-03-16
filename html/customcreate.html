@@ -40,49 +40,121 @@
 <body>
     <h1 class="big-title"> Custom Create </h1>
     <div>
-      <button class="direction-button use-chain">Use Chain</button>
-      <p class="confirmation-chain">Word 1 - Word 2 - Word 3 - Word 4 - Word 5 - Word 6 - Word 7</p>
+      <button id="use-button" class="direction-button use-chain" onmouseover="changeText()">Use Chain</button>
+      <p id="chain-text" class="confirmation-chain">Word 1 - Word 2 - Word 3 - Word 4 - Word 5 - Word 6 - Word 7</p>
     </div>
     <div class="custom-create-container">
   <div class="left-select chain-table">
     <table>
-      <tr><td>Word 1</td></tr>
-      <tr><td>.</td></tr>
-      <tr><td>.</td></tr>
-      <tr><td>.</td></tr>
-      <tr><td>.</td></tr>
-      <tr><td>.</td></tr>
-      <tr><td>Word 7</td></tr>
+      <tr><td id="left1">Word 1</td></tr>
+      <tr><td id="left2">.</td></tr>
+      <tr><td id="left3">L#</td></tr>
+      <tr><td id="left4">.</td></tr>
+      <tr><td id="left5">.</td></tr>
+      <tr><td id="left6">.</td></tr>
+      <tr><td id="left7">Word 7</td></tr>
     </table>
   </div>
   <div class="middle-select chain-table">
     <table>
-      <tr><td>Word 1</td></tr>
-      <tr><td>.</td></tr>
-      <tr><td>.</td></tr>
-      <tr><td>.</td></tr>
-      <tr><td>.</td></tr>
-      <tr><td>.</td></tr>
-      <tr><td>Word 7</td></tr>
+      <tr><td id="mid1">Word 1</td></tr>
+      <tr><td id="mid2">.</td></tr>
+      <tr><td id="mid3">.</td></tr>
+      <tr><td id="mid4">.</td></tr>
+      <tr><td id="mid5">.</td></tr>
+      <tr><td id="mid6">.</td></tr>
+      <tr><td id="mid7">Word 7</td></tr>
     </table>
   </div>
   <div class="right-select chain-table">
     <table>
-      <tr><td>Word 1</td></tr>
-      <tr><td>.lol</td></tr>
-      <tr><td>.this</td></tr>
-      <tr><td>.is</td></tr>
-      <tr><td>.fact</td></tr>
-      <tr><td>.cap</td></tr>
-      <tr><td>Word 7</td></tr>
+      <tr><td id="right1">Word 1</td></tr>
+      <tr><td id="right2">.lol</td></tr>
+      <tr><td id="right3">.this</td></tr>
+      <tr><td id="right4">.is</td></tr>
+      <tr><td id="right5">.fact</td></tr>
+      <tr><td id="right6">.cap</td></tr>
+      <tr><td id="right7">Word 7</td></tr>
     </table>
   </div>
-  <button class="direction-button">→</button>
+  <button class="direction-button" onclick="shiftRight()">→</button>
   <button class="direction-button">Add New Chain</button>
-  <button class="direction-button">←</button>
+  <button class="direction-button" onclick="shiftLeft()">←</button>
 </div>
 <script>
-  
+  changeText = () => {
+    var chain_string = "";
+    for(var i = 1; i <= 7; i++) {
+      var id = "mid" + i.toString();
+      chain_string += document.getElementById(id).innerHTML;
+      if(i != 7) {
+          chain_string += " - ";
+      }
+    }
+    chain_msg.innerHTML = chain_string.toUpperCase();
+  }
+  var chain_msg = document.getElementById("chain-text");
+  var confirm_button = document.getElementById("use-button");
+  var defaults = ["default1", "default2", "default3","default4", "default5", "default6", "default7"];
+
+  getSet = (setName) => {
+    var arr = []
+    for(var i = 1; i <= 7; i++) {
+      var id = setName + i.toString();
+      var id_elem = document.getElementById(id);
+      arr.push(id_elem);
+    }
+    return arr;
+  }
+
+  getAllSets = () => {
+    var left = getSet("left");
+    var mid = getSet("mid");
+    var right = getSet("right");
+    var arr = [left, mid, right];
+    return arr;
+  }
+
+  dirToInd = (dir) => {
+    if (dir == "left") {
+      return 0;
+    } else if (dir == "mid") {
+      return 1;
+    } else {
+      return 2;
+    }
+  }
+
+  shift = (from, into) => {
+    var sets = getAllSets();
+    var setDest = getSet(into);
+    var setSrc = getSet(from);
+    var dest = dirToInd(into);
+    var src = dirToInd(from);
+    for(var i = 0; i < setDest.length; i++) {
+      sets[dest][i].innerHTML = sets[src][i].innerHTML;
+    }
+  }
+
+  shiftLeft = () => {
+    shift("mid", "left");
+    shift("right", "mid");
+    setToDefault("right");
+  }
+
+  shiftRight = () => {
+    shift("mid", "right");
+    shift("left", "mid");
+    setToDefault("left");
+  }
+
+  setToDefault = (name) => {
+    var side = getSet(name);
+    for(var i = 0; i < side.length; i++) {
+      side[i].innerHTML = defaults[i];
+    }
+  }
+
 </script>
 </body>
 </html>
