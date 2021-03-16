@@ -4,7 +4,7 @@ body, html{
     margin: 0;
     padding: 0;
     height: 100%;
-    background-color: #ADC698;
+    background: var(--primary-background-color);
 }
 
 * {
@@ -32,7 +32,6 @@ body, html{
 body {
     font-size: 1rem;
     min-height: 100vh;
-    background: var(--primary-background-color);
 }
 
 h1 {
@@ -169,6 +168,7 @@ button.big-button:active {
 }
 
 .custom-create-container {
+    margin-top: 1%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     align-items: center;
@@ -184,18 +184,12 @@ button.big-button:active {
 .middle-select {
     grid-column: 2 / span 1;
     font-size: 24px;
+    font-weight: bolder;
 }
 
 .right-select {
     grid-column: 3 / span 1;
 }
-
-/* .left-select, .middle-select, .right-select {
-    border: 2px solid black;
-    padding: 1px;
-    background-color: #1d3798;
-    color: white;
-} */
 
 .chain-table {
     display: table;
@@ -223,3 +217,28 @@ td:first-child {
 td:last-child {
     border-bottom: none;
 } */
+
+.direction-button {
+    opacity: 0.8;
+    margin: 5%;
+    padding: 0.5em 1em;
+    background-color: var(--primary-button-color);
+    border-radius: 3px;
+    border: 1px solid var(--colorA); 
+}
+
+.direction-button:hover {
+    opacity: 0.9;
+}
+
+.direction-button:active {
+    opacity: 1;
+}
+
+.use-chain, .confirmation-chain {
+    display: inline;
+}
+
+.confirmation-chain {
+    font-size: 24px;
+}
