@@ -1,0 +1,34 @@
+body {margin: 0;}
+
+ol.topnav {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #415238;
+}
+
+ol.topnav li.left {float: left;}
+
+ol.topnav li {float: right;}
+
+
+.navbutton:active{
+        background-color:#ADC698;
+        color:#000;
+     }
+
+.navbutton:hover{
+       border-radius: 25px;
+     }
+     
+.navbutton:focus{
+       border-radius: 25px;
+       box-shadow:0 8px 16px 0 rgba(0,0,0,0.2),
+       0 6px 20px 0 rgba(0,0,0,0.19)
+     }
+
+@media screen and (max-width: 600px) {
+  ol.topnav li.right, 
+  ol.topnav li {float: none;}
+}
