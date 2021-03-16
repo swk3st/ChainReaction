@@ -1,0 +1,76 @@
+@import url('main.css');
+
+/* Style all input fields */
+input {
+    width: 100%;
+    padding: 12px;
+    border: 5px solid #FFFBDB;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+  }
+  
+  /* Style the submit button */
+  input[type=submit] {
+    background-color: #E9C382;
+    color: #C45852;
+    width: 25%;
+    justify-content: space-between
+
+  }
+
+  input[type=reset] {
+    background-color: #e9c382ec;
+    color: #C45852;
+    width: 25%;
+    justify-content: space-between
+
+  }  
+
+  /* Style the container for inputs */
+  .container {
+    background-color: #c9c7bc;
+    padding: 20px;
+    width: 50%;
+    top: 25%;
+    font-family:'GvTime' ;
+
+  }
+  
+  /* The message box is shown when the user clicks on the password field */
+  #message {
+    display:none;
+    background: #f1f1f1;
+    color: #000;
+    position: relative;
+    padding: 20px;
+    margin-top: 10px;
+  }
+  
+  #message p {
+    padding: 10px 35px;
+    font-size: 18px;
+  }
+  
+  /* Add a green text color and a checkmark when the requirements are right */
+  .valid {
+    color: green;
+  }
+  
+  .valid:before {
+    position: relative;
+    left: -35px;
+    content: "&#10004;";
+  }
+  
+  /* Add a red text color and an "x" icon when the requirements are wrong */
+  .invalid {
+    color: red;
+  }
+  
+  .invalid:before {
+    position: relative;
+    left: -35px;
+    content: "&#10006;";
+  }
