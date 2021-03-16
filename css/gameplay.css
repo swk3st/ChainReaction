@@ -234,3 +234,11 @@ td:last-child {
 .direction-button:active {
     opacity: 1;
 }
+
+.use-chain, .confirmation-chain {
+    display: inline;
+}
+
+.confirmation-chain {
+    font-size: 24px;
+}
