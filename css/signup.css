@@ -1,0 +1,90 @@
+@import url('main.css');
+
+/* Style all input fields */
+input {
+    width: 100%;
+    padding: 12px;
+    border: 5px solid #FFFBDB;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+  }
+  
+  /* Style the submit button */
+  input[type=submit] {
+    background-color: #E9C382;
+    color: #C45852;
+    width: 25%;
+    justify-content: space-between
+
+  }
+
+  input[type=reset] {
+    background-color: #e9c382ec;
+    color: #C45852;
+    width: 25%;
+    justify-content: space-between
+
+  }  
+
+  /* Style the container for inputs */
+  .container {
+    background-color: #c9c7bc;
+    padding: 20px;
+    width: 50%;
+    top: 25%;
+    font-family:'GvTime' ;
+
+  }
+  
+  /* The message box is shown when the user clicks on the password field */
+  h2{
+    font-family: 'Merriweather';
+    font-weight: bold;
+    font-size: 16px;
+  }
+  #message {
+    display:none;
+    color: #000;
+    position: relative;
+    padding: 20px;
+    margin-top: 2px;
+  }
+  
+  #message p {
+    padding: 5px 15px;
+    font-size: 14px;
+    font-family: 'Merriweather';
+  }
+  
+  /* Add a green text color and a checkmark when the requirements are right */
+  .valid {
+    color: #415238;
+  }
+  
+
+
+  .valid:before {
+    background-image: url('../resources/check.png');
+    background-size: 10px 20px;
+    display: inline-block;
+    width: 10px; 
+    height: 20px;
+    content:"";
+  }
+  
+  .invalid {
+    color: red;
+  }
+  
+  .invalid:before {
+    background-image: url('../resources/x.png');
+    background-size: 10px 20px;
+    display: inline-block;
+    width: 10px; 
+    height: 20px;
+    left: 1px;
+    content:"";
+  }
+  
