@@ -73,6 +73,16 @@ function randCode() {
     return $code;
 }
 
+function exists_string($table, $attribute, $value) {
+    global $db;
+    connect();
+    $sql = "SELECT * FROM  $table  WHERE $attribute = :v";
+    $statement = $db->prepare($sql);
+    $statement->bindParam(":v", $value);
+    $statement->execute();
+    return $statement->rowCount() != 0;
+}
+
 function trimWords($words) {
     for ($i = 0; $i < count($words); $i++) {
         $words[$i] = trim($words[$i]);
@@ -80,18 +90,40 @@ function trimWords($words) {
     return $words;
 }
 
+function new_id($table, $attribute) {
+    $id = randCode();
+    while(exists_string($table, $attribute, $id)) {
+        //dangerous loop, what if fills up? we will assume it will never fill up
+        $id = randCode();
+    }
+    return $id;
+}
+
 function insertChain($player_id, $words) {
+
     global $db;
     connect();
+
     $words = trimWords($words);
-    $first_sql = "INSERT INTO chain (word1, word2, word3, word4, word5, word6, word7) VALUES (:word1, :word2, :word3, :word4, :word5, :word6, :word7)";
+    $chain_id = new_id("chain", "chain_id");
+
+    $first_sql = "INSERT INTO chain (chain_id, word1, word2, word3, word4, word5, word6, word7) VALUES (:chain_id, :word1, :word2, :word3, :word4, :word5, :word6, :word7)";
     $first_statement = $db->prepare($first_sql);
+    $first_statement->bindParam(":chain_id", $chain_id);
     for($i = 0; $i < count($words); $i++) {
         $bind = ":word" . strval(($i + 1));
         $first_statement->bindParam($bind, $words[$i]);
     }
     $first_statement->execute();
+    
+    
+    $second_sql = "INSERT INTO owns (player_id, chain_id) VALUES (:player_id, :chain_id)";
+    $second_statement = $db->prepare($second_sql);
+    $second_statement->bindParam("player_id", $player_id);
+    $second_statement->bindParam("chain_id", $chain_id);
+    $second_statement->execute();
 }
+// echo exists_string("game", "game_id", "0123456789") . " What's good?";
 // echo randCode();
-// insertChain(3, array("hi", "my","name", "is", "brad", "and", "pace"));
+insertChain("aaaaaaaaaa", array("hi", "my","name", "is", "brad", "and", "pace"));
 ?>
