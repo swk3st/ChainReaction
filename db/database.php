@@ -131,6 +131,7 @@ function insertPlayer($email, $pwd) {
 function check_pwd($player_id, $pwd) {
     global $db;
     connect();
+
     $sql = "SELECT encrypted_pwd FROM  player  WHERE player_id = :player_id";
     $statement = $db->prepare($sql);
     $statement->bindParam(":player_id", $player_id);
@@ -138,6 +139,18 @@ function check_pwd($player_id, $pwd) {
     $result = $statement->fetchAll();
     $retrived_pwd = $result[0][0];
     return strcmp(encrypt($pwd), $retrived_pwd);
+}
+
+function get_player_id($email) {
+    global $db;
+    connect();
+
+    $sql = "SELECT player_id FROM player WHERE $email = :email";
+    $statement = $db->prepare($sql);
+    $statement->bindParam(":email", $email);
+    $statement->execute();
+    $result = $statement->fetchAll();
+    return $result;
 }
 
 function removePlayer($player_id) {
