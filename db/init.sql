@@ -12,17 +12,17 @@ CREATE TABLE IF NOT EXISTS chain (
 );
 
 CREATE TABLE IF NOT EXISTS player (
-    player_id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    player_id VARCHAR(10) PRIMARY KEY NOT NULL,
     email VARCHAR(255) NOT NULL,
     encrypted_pwd VARCHAR(255) NOT NULL,
     earnings INT NOT NULL,
-    gussess INT NOT NULL,
+    guesses INT NOT NULL,
     correct INT NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS owns (
     chain_id VARCHAR(10) NOT NULL,
-    player_id INT NOT NULL,
+    player_id VARCHAR(10) NOT NULL,
     FOREIGN KEY (chain_id) REFERENCES chain(chain_id),
     FOREIGN KEY (player_id) REFERENCES player(player_id)
 );
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS game (
 );
 
 CREATE TABLE IF NOT EXISTS playing (
-    player_id INT NOT NULL,
+    player_id VARCHAR(10) NOT NULL,
     game_id VARCHAR(10) NOT NULL,
-    team INT NOT NULL
+    team VARCHAR(10) NOT NULL
 );
