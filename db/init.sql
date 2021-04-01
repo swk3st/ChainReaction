@@ -1,5 +1,14 @@
 USE chain_reaction;
 
+-- to ease development, will need to be removed later;
+SET FOREIGN_KEY_CHECKS = 0;
+DROP TABLE chain;
+DROP TABLE player;
+DROP TABLE owns;
+DROP TABLE game;
+DROP TABLE player;
+SET FOREIGN_KEY_CHECKS = 1;
+
 CREATE TABLE IF NOT EXISTS chain (
     chain_id VARCHAR(10) PRIMARY KEY NOT NULL,
     word1 VARCHAR(255) NOT NULL,
