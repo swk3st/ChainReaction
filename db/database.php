@@ -61,4 +61,37 @@ function connect () {
     return false;
 }
 
+function randCode() {
+    $characters = "abcdefghijklmnopqrstuvwxyz0123456789";
+    $code = "";
+    $chars = 0;
+    while($chars < 10) {
+        $index = mt_rand(0, strlen($characters) - 1);
+        $code .= $characters[$index];
+        $chars++;
+    }
+    return $code;
+}
+
+function trimWords($words) {
+    for ($i = 0; $i < count($words); $i++) {
+        $words[$i] = trim($words[$i]);
+    }
+    return $words;
+}
+
+function insertChain($player_id, $words) {
+    global $db;
+    connect();
+    $words = trimWords($words);
+    $first_sql = "INSERT INTO chain (word1, word2, word3, word4, word5, word6, word7) VALUES (:word1, :word2, :word3, :word4, :word5, :word6, :word7)";
+    $first_statement = $db->prepare($first_sql);
+    for($i = 0; $i < count($words); $i++) {
+        $bind = ":word" . strval(($i + 1));
+        $first_statement->bindParam($bind, $words[$i]);
+    }
+    $first_statement->execute();
+}
+// echo randCode();
+// insertChain(3, array("hi", "my","name", "is", "brad", "and", "pace"));
 ?>

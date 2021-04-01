@@ -1,4 +1,4 @@
-USE DATABASE db;
+USE chain_reaction;
 
 CREATE TABLE IF NOT EXISTS chain (
     chain_id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
