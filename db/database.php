@@ -99,13 +99,21 @@ function new_id($table, $attribute) {
     return $id;
 }
 
+function encrypt($plain_text) {
+    return $plain_text;
+}
+
+function decrypt($encrypted_text) {
+    return $encrypted_text;
+}
+
 function insertPlayer($email, $pwd) {
 
     global $db;
     connect();
 
     $player_id = new_id("player", "player_id");
-    $encrypted_pwd = $pwd;
+    $encrypted_pwd = encrypt($pwd);
 
     $sql = "INSERT INTO player (player_id, email, encrypted_pwd, earnings, guesses, correct) VALUES (:player_id, :email, :encrypted_pwd, :earnings, :guesses, :correct)";
     $statement = $db->prepare($sql);
@@ -118,6 +126,18 @@ function insertPlayer($email, $pwd) {
     $statement->execute();
 
     return $player_id;
+}
+
+function check_pwd($player_id, $pwd) {
+    global $db;
+    connect();
+    $sql = "SELECT encrypted_pwd FROM  player  WHERE player_id = :player_id";
+    $statement = $db->prepare($sql);
+    $statement->bindParam(":player_id", $player_id);
+    $statement->execute();
+    $result = $statement->fetchAll();
+    $retrived_pwd = $result[0][0];
+    return strcmp(encrypt($pwd), $retrived_pwd);
 }
 
 function removePlayer($player_id) {
