@@ -178,5 +178,4 @@ function allChains($player_id) {
     //         [word6] => and [6] => and 
     //         [word7] => a [7] => a ) )
 }
-allChains("aaaaaaaaaa");
 ?>
