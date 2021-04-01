@@ -123,7 +123,7 @@ function insertChain($player_id, $words) {
     $second_statement->bindParam("chain_id", $chain_id);
     $second_statement->execute();
 
-    echo $chain_id;
+    return $chain_id;
 }
 
 
@@ -134,7 +134,7 @@ function deleteChain($chain_id) {
 
     $first_sql = "DELETE FROM owns WHERE chain_id = :chain_id";
     $first_statement = $db->prepare($first_sql);
-    $first_statement->bindParam("chain_id", $chain_id);
+    $first_statement->bindParam(":chain_id", $chain_id);
     $first_statement->execute();
 
     $second_sql = "DELETE FROM chain WHERE chain_id = :chain_id";
@@ -144,4 +144,39 @@ function deleteChain($chain_id) {
     $second_statement->execute();  
     
 }
+
+function allChains($player_id) {
+
+    global $db;
+    connect();
+
+    $sql = "SELECT chain_id, word1, word2, word3, word4, word5, word6, word7 FROM owns NATURAL JOIN chain WHERE player_id = :player_id";
+    $statement = $db->prepare($sql);
+    $statement->bindParam(":player_id", $player_id);
+    $statement->execute();
+    $result = $statement->fetchAll();
+    return $result;
+
+    // Format of result:
+    // Array ( 
+    //     [0] => Array ( 
+    //         [chain_id] => 2o8oh0wcno [0] => 2o8oh0wcno 
+    //         [word1] => hi [1] => hi 
+    //         [word2] => my [2] => my 
+    //         [word3] => name [3] => name 
+    //         [word4] => is [4] => is 
+    //         [word5] => brad [5] => brad 
+    //         [word6] => and [6] => and 
+    //         [word7] => pace [7] => pace )
+    //     [1] => Array ( 
+    //         [chain_id] => hahahahaha [0] => hahahahaha 
+    //         [word1] => hi [1] => hi 
+    //         [word2] => my [2] => my 
+    //         [word3] => name [3] => name 
+    //         [word4] => is [4] => is 
+    //         [word5] => michael [5] => michael 
+    //         [word6] => and [6] => and 
+    //         [word7] => a [7] => a ) )
+}
+allChains("aaaaaaaaaa");
 ?>
