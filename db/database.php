@@ -30,12 +30,13 @@
 
 /******************************/
 
-$dsn = "mysql:host=$host;dbname=$dbname";
+    $dsn = "mysql:host=$host;dbname=$dbname";
 
-$db = NULL;
+    $db = NULL;
 
 /** connect to the database **/
 function connect () {
+    global $username, $password, $dbname, $host, $dsn, $db;
     if(!isset($db)) {
         try 
         {
@@ -56,9 +57,8 @@ function connect () {
             $error_message = $e->getMessage();
             echo "<p>Error message: $error_message </p>";
         }
-        return false;
     }
+    return false;
 }
-
 
 ?>
