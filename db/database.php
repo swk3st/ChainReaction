@@ -99,6 +99,41 @@ function new_id($table, $attribute) {
     return $id;
 }
 
+function insertPlayer($email, $pwd) {
+
+    global $db;
+    connect();
+
+    $player_id = new_id("player", "player_id");
+    $encrypted_pwd = $pwd;
+
+    $sql = "INSERT INTO player (player_id, email, encrypted_pwd, earnings, guesses, correct) VALUES (:player_id, :email, :encrypted_pwd, :earnings, :guesses, :correct)";
+    $statement = $db->prepare($sql);
+    $statement->bindParam(":player_id", $player_id);
+    $statement->bindParam(":email", $email);
+    $statement->bindParam(":encrypted_pwd", $encrypted_pwd);
+    $statement->bindValue(":earnings", 0);
+    $statement->bindValue(":guesses", 0);
+    $statement->bindValue(":correct", 0);
+    $statement->execute();
+
+    return $player_id;
+}
+
+function removePlayer($player_id) {
+
+    global $db;
+    connect();
+
+    $sql = "DELETE FROM player WHERE player_id = :player_id";
+    $statement = $db->prepare($sql);
+    $statement->bindParam(":player_id", $player_id);
+    $statement->execute();
+
+    return $player_id;
+}
+
+
 function insertChain($player_id, $words) {
 
     global $db;
@@ -142,6 +177,8 @@ function deleteChain($chain_id) {
     $second_statement->bindParam(":chain_id", $chain_id);
 
     $second_statement->execute();  
+
+    return $chain_id;
     
 }
 
@@ -178,4 +215,6 @@ function allChains($player_id) {
     //         [word6] => and [6] => and 
     //         [word7] => a [7] => a ) )
 }
+// echo insertPlayer("matt@gmail.com", "apple");
+
 ?>
