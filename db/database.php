@@ -122,6 +122,26 @@ function insertChain($player_id, $words) {
     $second_statement->bindParam("player_id", $player_id);
     $second_statement->bindParam("chain_id", $chain_id);
     $second_statement->execute();
+
+    echo $chain_id;
 }
 
+
+function deleteChain($chain_id) {
+
+    global $db;
+    connect();
+
+    $first_sql = "DELETE FROM owns WHERE chain_id = :chain_id";
+    $first_statement = $db->prepare($first_sql);
+    $first_statement->bindParam("chain_id", $chain_id);
+    $first_statement->execute();
+
+    $second_sql = "DELETE FROM chain WHERE chain_id = :chain_id";
+    $second_statement = $db->prepare($second_sql);
+    $second_statement->bindParam(":chain_id", $chain_id);
+
+    $second_statement->execute();  
+    
+}
 ?>
