@@ -73,7 +73,7 @@ function randCode() {
     return $code;
 }
 
-function exists_string($table, $attribute, $value) {
+function existsString($table, $attribute, $value) {
     global $db;
     connect();
     $sql = "SELECT * FROM  $table  WHERE $attribute = :v";
@@ -90,9 +90,9 @@ function trimWords($words) {
     return $words;
 }
 
-function new_id($table, $attribute) {
+function generateID($table, $attribute) {
     $id = randCode();
-    while(exists_string($table, $attribute, $id)) {
+    while(existsString($table, $attribute, $id)) {
         //dangerous loop, what if fills up? we will assume it will never fill up
         $id = randCode();
     }
@@ -112,7 +112,7 @@ function insertPlayer($email, $pwd) {
     global $db;
     connect();
 
-    $player_id = new_id("player", "player_id");
+    $player_id = generateID("player", "player_id");
     $encrypted_pwd = encrypt($pwd);
 
     $sql = "INSERT INTO player (player_id, email, encrypted_pwd, earnings, guesses, correct) VALUES (:player_id, :email, :encrypted_pwd, :earnings, :guesses, :correct)";
@@ -128,7 +128,7 @@ function insertPlayer($email, $pwd) {
     return $player_id;
 }
 
-function check_pwd($player_id, $pwd) {
+function checkPwd($player_id, $pwd) {
     global $db;
     connect();
 
@@ -141,7 +141,7 @@ function check_pwd($player_id, $pwd) {
     return strcmp(encrypt($pwd), $retrived_pwd);
 }
 
-function get_player_id($email) {
+function getPlayerID($email) {
     global $db;
     connect();
 
@@ -173,7 +173,7 @@ function insertChain($player_id, $words) {
     connect();
 
     $words = trimWords($words);
-    $chain_id = new_id("chain", "chain_id");
+    $chain_id = generateID("chain", "chain_id");
 
     $first_sql = "INSERT INTO chain (chain_id, word1, word2, word3, word4, word5, word6, word7) VALUES (:chain_id, :word1, :word2, :word3, :word4, :word5, :word6, :word7)";
     $first_statement = $db->prepare($first_sql);
