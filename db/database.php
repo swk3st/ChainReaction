@@ -162,7 +162,7 @@ function insertChain($player_id, $words) {
 }
 
 
-function deleteChain($chain_id) {
+function removeChain($chain_id) {
 
     global $db;
     connect();
