@@ -123,7 +123,5 @@ function insertChain($player_id, $words) {
     $second_statement->bindParam("chain_id", $chain_id);
     $second_statement->execute();
 }
-// echo exists_string("game", "game_id", "0123456789") . " What's good?";
-// echo randCode();
-insertChain("aaaaaaaaaa", array("hi", "my","name", "is", "brad", "and", "pace"));
+
 ?>
