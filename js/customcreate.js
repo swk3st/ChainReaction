@@ -235,8 +235,59 @@ function requestChains(playerID) {
   xmlhttp.send();
 }
 
+getDOMObjects = (setName) => {
+  var arr = []
+  for(var i = 1; i <= 7; i++) {
+    var id = setName + i.toString();
+    var id_elem = document.getElementById(id);
+    arr.push(id_elem);
+  }
+  return arr;
+}
+
+function setLeft() {
+  objects = getDOMObjects("left");
+  words = chainList.getLeft();
+  for(var i = 0; i < words.length; i++) {
+    objects[i].innerHTML = words[i].innerHTML;
+  }
+}
+
+function setMid() {
+  objects = getDOMObjects("mid");
+  words = chainList.getMiddle();
+  for(var i = 0; i < words.length; i++) {
+    objects[i].innerHTML = words[i].innerHTML;
+  }
+}
+
+function setRight() {
+  objects = getDOMObjects("right");
+  words = chainList.getRight();
+  for(var i = 0; i < words.length; i++) {
+    objects[i].innerHTML = words[i].innerHTML;
+  }
+}
+
 function loadChains() {
   requestPlayerID(requestChains);
+  setLeft();
+  setMid();
+  setRight();
+}
+
+function shiftLeft() {
+  chainList.shiftLeft();
+  setLeft();
+  setMid();
+  setRight();
+}
+
+function shiftRight() {
+  chainList.shiftRight();
+  setLeft();
+  setMid();
+  setRight();
 }
 
 document.addEventListener('DOMContentLoaded', loadChains(), false);
@@ -268,15 +319,6 @@ document.addEventListener('DOMContentLoaded', loadChains(), false);
 //   var confirm_button = document.getElementById("use-button");
 //   var defaults = ["default1", "default2", "default3","default4", "default5", "default6", "default7"];
 
-//   getSet = (setName) => {
-//     var arr = []
-//     for(var i = 1; i <= 7; i++) {
-//       var id = setName + i.toString();
-//       var id_elem = document.getElementById(id);
-//       arr.push(id_elem);
-//     }
-//     return arr;
-//   }
 
 //   getAllSets = () => {
 //     var left = getSet("left");
