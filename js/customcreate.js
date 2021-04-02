@@ -30,7 +30,14 @@ class ChainList {
 
   initalizeChains = (chainsData) => {
     for(let data of chainsData) {
-      let chain = new Chain(data[0], data.slice(1));
+      let words = []
+      let key = "";
+      for (let i = 0; i < 8; i++) {
+        key = key + i;
+        words.push(data[key]);
+      }
+      let chain_id = data["chain_id"];
+      let chain = new Chain(chain_id, words);
       this.chains.push(chain);
       this.size++;
       if(this.size == 1) {
@@ -189,17 +196,33 @@ class ChainList {
   }
 
 }
-let burner = ["lol", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a"];
-let burner2 = ["LMAO", "a", "a", "b", "a", "a", "b", "a", "a", "b", "a"];
 
-let arr = []
-for (let i = 0; i < 1; i++) {
-  arr.push(burner);
-  arr.push(burner2);
+function loadChains() {
+  var xmlhttp = new XMLHttpRequest();
+  xmlhttp.onreadystatechange = function() {
+    if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+      var data = JSON.parse(xmlhttp.responseText);
+      console.log(data);
+    }
+  }
+  let url = "../php/loadcustomcreate.php?playerID=";
+  let request = "aaaaaaaaaa";
+  xmlhttp.open("GET", url+request, true);
+  xmlhttp.send();
 }
-let chainList = new ChainList("lol", arr);
-chainList.shiftLeft();
-console.log(chainList.getMiddle());
+
+document.addEventListener('DOMContentLoaded', loadChains(), false);
+// let burner = ["lol", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a"];
+// let burner2 = ["LMAO", "a", "a", "b", "a", "a", "b", "a", "a", "b", "a"];
+
+// let arr = []
+// for (let i = 0; i < 1; i++) {
+//   arr.push(burner);
+//   arr.push(burner2);
+// }
+// let chainList = new ChainList("lol", arr);
+// chainList.shiftLeft();
+// console.log(chainList.getMiddle());
 
 
 // changeText = () => {
