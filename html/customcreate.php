@@ -1,4 +1,4 @@
-<!-- <!doctype html>
+<!doctype html>
 <html>
   <head>
     <meta charset="UTF-8">
@@ -9,6 +9,11 @@
   
     <link rel="stylesheet" href="..\css\gameplay.css">
 </head>
+
+<?php
+  session_start();
+  $_SESSION["playerID"] = "aaaaaaaaaa";
+?>
 
 <header>
 
@@ -83,20 +88,6 @@
   <button class="direction-button">Add New Chain</button>
   <button class="direction-button" onclick="shiftLeft()">←</button>
 </div>
-<script>
-
-
-    class Chain {
-        constructor(chainID, playerID) {
-            this.chainID = chainID;
-            this.playerID = playerID;
-            getWords();
-        }
-    }
-
-    getWords = () => {
-    }
-
-</script>
+<script src="../js/customcreate.js"></script>
 </body>
-</html> -->
+</html>

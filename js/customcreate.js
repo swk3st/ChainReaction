@@ -29,7 +29,7 @@ class ChainList {
   }
 
   initalizeChains = (chainsData) => {
-    for(let data of chainsData) {
+    for(let data in chainsData) {
       let words = []
       let key = "";
       for (let i = 0; i < 8; i++) {
@@ -197,18 +197,46 @@ class ChainList {
 
 }
 
-function loadChains() {
+let chainList;
+
+function handleData(playerID, jsonData) {
+  chainList = new ChainList(playerID, jsonData);
+}
+
+function requestPlayerID(callback) {
+  var playerID = "";
+  var xmlhttp = new XMLHttpRequest();
+  xmlhttp.onreadystatechange = function() {
+    if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+      playerID = JSON.parse(xmlhttp.responseText);
+      // console.log(playerID);
+    }
+  }
+  xmlhttp.onload = function () {
+    callback(playerID);
+  };
+  let playerIDUrl = "../php/sessiondata.php?var=playerID";
+  xmlhttp.open("GET", playerIDUrl, true);
+  xmlhttp.send();
+}
+
+function requestChains(playerID) {
   var xmlhttp = new XMLHttpRequest();
   xmlhttp.onreadystatechange = function() {
     if (xmlhttp.readyState==4 && xmlhttp.status==200) {
       var data = JSON.parse(xmlhttp.responseText);
-      console.log(data);
+      // console.log(data);
+      handleData(data);
     }
   }
   let url = "../php/loadcustomcreate.php?playerID=";
-  let request = "aaaaaaaaaa";
+  let request = playerID;
   xmlhttp.open("GET", url+request, true);
   xmlhttp.send();
+}
+
+function loadChains() {
+  requestPlayerID(requestChains);
 }
 
 document.addEventListener('DOMContentLoaded', loadChains(), false);
