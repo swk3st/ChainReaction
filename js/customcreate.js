@@ -1,7 +1,12 @@
 class Chain {
   constructor(chainID, words) {
-    this.chainID = chainID;
-    this.words = words;
+    if (chainID == undefined && words == undefined) {
+      this.chainID = null;
+      this.words = ["", "", "", "", "", "", ""];
+    } else {
+      this.chainID = chainID;
+      this.words = words;
+    }
   }
 }
 
@@ -156,23 +161,45 @@ class ChainList {
     return false;
   }
 
+  getMiddle = () => {
+    if (this.middle == -1) {
+      let defaultChain = new Chain();
+      return defaultChain.words;
+    } else {
+      return this.chains[this.middle].words;
+    }
+  }
+
+  getLeft = () => {
+    if (this.left == -1) {
+      let defaultChain = new Chain();
+      return defaultChain.words;
+    } else {
+      return this.chains[this.left].words;
+    }
+  }
+
+  getRight = () => {
+    if (this.right == -1) {
+      let defaultChain = new Chain();
+      return defaultChain.words;
+    } else {
+      return this.chains[this.right].words;
+    }
+  }
+
 }
 let burner = ["lol", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a"];
+let burner2 = ["LMAO", "a", "a", "b", "a", "a", "b", "a", "a", "b", "a"];
 
 let arr = []
-for (let i = 0; i < 18; i++) {
+for (let i = 0; i < 1; i++) {
   arr.push(burner);
+  arr.push(burner2);
 }
 let chainList = new ChainList("lol", arr);
-// chainList.printInd();
-// chainList.shiftLeft();
-// chainList.shiftLeft();
-// chainList.shiftLeft();
-// chainList.shiftLeft();
-// chainList.shiftRight();
-// chainList.shiftRight();
-// chainList.printInd();
-// console.log(chainList);
+chainList.shiftLeft();
+console.log(chainList.getMiddle());
 
 
 // changeText = () => {
