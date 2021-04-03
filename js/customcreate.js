@@ -29,11 +29,11 @@ class ChainList {
   }
 
   initalizeChains = (chainsData) => {
-    for(let data in chainsData) {
+    for(let data of chainsData) {
       let words = []
       let key = "";
-      for (let i = 0; i < 8; i++) {
-        key = key + i;
+      for (let i = 1; i <= 7; i++) {
+        key = "" + i;
         words.push(data[key]);
       }
       let chain_id = data["chain_id"];
@@ -200,39 +200,46 @@ class ChainList {
 let chainList;
 
 function handleData(playerID, jsonData) {
+  if (playerID == undefined || jsonData == undefined) {
+    return false;
+  }
   chainList = new ChainList(playerID, jsonData);
+  return true;
 }
 
-function requestPlayerID(requestChainsFunction) {
-  var playerID = "";
+function requestPlayerID() {
   var xmlhttp = new XMLHttpRequest();
-  xmlhttp.onreadystatechange = function() {
-    if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-      playerID = JSON.parse(xmlhttp.responseText);
-      // console.log(playerID);
+  return new Promise ((resolve, reject) => {
+    let playerID = "";
+
+    xmlhttp.onreadystatechange = function() {
+      if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+        playerID = JSON.parse(xmlhttp.responseText);
+        return resolve(playerID);
+      }
     }
+    
+    let playerIDUrl = "../php/sessiondata.php?var=playerID";
+    xmlhttp.open("GET", playerIDUrl, true);
+    xmlhttp.send();
+  });
   }
-  xmlhttp.onload = function () {
-    requestChainsFunction(playerID);
-  };
-  let playerIDUrl = "../php/sessiondata.php?var=playerID";
-  xmlhttp.open("GET", playerIDUrl, true);
-  xmlhttp.send();
-}
 
 function requestChains(playerID) {
   var xmlhttp = new XMLHttpRequest();
-  xmlhttp.onreadystatechange = function() {
-    if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-      var data = JSON.parse(xmlhttp.responseText);
-      // console.log(data);
-      handleData(data);
+  return new Promise ((resolve, reject) => {
+
+    xmlhttp.onreadystatechange = function() {
+      if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+        var data = JSON.parse(xmlhttp.responseText);
+        resolve([playerID, data]);
+      }
     }
-  }
-  let url = "../php/loadcustomcreate.php?playerID=";
-  let request = playerID;
-  xmlhttp.open("GET", url+request, true);
-  xmlhttp.send();
+    let url = "../php/loadcustomcreate.php?playerID=";
+    let request = playerID;
+    xmlhttp.open("GET", url+request, true);
+    xmlhttp.send();
+  })
 }
 
 getDOMObjects = (setName) => {
@@ -249,7 +256,7 @@ function setLeft() {
   objects = getDOMObjects("left");
   words = chainList.getLeft();
   for(var i = 0; i < words.length; i++) {
-    objects[i].innerHTML = words[i].innerHTML;
+    objects[i].innerHTML = words[i];
   }
 }
 
@@ -257,7 +264,7 @@ function setMid() {
   objects = getDOMObjects("mid");
   words = chainList.getMiddle();
   for(var i = 0; i < words.length; i++) {
-    objects[i].innerHTML = words[i].innerHTML;
+    objects[i].innerHTML = words[i];
   }
 }
 
@@ -265,7 +272,7 @@ function setRight() {
   objects = getDOMObjects("right");
   words = chainList.getRight();
   for(var i = 0; i < words.length; i++) {
-    objects[i].innerHTML = words[i].innerHTML;
+    objects[i].innerHTML = words[i];
   }
 }
 
@@ -275,9 +282,24 @@ function setAll() {
   setRight();
 }
 
+
 function loadChains() {
-  requestPlayerID(requestChains);
-  setAll();
+  // first get playerID, then get data, then handle data, then setAll
+  requestPlayerID() // returns a promise
+  .then(function(playerID) {
+    console.log("Requesting chains!");
+    requestChains(playerID)
+    .then(function(data) {
+      console.log("Handling data!");
+      return handleData(data[0], data[1]);
+    })
+    .then(function(haveData) {
+      if(haveData) {
+        console.log("Setting data!");
+        setAll();
+      }
+    })
+  });
 }
 
 function shiftLeft() {
