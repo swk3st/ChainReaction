@@ -85,7 +85,8 @@
     </table>
   </div>
   <button class="direction-button" onclick="shiftRight()">→</button>
-  <button class="direction-button">Chain Inventory</button>
+  <!-- <button class="direction-button">Chain Inventory</button> -->
+  <a href="./chain-inventory/inventory.php"><button class="direction-button">Chain Inventory</button></a>
   <button class="direction-button" onclick="shiftLeft()">←</button>
 </div>
 <script src="../js/customcreate.js"></script>
