@@ -203,7 +203,7 @@ function handleData(playerID, jsonData) {
   chainList = new ChainList(playerID, jsonData);
 }
 
-function requestPlayerID(callback) {
+function requestPlayerID(requestChainsFunction) {
   var playerID = "";
   var xmlhttp = new XMLHttpRequest();
   xmlhttp.onreadystatechange = function() {
@@ -213,7 +213,7 @@ function requestPlayerID(callback) {
     }
   }
   xmlhttp.onload = function () {
-    callback(playerID);
+    requestChainsFunction(playerID);
   };
   let playerIDUrl = "../php/sessiondata.php?var=playerID";
   xmlhttp.open("GET", playerIDUrl, true);
@@ -269,25 +269,25 @@ function setRight() {
   }
 }
 
-function loadChains() {
-  requestPlayerID(requestChains);
+function setAll() {
   setLeft();
   setMid();
   setRight();
+}
+
+function loadChains() {
+  requestPlayerID(requestChains);
+  setAll();
 }
 
 function shiftLeft() {
   chainList.shiftLeft();
-  setLeft();
-  setMid();
-  setRight();
+  setAll();
 }
 
 function shiftRight() {
   chainList.shiftRight();
-  setLeft();
-  setMid();
-  setRight();
+  setAll();
 }
 
 document.addEventListener('DOMContentLoaded', loadChains(), false);
