@@ -52,7 +52,7 @@ class ChainList {
     }
   }
 
-  shiftLeft = () => {
+  shiftRight = () => {
     if(this.size == 0) {
       return;
     } else if (this.size == 1) {
@@ -91,7 +91,7 @@ class ChainList {
     }
   }
 
-  shiftRight = () => { 
+  shiftLeft = () => { 
     if(this.size == 0) {
       return;
     } else if (this.size == 1) {
