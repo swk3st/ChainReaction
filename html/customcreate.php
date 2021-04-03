@@ -85,7 +85,7 @@
     </table>
   </div>
   <button class="direction-button" onclick="shiftRight()">→</button>
-  <button class="direction-button">Add New Chain</button>
+  <button class="direction-button">Chain Inventory</button>
   <button class="direction-button" onclick="shiftLeft()">←</button>
 </div>
 <script src="../js/customcreate.js"></script>
