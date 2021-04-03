@@ -187,11 +187,28 @@ function insertChain($player_id, $words) {
     
     $second_sql = "INSERT INTO owns (player_id, chain_id) VALUES (:player_id, :chain_id)";
     $second_statement = $db->prepare($second_sql);
-    $second_statement->bindParam("player_id", $player_id);
-    $second_statement->bindParam("chain_id", $chain_id);
+    $second_statement->bindParam(":player_id", $player_id);
+    $second_statement->bindParam(":chain_id", $chain_id);
     $second_statement->execute();
 
     return $chain_id;
+}
+
+function updateChain($chain_id, $words, $update) {
+
+    global $db;
+    connect();
+
+    for($i = 0; $i < count($words); $i++) {
+        if($update[$i]) {
+            $word_tag = "word" . strval($i + 1);
+            $sql = "UPDATE chain SET " . $word_tag . " = :word WHERE chain_id = :chain_id";
+            $statement = $db->prepare($sql);
+            $statement->bindParam(":word", $words[$i]);
+            $statement->bindParam(":chain_id", $chain_id);
+            $statement->execute(); 
+        }
+    }
 }
 
 
@@ -249,5 +266,4 @@ function allChains($player_id) {
     //         [word7] => a [7] => a ) )
 }
 // echo insertPlayer("matt@gmail.com", "apple");
-
 ?>
