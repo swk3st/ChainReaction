@@ -313,18 +313,6 @@ function shiftRight() {
 }
 
 document.addEventListener('DOMContentLoaded', loadChains(), false);
-// let burner = ["lol", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a"];
-// let burner2 = ["LMAO", "a", "a", "b", "a", "a", "b", "a", "a", "b", "a"];
-
-// let arr = []
-// for (let i = 0; i < 1; i++) {
-//   arr.push(burner);
-//   arr.push(burner2);
-// }
-// let chainList = new ChainList("lol", arr);
-// chainList.shiftLeft();
-// console.log(chainList.getMiddle());
-
 
 changeText = () => {
     var chain_string = "";
@@ -339,4 +327,3 @@ changeText = () => {
   }
   var chain_msg = document.getElementById("chain-text");
   var confirm_button = document.getElementById("use-button");
-//   var defaults = ["default1", "default2", "default3","default4", "default5", "default6", "default7"];
