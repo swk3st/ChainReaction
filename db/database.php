@@ -194,13 +194,13 @@ function insertChain($player_id, $words) {
     return $chain_id;
 }
 
-function updateChain($chain_id, $words, $update) {
+function updateChain($chain_id, $words, $updates) {
 
     global $db;
     connect();
 
     for($i = 0; $i < count($words); $i++) {
-        if($update[$i]) {
+        if($updates[$i]) {
             $word_tag = "word" . strval($i + 1);
             $sql = "UPDATE chain SET " . $word_tag . " = :word WHERE chain_id = :chain_id";
             $statement = $db->prepare($sql);
