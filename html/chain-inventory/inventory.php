@@ -11,6 +11,7 @@ Have an option to update a chain next to each in Inventory -->
     <title> Inventory - Chain Reaction </title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
     integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="..\..\css\inventory.css">
     <link rel="stylesheet" href="..\..\css\gameplay.css">
 </head>
 
@@ -44,7 +45,7 @@ Have an option to update a chain next to each in Inventory -->
 <body>
 <h1> Inventory! </h1>
 <div class="inventory-container">
-    <table>
+    <table class="inventory-table">
         <tr>
             <th>Chain ID</th>
             <th>Header Word</th>

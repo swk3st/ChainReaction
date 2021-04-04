@@ -134,13 +134,6 @@ button.big-button:active {
     font-size: 150%;
 }
 
-/* table.chain, td.chain {
-    border: 2px solid black;
-    padding: 1px;
-    width: 100%;
-    height: 100%;
-} */
-
 .guess-selection {
     grid-column: 1 / span 1;
     grid-row: 3 / span 1;
@@ -190,33 +183,6 @@ button.big-button:active {
 .right-select {
     grid-column: 3 / span 1;
 }
-
-.chain-table {
-    display: table;
-    background-color: #1d3798;
-    color: white;
-    border: 1px solid black;
-    text-transform: capitalize;
-    border-radius: 3px;
-    padding: 5px 10px;
-}
-
-tr:first-child, tr:last-child {
-    color: yellow;
-}
-
-td {
-    border-top: 1px dashed yellow;
-    border-bottom: 1px dashed yellow;
-}
-
-td:first-child {
-    border-top: none;
-}
-/* 
-td:last-child {
-    border-bottom: none;
-} */
 
 .direction-button {
     opacity: 0.8;

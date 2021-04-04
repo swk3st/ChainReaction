@@ -1,0 +1,12 @@
+@import url("main.css");
+
+
+.inventory-table {
+    display: table;
+    /* background-color: #1d3798; */
+    /* color: white; */
+    /* border: 1px solid black; */
+    /* text-transform: capitalize; */
+    /* border-radius: 3px; */
+    /* padding: 5px 10px; */
+}
