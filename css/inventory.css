@@ -1,12 +1,16 @@
 @import url("main.css");
 
+.inventory-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 
 .inventory-table {
-    display: table;
-    /* background-color: #1d3798; */
-    /* color: white; */
-    /* border: 1px solid black; */
-    /* text-transform: capitalize; */
-    /* border-radius: 3px; */
-    /* padding: 5px 10px; */
+    display: table; 
+}
+
+th, td {
+    padding: 10%;
 }

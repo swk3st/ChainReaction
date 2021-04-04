@@ -45,6 +45,7 @@ Have an option to update a chain next to each in Inventory -->
 <body>
 <h1> Inventory! </h1>
 <div class="inventory-container">
+    <button>Add New Chain</button>
     <table class="inventory-table">
         <tr>
             <th>Chain ID</th>
@@ -55,20 +56,20 @@ Have an option to update a chain next to each in Inventory -->
             <th>Word Four</th>
             <th>Word Five</th>
             <th>Footer Word</th>
-            <th>Update</th>
-            <th>Delete</th>
+            <th></th>
+            <th></th>
         </tr>
         <tr>
-            <th>id</th>
-            <th>header</th>
-            <th>test1</th>
-            <th>test2</th>
-            <th>test3</th>
-            <th>test4</th>
-            <th>test5</th>
-            <th>footer</th>
-            <th>Update</th>
-            <th>Delete</th>
+            <td>id</td>
+            <td>header</td>
+            <td>test1</td>
+            <td>test2</td>
+            <td>test3</td>
+            <td>test4</td>
+            <td>test5</td>
+            <td>footer</td>
+            <td><button>Update</button></td>
+            <td><button>Delete</button></td>
         </tr>
     </table>
 </div>
