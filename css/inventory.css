@@ -8,9 +8,6 @@
 
 
 .inventory-table {
-    display: table; 
-}
-
-th, td {
-    padding: 10%;
+    display: table;
+    margin: 3%; 
 }

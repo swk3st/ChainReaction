@@ -48,6 +48,7 @@ Have an option to update a chain next to each in Inventory -->
     <button>Add New Chain</button>
     <table class="inventory-table">
         <tr>
+            <th></th>
             <th>Chain ID</th>
             <th>Header Word</th>
             <th>Word One</th>
@@ -60,6 +61,7 @@ Have an option to update a chain next to each in Inventory -->
             <th></th>
         </tr>
         <tr>
+            <td><button>Play</button></td>
             <td>id</td>
             <td>header</td>
             <td>test1</td>
