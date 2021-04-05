@@ -45,7 +45,9 @@ Have an option to update a chain next to each in Inventory -->
 <body>
 <h1> Inventory! </h1>
 <div class="inventory-container">
-    <button>Add New Chain</button>
+    <form action='./addchain.php' method='post'>
+        <input type='submit' id='chainID' value='Add New Chain'>
+    </form>
     <table class="inventory-table">
         <tr>
             <th></th>
@@ -70,7 +72,7 @@ Have an option to update a chain next to each in Inventory -->
                 <td>test3</td>
                 <td>test4</td>
                 <td>test5</td>
-                <td>footer</td>
+                <td></td>
                 <td><button>Update</button></td>
                 <td><button>Delete</button></td>
             </tr>

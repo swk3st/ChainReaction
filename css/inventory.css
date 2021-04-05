@@ -3,11 +3,16 @@
 .inventory-container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
 }
-
 
 .inventory-table {
     display: table;
-    margin: 3%; 
+    margin-top: 3%;
+    padding: 25% 0%;
+}
+
+td, th {
+    border-spacing: 1em;
 }
