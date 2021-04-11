@@ -9,8 +9,15 @@ function requestPlayerID() {
           return resolve(playerID);
         }
       }
-      
       let playerIDUrl = "../php/sessiondata.php?var=playerID";
+
+      var loc = window.location.pathname;
+      var dir = loc.substring(loc.lastIndexOf('/'));
+      console.log(dir);
+      if (dir == "/inventory.php") {
+        playerIDUrl = "../../php/sessiondata.php?var=playerID";
+      }     
+
       xmlhttp.open("GET", playerIDUrl, true);
       xmlhttp.send();
     });
@@ -27,6 +34,13 @@ function requestPlayerID() {
         }
       }
       let url = "../php/loadcustomcreate.php?playerID=";
+
+      var loc = window.location.pathname;
+      var dir = loc.substring(loc.lastIndexOf('/'));
+      if (dir == "/inventory.php") {
+        url = "../../php/loadcustomcreate.php?playerID=";
+      }
+
       let request = playerID;
       xmlhttp.open("GET", url+request, true);
       xmlhttp.send();
