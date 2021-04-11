@@ -48,7 +48,7 @@ const updateCell = (chainID, words) => {
 const deleteCell = (chainID) => {
     let newTd = document.createElement("td");
     let newA = document.createElement("a");
-    let href = "../../chaininventory.php?action=remove";
+    let href = "./php/chaininventory.php?action=remove";
     href += "&chainID=" + chainID;
     newA.href = href;
     let newButton = document.createElement("button");

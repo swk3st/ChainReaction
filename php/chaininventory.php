@@ -1,6 +1,6 @@
 <?php
     include "../db/database.php";
-        
+    session_start();
     $status = false;
     
     function add() {
@@ -11,7 +11,7 @@
         $words = [];
         for ($i = 1; $i <= 7; $i++) {
             $post_key = "word" . strval($i);
-            push($words, $_POST[$post_key]);
+            array_push($words, $_POST[$post_key]);
         }
         insertChain($playerID, $words);
         $status = true;
@@ -30,19 +30,9 @@
 
         for ($i = 1; $i <= 7; $i++) {
             $post_key = "word" . strval($i);
-            push($words, $_POST[$post_key]);
+            array_push($words, $_POST[$post_key]);
         }
-        $updates = [];
-        $update_data = $POST["update"];
-        $update_array = str_split($update_data);
-        foreach ($update_array as $update_bit) {
-            if ($update_bit == "1") {
-                push($updates, true);
-            } else {
-                push($updates, false);
-            }
-        }
-        updateChain($chainID, $words, $updates);
+        updateChain($chainID, $words);
         $status = true;
     }
 
