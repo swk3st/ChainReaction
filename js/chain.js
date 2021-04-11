@@ -196,3 +196,5 @@ class Chain {
     }
   
   }
+
+export { ChainList };

@@ -91,6 +91,6 @@
   <a href="./chain-inventory/inventory.php"><button class="direction-button">Chain Inventory</button></a>
   <button class="direction-button" onclick="shiftLeft()">←</button>
 </div>
-<script src="../js/customcreate.js"></script>
+<script type="module" src="../js/customcreate.js"></script>
 </body>
 </html>
