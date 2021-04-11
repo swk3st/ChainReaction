@@ -263,5 +263,16 @@ function allChains($player_id) {
     //         [word6] => and [6] => and 
     //         [word7] => a [7] => a ) )
 }
+
+function checkChainOwnership($player_id, $chain_id) {
+    global $db;
+    connect();
+    $sql = "SELECT * FROM  owns  WHERE player_id = :p AND chain_id = :c";
+    $statement = $db->prepare($sql);
+    $statement->bindParam(":p", $player_id);
+    $statement->bindParam(":c", $chain_id);
+    $statement->execute();
+    return $statement->rowCount() != 0;
+}
 // echo insertPlayer("matt@gmail.com", "apple");
 ?>
