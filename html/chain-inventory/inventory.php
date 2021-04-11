@@ -15,6 +15,11 @@ Have an option to update a chain next to each in Inventory -->
     <link rel="stylesheet" href="..\..\css\gameplay.css">
 </head>
 
+<?php
+  session_start();
+  $_SESSION["playerID"] = "aaaaaaaaaa";
+?>
+
 <header>
 
   <nav class="navbar navbar-expand-md bg-dark navbar-dark">
@@ -48,7 +53,7 @@ Have an option to update a chain next to each in Inventory -->
     <form action='./addchain.php' method='post'>
         <input type='submit' id='chainID' value='Add New Chain'>
     </form>
-    <table class="inventory-table">
+    <table class="inventory-table" id="inventory-table">
         <tr>
             <th></th>
             <th>Chain ID</th>
@@ -62,7 +67,7 @@ Have an option to update a chain next to each in Inventory -->
             <th></th>
             <th></th>
         </tr>
-        <div id="inventory-div">
+        <!-- <div id="inventory-div">
             <tr>
                 <td><button>Play</button></td>
                 <td>id</td>
@@ -76,8 +81,9 @@ Have an option to update a chain next to each in Inventory -->
                 <td><button>Update</button></td>
                 <td><button>Delete</button></td>
             </tr>
-        </div>
+        </div> -->
     </table>
 </div>
+<script type="module" src="../../js/inventory.js"></script>
 </body>
 </html>

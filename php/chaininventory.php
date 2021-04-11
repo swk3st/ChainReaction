@@ -1,8 +1,6 @@
 <?php
     include "../db/database.php";
-    
-    session_start();
-
+        
     $status = false;
     
     function add() {
