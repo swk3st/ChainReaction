@@ -45,7 +45,7 @@
 </header>
 
 <body>
-<h1> Chain Form! </h1>
+<h1> Add New Chain </h1>
 <div class="form-container">
   <form action="../../php/chaininventory.php" method="post">
       <label for="word1">Header Word:</label>
