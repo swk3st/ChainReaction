@@ -46,33 +46,34 @@
 
 <body>
 <h1> Chain Form! </h1>
-
-<form action="../../php/chaininventory.php" method="post">
-    <label for="word1">Header Word:</label>
-    <input type="text" id="word1" name="word1" required/>
-
-    <label for="word2">Word One:</label>
-    <input type="text" id="word2" name="word2" required/>
-    
-    <label for="word3">Word Two:</label>
-    <input type="text" id="word3" name="word3" required/>
-    
-    <label for="word4">Word Three:</label>
-    <input type="text" id="word4" name="word4" required/>
-    
-    <label for="word5">Word Four:</label>
-    <input type="text" id="word5" name="word5" required/>
-    
-    <label for="word6">Word Five:</label>
-    <input type="text" id="word6" name="word6" required/>
-    
-    <label for="word7">Footer Word:</label>
-    <input type="text" id="word7" name="word7" required/>
-
-    <input type="hidden" id="action" name="action" value="add"/>
-    <input type="hidden" id="playerID" name="playerID" value="<?php echo $_SESSION["playerID"]?>"/>
-    
-    <input type="submit" value="Submit"/>
-</form>
+<div class="form-container">
+  <form action="../../php/chaininventory.php" method="post">
+      <label for="word1">Header Word:</label>
+      <input type="text" id="word1" name="word1" required/>
+      <br/>
+      <label for="word2">Word One:</label>
+      <input type="text" id="word2" name="word2" required/>
+      <br/>
+      <label for="word3">Word Two:</label>
+      <input type="text" id="word3" name="word3" required/>
+      <br/>
+      <label for="word4">Word Three:</label>
+      <input type="text" id="word4" name="word4" required/>
+      <br/>
+      <label for="word5">Word Four:</label>
+      <input type="text" id="word5" name="word5" required/>
+      <br/>
+      <label for="word6">Word Five:</label>
+      <input type="text" id="word6" name="word6" required/>
+      <br/>
+      <label for="word7">Footer Word:</label>
+      <input type="text" id="word7" name="word7" required/>
+      <br/>
+      <input type="hidden" id="action" name="action" value="add"/>
+      <input type="hidden" id="playerID" name="playerID" value="<?php echo $_SESSION["playerID"]?>"/>
+      <br/>
+      <input type="submit" value="Submit"/>
+  </form>
+</div>
 </body>
 </html>
