@@ -81,18 +81,22 @@ function shiftRight() {
   setAll();
 }
 
-document.addEventListener('DOMContentLoaded', loadChains(), false);
 
 function changeText() {
-    var chain_string = "";
-    for(var i = 1; i <= 7; i++) {
-      var id = "mid" + i.toString();
-      chain_string += document.getElementById(id).innerHTML;
-      if(i != 7) {
-          chain_string += " - ";
-      }
+  var chain_string = "";
+  for(var i = 1; i <= 7; i++) {
+    var id = "mid" + i.toString();
+    chain_string += document.getElementById(id).innerHTML;
+    if(i != 7) {
+      chain_string += " - ";
     }
-    chain_msg.innerHTML = chain_string.toUpperCase();
   }
-  var chain_msg = document.getElementById("chain-text");
-  var confirm_button = document.getElementById("use-button");
+  chain_msg.innerHTML = chain_string.toUpperCase();
+}
+var chain_msg = document.getElementById("chain-text");
+var confirm_button = document.getElementById("use-button");
+
+document.addEventListener('DOMContentLoaded', loadChains(), false);
+document.getElementById("leftBtn").addEventListener("click", shiftLeft, false);
+document.getElementById("rightBtn").addEventListener("click", shiftRight, false);
+confirm_button.addEventListener("mouseover", changeText, false);
