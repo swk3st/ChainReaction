@@ -53,36 +53,23 @@ Have an option to update a chain next to each in Inventory -->
     <form action='./addchain.php' method='post'>
         <input type='submit' id='chainID' value='Add New Chain'>
     </form>
-    <table class="inventory-table" id="inventory-table">
-        <tr>
-            <th></th>
-            <th>Chain ID</th>
-            <th>Header Word</th>
-            <th>Word One</th>
-            <th>Word Two</th>
-            <th>Word Three</th>
-            <th>Word Four</th>
-            <th>Word Five</th>
-            <th>Footer Word</th>
-            <th></th>
-            <th></th>
-        </tr>
-        <!-- <div id="inventory-div">
-            <tr>
-                <td><button>Play</button></td>
-                <td>id</td>
-                <td>header</td>
-                <td>test1</td>
-                <td>test2</td>
-                <td>test3</td>
-                <td>test4</td>
-                <td>test5</td>
-                <td></td>
-                <td><button>Update</button></td>
-                <td><button>Delete</button></td>
-            </tr>
-        </div> -->
-    </table>
+    <div class="inventory-div">
+      <table class="inventory-table" id="inventory-table">
+          <tr>
+              <th></th>
+              <th>Chain ID</th>
+              <th>Header Word</th>
+              <th>Word One</th>
+              <th>Word Two</th>
+              <th>Word Three</th>
+              <th>Word Four</th>
+              <th>Word Five</th>
+              <th>Footer Word</th>
+              <th></th>
+              <th></th>
+          </tr>
+      </table>
+    </div>
 </div>
 <script type="module" src="../../js/inventory.js"></script>
 </body>
