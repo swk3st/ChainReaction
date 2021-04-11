@@ -45,11 +45,14 @@ const updateCell = (chainID, words) => {
     return newTd;
 }
 
-const deleteCell = (chainID) => {
+const deleteCell = (chainID, words) => {
     let newTd = document.createElement("td");
     let newA = document.createElement("a");
-    let href = "./php/chaininventory.php?action=remove";
-    href += "&chainID=" + chainID;
+    let href = "./deletechain.php?";
+    href += "chainID=" + chainID;
+    for (let i = 1; i <= words.length; i++) {
+        href += "&word" + i + "=" + words[i - 1];
+    }
     newA.href = href;
     let newButton = document.createElement("button");
     newButton.innerHTML = "Delete";
@@ -65,7 +68,7 @@ const appendChildren = (newTr, chainID, words) => {
         newTr.appendChild(word);
     }
     newTr.appendChild(updateCell(chainID, words));
-    newTr.appendChild(deleteCell(chainID));
+    newTr.appendChild(deleteCell(chainID, words));
 }
 
 const writeTable = (chainList) => {

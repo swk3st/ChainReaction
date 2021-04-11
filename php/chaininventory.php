@@ -54,7 +54,7 @@
         } else if ($action == "update") {
             update();
         } else if ($action == "remove") {
-            delete();
+            remove();
         }
     }
 
