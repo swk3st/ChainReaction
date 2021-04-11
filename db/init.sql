@@ -37,7 +37,9 @@ CREATE TABLE IF NOT EXISTS owns (
 );
 
 CREATE TABLE IF NOT EXISTS game (
-    game_id VARCHAR(10) NOT NULL PRIMARY KEY
+    game_id VARCHAR(10) NOT NULL PRIMARY KEY,
+    owner_id VARCHAR(10) NOT NULL,
+    FOREIGN KEY (owner_id) REFERENCES player(player_id)
 );
 
 CREATE TABLE IF NOT EXISTS playing (
