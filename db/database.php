@@ -274,5 +274,68 @@ function checkChainOwnership($player_id, $chain_id) {
     $statement->execute();
     return $statement->rowCount() != 0;
 }
-// echo insertPlayer("matt@gmail.com", "apple");
+
+function newGame($player_id) {
+    global $db;
+    connect();
+    $game_id = generateID("game", "game_id");
+    $sql = "INSERT INTO game (game_id, owner_id) VALUES (:g, :o)"
+    $statement = $db->prepare($sql);
+    $statement->bindParam(":g", $game_id);
+    $statement->bindParam(":o", $player_id);
+    $statement->execute();
+    newPlaying($player_id, $game_id, "1");
+    return $game_id;
+}
+
+function newPlaying($player_id, $game_id, $team) {
+    global $db;
+    connect();
+    $sql = "INSERT INTO playing (player_id, game_id, team) VALUES (:p, :g, :t)"
+    $statement = $db->prepare($sql);
+    $statement->bindParam(":p", $player_id);
+    $statement->bindParam(":g", $game_id);
+    $statement->bindParam(":t", $team);
+    $statement->execute();
+}
+
+function countPlayers($game_id) {
+    global $db;
+    connect();
+    $sql = "SELECT * FROM playing WHERE game_id = :g";
+    $statement = $db->prepare($sql);
+    $statement->bindParam(":g", $game_id);
+    $statement->execute();
+    return $statement->rowCount();
+}
+
+function leaveGame($player_id, $game_id) {
+    global $db;
+    connect();
+    $sql = "DELETE FROM playing WHERE player_id = :p AND game_id = :g";
+    $statement = $db->prepare($sql);
+    $statement->bindParam(":p", $player_id);
+    $statement->bindParam(":g", $game_id);
+    $statement->execute();
+}
+
+function deleteGame($game_id) {
+    global $db;
+    connect();
+    $sql = "DELETE FROM game WHERE game_id = :g";
+    $statement = $db->prepare($sql);
+    $statement->bindParam(":g", $game_id);
+    $statement->execute();
+}
+
+function changeTeams($player_id, $game_id, $team) {
+    global $db;
+    connect();
+    $sql = "UPDATE playing SET team = :team WHERE player_id = :p AND game_id = :g";
+    $statement = $db->prepare($sql);
+    $statement->bindParam(":team", $team);
+    $statement->bindParam(":p", $player_id);
+    $statement->bindParam(":g", $game_id);
+    $statement->execute();
+}
 ?>
