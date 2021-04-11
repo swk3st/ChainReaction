@@ -1,12 +1,14 @@
 <?php
     include "../db/database.php";
     
+    session_start();
+
     $status = false;
     
     function add() {
         global $status;
-        $status = true;
-        return;
+        $status = false;
+
         $playerID = $_POST['playerID'];
         $words = [];
         for ($i = 1; $i <= 7; $i++) {
@@ -14,13 +16,20 @@
             push($words, $_POST[$post_key]);
         }
         insertChain($playerID, $words);
+        $status = true;
     }
     
     function update() {
         global $status;
-        $status = true;
+        $status = false;
         $chainID = $_POST['chainID'];
         $words = [];
+
+        $playerID = $_SESSION["playerID"];
+        if(!checkChainOwnership($playerID, $chainID)) {
+            return;
+        }
+
         for ($i = 1; $i <= 7; $i++) {
             $post_key = "word" . strval($i);
             push($words, $_POST[$post_key]);
@@ -36,13 +45,19 @@
             }
         }
         updateChain($chainID, $words, $updates);
+        $status = true;
     }
 
     function remove() {
         global $status;
-        $status = true;
+        $status = false;
         $chainID = $_POST['chainID'];
-        // removeChain
+        $playerID = $_SESSION["playerID"];
+        if(!checkChainOwnership($playerID, $chainID)) {
+            return;
+        }
+        removeChain($chainID);
+        $status = true;
     }
 
     function doAction($action) {
