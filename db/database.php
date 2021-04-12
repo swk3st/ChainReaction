@@ -2,6 +2,7 @@
 
 /******************************/
 // connecting to GCP cloud SQL instance
+
     $username = 'root';
 // $password = 'your-root-password';
     $password = 'chainreaction';
@@ -127,28 +128,6 @@ function insertPlayer($email, $pwd) {
     return $player_id;
 }
 
-
-function checkUserExists($email)
-{
-    global $db;
-    connect();
-
-    $sql = "SELECT count(*) FROM player WHERE email=?";
-
-    $statement = $db->prepare($sql);
-    $statement->bind_param(":email", $email);
-    $results = $statement->execute();
-    $user_exists = 0;
-    $statement->bind_result($user_exists);
-    if ($results) {
-        $statement->fetch();
-        return $user_exists == 1;
-    }
-    $statement->close();
-    return false;
-}
-
-
 function checkPwd($player_id, $pwd) {
     global $db;
     connect();
@@ -175,6 +154,7 @@ function getPlayerID($email) {
 }
 
 function removePlayer($player_id) {
+
     global $db;
     connect();
 
@@ -214,20 +194,18 @@ function insertChain($player_id, $words) {
     return $chain_id;
 }
 
-function updateChain($chain_id, $words, $updates) {
+function updateChain($chain_id, $words) {
 
     global $db;
     connect();
 
     for($i = 0; $i < count($words); $i++) {
-        if($updates[$i]) {
-            $word_tag = "word" . strval($i + 1);
-            $sql = "UPDATE chain SET " . $word_tag . " = :word WHERE chain_id = :chain_id";
-            $statement = $db->prepare($sql);
-            $statement->bindParam(":word", $words[$i]);
-            $statement->bindParam(":chain_id", $chain_id);
-            $statement->execute(); 
-        }
+        $word_tag = "word" . strval($i + 1);
+        $sql = "UPDATE chain SET " . $word_tag . " = :word WHERE chain_id = :chain_id";
+        $statement = $db->prepare($sql);
+        $statement->bindParam(":word", $words[$i]);
+        $statement->bindParam(":chain_id", $chain_id);
+        $statement->execute(); 
     }
 }
 
@@ -285,5 +263,90 @@ function allChains($player_id) {
     //         [word6] => and [6] => and 
     //         [word7] => a [7] => a ) )
 }
-// echo insertPlayer("matt@gmail.com", "apple");
+
+function checkChainOwnership($player_id, $chain_id) {
+    global $db;
+    connect();
+    $sql = "SELECT * FROM  owns  WHERE player_id = :p AND chain_id = :c";
+    $statement = $db->prepare($sql);
+    $statement->bindParam(":p", $player_id);
+    $statement->bindParam(":c", $chain_id);
+    $statement->execute();
+    return $statement->rowCount() != 0;
+}
+
+function newGame($player_id) {
+    global $db;
+    connect();
+    $game_id = generateID("game", "game_id");
+    $sql = "INSERT INTO game (game_id, owner_id) VALUES (:g, :o)";
+    $statement = $db->prepare($sql);
+    $statement->bindParam(":g", $game_id);
+    $statement->bindParam(":o", $player_id);
+    $statement->execute();
+    newPlaying($player_id, $game_id, "1");
+    return $game_id;
+}
+
+function newPlaying($player_id, $game_id, $team) {
+    global $db;
+    connect();
+    $sql = "INSERT INTO playing (player_id, game_id, team) VALUES (:p, :g, :t)";
+    $statement = $db->prepare($sql);
+    $statement->bindParam(":p", $player_id);
+    $statement->bindParam(":g", $game_id);
+    $statement->bindParam(":t", $team);
+    $statement->execute();
+}
+
+function countPlayers($game_id) {
+    global $db;
+    connect();
+    $sql = "SELECT * FROM playing WHERE game_id = :g";
+    $statement = $db->prepare($sql);
+    $statement->bindParam(":g", $game_id);
+    $statement->execute();
+    return $statement->rowCount();
+}
+
+function leaveGame($player_id, $game_id) {
+    global $db;
+    connect();
+    $sql = "DELETE FROM playing WHERE player_id = :p AND game_id = :g";
+    $statement = $db->prepare($sql);
+    $statement->bindParam(":p", $player_id);
+    $statement->bindParam(":g", $game_id);
+    $statement->execute();
+}
+
+function deleteGame($game_id) {
+    global $db;
+    connect();
+    $sql = "DELETE FROM game WHERE game_id = :g";
+    $statement = $db->prepare($sql);
+    $statement->bindParam(":g", $game_id);
+    $statement->execute();
+}
+
+function changeTeams($player_id, $game_id, $team) {
+    global $db;
+    connect();
+    $sql = "UPDATE playing SET team = :team WHERE player_id = :p AND game_id = :g";
+    $statement = $db->prepare($sql);
+    $statement->bindParam(":team", $team);
+    $statement->bindParam(":p", $player_id);
+    $statement->bindParam(":g", $game_id);
+    $statement->execute();
+}
+
+function playerInfo($player_id) {
+    global $db;
+    connect();
+    $sql = "SELECT * FROM player WHERE player_id = :p";
+    $statement = $db->prepare($sql);
+    $statement->bindParam(":p", $player_id);
+    $statement->execute();
+    $result = $statement->fetchAll();
+    return $result;
+}
 ?>

@@ -48,7 +48,7 @@
     <h1 class="big-title"> Custom Create </h1>
     <div>
       <a href="waitingroom.html">
-        <button id="use-button" class="direction-button use-chain" onmouseover="changeText()">Use Chain</button>
+        <button id="use-button" class="direction-button use-chain">Use Chain</button>
       </a>
       <p id="chain-text" class="confirmation-chain">Word 1 - Word 2 - Word 3 - Word 4 - Word 5 - Word 6 - Word 7</p>
     </div>
@@ -86,11 +86,11 @@
       <tr><td id="right7">Word 7</td></tr>
     </table>
   </div>
-  <button class="direction-button" onclick="shiftRight()">→</button>
+  <button class="direction-button" id="rightBtn">→</button>
   <!-- <button class="direction-button">Chain Inventory</button> -->
   <a href="./chain-inventory/inventory.php"><button class="direction-button">Chain Inventory</button></a>
-  <button class="direction-button" onclick="shiftLeft()">←</button>
+  <button class="direction-button" id="leftBtn">←</button>
 </div>
-<script src="../js/customcreate.js"></script>
+<script type="module" src="../js/customcreate.js"></script>
 </body>
 </html>
