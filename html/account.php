@@ -25,7 +25,13 @@
   session_start();
   $_SESSION["playerID"] = "aaaaaaaaaa";
   $data = playerInfo($_SESSION["playerID"]);
-  if(isset($_COOKIE["displayName"])) {
+  if (isset($_POST["displayName"])) {
+    $_SESSION["displayName"] = $_POST["displayName"];
+    if(isset($POST["remember"])) {
+      setcookie("displayName", $_POST["displayName"], time() + (60 * 5), "/");
+    }
+  }
+  else if(isset($_COOKIE["displayName"])) {
     $_SESSION["displayName"] = $_COOKIE["displayName"];
   } else {
     $_SESSION["displayName"] = $data[0]["email"];
@@ -77,4 +83,15 @@
     <p> Percent Guessed Correct: <?php echo $percentage; ?> </p>
   </div>
 </div>
+<form class="change-display-name-container" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+  <label for="displayName">Change Display Name? </label>
+  <input type="text" id="displayName" name="displayName">
+  <div>
+    <label for="remember">Remember?</label>
+    <input type="checkbox" id="remember" name="remember">
+  </div>
+  <div>
+    <input type="submit" value="Submit">
+  </div>
+</form>
 </body>
