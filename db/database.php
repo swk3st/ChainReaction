@@ -338,4 +338,15 @@ function changeTeams($player_id, $game_id, $team) {
     $statement->bindParam(":g", $game_id);
     $statement->execute();
 }
+
+function playerInfo($player_id) {
+    global $db;
+    connect();
+    $sql = "SELECT * FROM player WHERE player_id = :p";
+    $statement = $db->prepare($sql);
+    $statement->bindParam(":p", $player_id);
+    $statement->execute();
+    $result = $statement->fetchAll();
+    return $result;
+}
 ?>
