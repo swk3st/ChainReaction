@@ -103,7 +103,7 @@
             <a class="nav-link" href="normalcreate.html"> Create </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="account.html"> Account</a>
+            <a class="nav-link" href="account.php"> Account</a>
           </li>
         </ul>
       </div>
