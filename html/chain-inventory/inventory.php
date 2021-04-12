@@ -15,15 +15,10 @@ Have an option to update a chain next to each in Inventory -->
     <link rel="stylesheet" href="..\..\css\gameplay.css">
 </head>
 
-<?php
-  session_start();
-  $_SESSION["playerID"] = "aaaaaaaaaa";
-?>
-
 <header>
 
   <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-    <a class="navbar-brand" href="../home.html">Chain Reaction</a>
+    <a class="navbar-brand" href="home.html">Chain Reaction</a>
 
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -33,13 +28,13 @@ Have an option to update a chain next to each in Inventory -->
     <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="../roomcodeplay.html">Play</a>
+          <a class="nav-link" href="roomcodeplay.html">Play</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="../signup.html">Sign Up</a>
+          <a class="nav-link" href="signup.html">Sign Up</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="../login.html">Log In</a>
+          <a class="nav-link" href="login.html">Log In</a>
         </li>
       </ul>
     </div>
@@ -53,24 +48,36 @@ Have an option to update a chain next to each in Inventory -->
     <form action='./addchain.php' method='post'>
         <input type='submit' id='chainID' value='Add New Chain'>
     </form>
-    <div class="inventory-div">
-      <table class="inventory-table" id="inventory-table">
-          <tr>
-              <th></th>
-              <th>Chain ID</th>
-              <th>Header Word</th>
-              <th>Word One</th>
-              <th>Word Two</th>
-              <th>Word Three</th>
-              <th>Word Four</th>
-              <th>Word Five</th>
-              <th>Footer Word</th>
-              <th></th>
-              <th></th>
-          </tr>
-      </table>
-    </div>
+    <table class="inventory-table">
+        <tr>
+            <th></th>
+            <th>Chain ID</th>
+            <th>Header Word</th>
+            <th>Word One</th>
+            <th>Word Two</th>
+            <th>Word Three</th>
+            <th>Word Four</th>
+            <th>Word Five</th>
+            <th>Footer Word</th>
+            <th></th>
+            <th></th>
+        </tr>
+        <div id="inventory-div">
+            <tr>
+                <td><button>Play</button></td>
+                <td>id</td>
+                <td>header</td>
+                <td>test1</td>
+                <td>test2</td>
+                <td>test3</td>
+                <td>test4</td>
+                <td>test5</td>
+                <td></td>
+                <td><button>Update</button></td>
+                <td><button>Delete</button></td>
+            </tr>
+        </div>
+    </table>
 </div>
-<script type="module" src="../../js/inventory.js"></script>
 </body>
 </html>
