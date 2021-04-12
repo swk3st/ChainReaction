@@ -20,6 +20,26 @@
 
 </head>
 
+<?php
+  include "../db/database.php";
+  session_start();
+  $_SESSION["playerID"] = "aaaaaaaaaa";
+  $data = playerInfo($_SESSION["playerID"]);
+  if(isset($_COOKIE["displayName"])) {
+    $_SESSION["displayName"] = $_COOKIE["displayName"];
+  } else {
+    $_SESSION["displayName"] = $data[0]["email"];
+  }
+  $earnings = $data[0]["earnings"];
+  $guesses = $data[0]["guesses"];
+  $correct = $data[0]["correct"];
+  $percent = 0.0;
+  if ($guesses != 0) {
+    $percent = bcdiv($correct, $guesses, 4);
+  }
+  $percentage = strval($percent * 100) . "%";
+?>
+
 <header>
 
     <nav class="navbar navbar-expand-md bg-dark navbar-dark">
@@ -49,12 +69,12 @@
 
 <body>
 <div class="account-container">
-  <h1> [Display Name] </h1>
+  <h1> <?php echo $_SESSION["displayName"]; ?> </h1>
   <div class="stats-container">
-    <p> [Career Earnings] </p>&nbsp;&nbsp;&nbsp;&nbsp;
-    <p> [Guesses] </p>&nbsp;&nbsp;&nbsp;&nbsp;
-    <p> [Correct Guesses] </p>&nbsp;&nbsp;&nbsp;&nbsp;
-    <p> [Percent Guessed Correct] </p>
+    <p> Career Earnings: <?php echo strval($earnings); ?> </p>&nbsp;&nbsp;&nbsp;&nbsp;
+    <p> Guesses: <?php echo strval($guesses); ?> </p>&nbsp;&nbsp;&nbsp;&nbsp;
+    <p> Correct Guesses: <?php echo strval($correct); ?> </p>&nbsp;&nbsp;&nbsp;&nbsp;
+    <p> Percent Guessed Correct: <?php echo $percentage; ?> </p>
   </div>
 </div>
 </body>
