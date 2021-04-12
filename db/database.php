@@ -279,7 +279,7 @@ function newGame($player_id) {
     global $db;
     connect();
     $game_id = generateID("game", "game_id");
-    $sql = "INSERT INTO game (game_id, owner_id) VALUES (:g, :o)"
+    $sql = "INSERT INTO game (game_id, owner_id) VALUES (:g, :o)";
     $statement = $db->prepare($sql);
     $statement->bindParam(":g", $game_id);
     $statement->bindParam(":o", $player_id);
@@ -291,7 +291,7 @@ function newGame($player_id) {
 function newPlaying($player_id, $game_id, $team) {
     global $db;
     connect();
-    $sql = "INSERT INTO playing (player_id, game_id, team) VALUES (:p, :g, :t)"
+    $sql = "INSERT INTO playing (player_id, game_id, team) VALUES (:p, :g, :t)";
     $statement = $db->prepare($sql);
     $statement->bindParam(":p", $player_id);
     $statement->bindParam(":g", $game_id);
