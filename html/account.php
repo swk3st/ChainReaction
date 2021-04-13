@@ -20,10 +20,13 @@
 
 </head>
 
-<?php
- include('../php/navbar.php');
+<header>
+  <?php include('../php/navbar.php'); ?>
+</header>
 
-  include "../db/database.php";
+<?php
+
+include "../db/database.php";
   // session_start();
   // $_SESSION["playerID"] = "aaaaaaaaaa";
   $data = playerInfo($_SESSION["playerID"]);
@@ -46,34 +49,8 @@
     $percent = bcdiv($correct, $guesses, 4);
   }
   $percentage = strval($percent * 100) . "%";
-?>
+  ?>
 
-<header>
-
-    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-      <a class="navbar-brand" href="home.html">Chain Reaction</a>
-
-
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="roomcodeplay.html">Play</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="normalcreate.html"> Create </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="account.html"> Account</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-
-  </header>
 
 <body>
 <div class="account-container">
