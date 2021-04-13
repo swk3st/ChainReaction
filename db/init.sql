@@ -49,5 +49,5 @@ CREATE TABLE IF NOT EXISTS playing (
     game_id VARCHAR(10) NOT NULL,
     team VARCHAR(10) NOT NULL,
     FOREIGN KEY (player_id) REFERENCES player(player_id),
-    FOREIGN KEY (chain_id) REFERENCES chain(chain_id)
+    FOREIGN KEY (game_id) REFERENCES game(game_id)
 );
