@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="icon" href="/resources/chainreactionlogo.png">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Solimar Kwa and Michael Asare">
+    <meta name="description" content="Login Screen for users.">
+    <meta name="keywords" content="Game, Online Game, Login Chain Reaction, Chain Reaction">
+
+    <title> Chain Reaction Login </title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+    integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="..\css\login.css">
+
+</head>
+
+<header>
+
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+      <a class="navbar-brand" href="home.html">Chain Reaction</a>
+
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="roomcodeplay.html">Play</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="signup.html">Sign Up</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="login.html">Log In</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+  </header>
+
+  <?php 
+  include(../php/session.php);
+
+  $email = $_POST['email'];
+  $password = $_POST['password'];
+  $state = login($email, $password);
+  $player_id = NULL;
+  if($state){
+    $player_id = playerID($email);
+    if (isset($_POST["remember"])){
+        setcookie("login", $player_id, time() + (60*60*2));
+    }
+    header("account.php");
+  } else {
+    header("login.html");
+  }
+  ?>
+  
+<body>
+
+    <div class="center">
+        <div class="user_card">
+            <div class="logo_container">
+                <img src="..\resources\chainreactionlogo.png" class="brand_logo" alt="Chain Reaction Retro Logo">
+            </div>
+
+            <form action="account.php" method="post">
+                <label>Email:</label><input type="text" name="email" id="email" autofocus required />
+                <br>
+                <label> Password:</label><input type="text" name="pwd" id="password" required />
+
+
+                <div class="checkbox">
+                    <input type="checkbox">
+                    <label>Remember me</label>
+                </div>
+
+                <button type="submit" value="Submit">Login</button>
+                <button type="reset" value="Reset">Reset</button>
+            </form>
+
+            <div class="d-flex justify-content-center ">
+                Don't have an account? <a href="#" class="ml-2">Sign Up</a>
+            </div>
+
+            <div class="d-flex justify-content-center">
+                <a href="#">Forgot your password?</a>
+            </div>
+        </div>
+
+    </div>
+
+
+</body>
+
+</html>
