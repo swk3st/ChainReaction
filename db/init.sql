@@ -26,7 +26,9 @@ CREATE TABLE IF NOT EXISTS player (
     encrypted_pwd VARCHAR(255) NOT NULL,
     earnings INT NOT NULL,
     guesses INT NOT NULL,
-    correct INT NOT NULL
+    correct INT NOT NULL,
+    firstname VARCHAR(255) NOT NULL,
+    lastname VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS owns (
