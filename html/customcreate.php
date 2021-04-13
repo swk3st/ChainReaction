@@ -14,7 +14,7 @@
 
 <?php
   session_start();
-  $_SESSION["playerID"] = "aaaaaaaaaa";
+  // $_SESSION["playerID"] = "aaaaaaaaaa";
 ?>
 
 <header>

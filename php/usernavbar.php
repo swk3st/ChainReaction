@@ -16,11 +16,11 @@
         <li class="nav-item<?php echo $nav_current_page == "romecodeplay.html" ? " active" : ""?>">
           <a class="nav-link" href="roomcodeplay.html"> Play <span class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item<?php echo $nav_current_page == "gameplay.html" ? " active" : ""?>">
-          <a class="nav-link" href="gameplay.html"> Create <span class="sr-only">(current)</span></a>
+        <li class="nav-item<?php echo $nav_current_page == "customcreate.php" ? " active" : ""?>">
+          <a class="nav-link" href="customcreate.php"> Create <span class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item<?php echo $nav_current_page == "account.html" ? " active" : ""?>">
-          <a class="nav-link" href="account.html"> Account <span class="sr-only">(current)</span></a>
+        <li class="nav-item<?php echo $nav_current_page == "account.php" ? " active" : ""?>">
+          <a class="nav-link" href="account.php"> Account <span class="sr-only">(current)</span></a>
         </li>
     
     </div>

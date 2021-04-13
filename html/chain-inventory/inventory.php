@@ -17,7 +17,7 @@ Have an option to update a chain next to each in Inventory -->
 
 <?php
   session_start();
-  $_SESSION["playerID"] = "aaaaaaaaaa";
+  // $_SESSION["playerID"] = "aaaaaaaaaa";
 ?>
 
 <header>
