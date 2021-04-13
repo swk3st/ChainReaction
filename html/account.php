@@ -21,6 +21,8 @@
 </head>
 
 <?php
+ include('../php/navbar.php');
+
   include "../db/database.php";
   session_start();
   // $_SESSION["playerID"] = "aaaaaaaaaa";
