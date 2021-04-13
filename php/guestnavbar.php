@@ -19,7 +19,7 @@
         <li class="nav-item<?php echo $nav_current_page == "signup.php" ? " active" : ""?>">
           <a class="nav-link" href="signup.php"> Sign Up <span class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item<?php echo $nav_current_page == "Login.php" ? " active" : ""?>">
+        <li class="nav-item<?php echo $nav_current_page == "login.php" ? " active" : ""?>">
           <a class="nav-link" href="login.php"> Login <span class="sr-only">(current)</span></a>
         </li>
 
