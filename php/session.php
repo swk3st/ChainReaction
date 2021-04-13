@@ -1,8 +1,8 @@
 <?php
 
+    include "../db/database.php";
     // Call this function when the user is beginning their session
     function login($email, $pwd) {
-        include "../db/database.php";
         session_start();
         $returnCode = [false, "Something went wrong."];
         $playerInfo = getPlayerID($email);
@@ -30,7 +30,6 @@
 
     // Call this function to get playerID
     function retrievePlayerID($email) {
-        include "../db/database.php";
         return getPlayerID($email)[0]["player_id"];
     }
 
