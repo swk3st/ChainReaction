@@ -7,7 +7,7 @@
         $returnCode = [false, "Something went wrong."];
         $playerInfo = getPlayerID($email);
         if (count($playerInfo) == 0) { 
-            $returnCode[1] = "Couldn't Find A User with the email " . $email;
+            $returnCode[1] = "No Users Found With Email " . $email;
             return $returnCode;
         }
         $player_id = $playerInfo[0]["player_id"];
