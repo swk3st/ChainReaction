@@ -16,8 +16,8 @@
         <li class="nav-item<?php echo $nav_current_page == "romecodeplay.php" ? " active" : ""?>">
           <a class="nav-link" href="roomcodeplay.php"> Play <span class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item<?php echo $nav_current_page == "customcreate.php" ? " active" : ""?>">
-          <a class="nav-link" href="customcreate.php"> Create <span class="sr-only">(current)</span></a>
+        <li class="nav-item<?php echo $nav_current_page == "normalcreate.php" ? " active" : ""?>">
+          <a class="nav-link" href="normalcreate.php"> Create <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item<?php echo $nav_current_page == "account.php" ? " active" : ""?>">
           <a class="nav-link" href="account.php"> Account <span class="sr-only">(current)</span></a>
