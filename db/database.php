@@ -155,6 +155,26 @@ function getPlayerID($email) {
     return $result;
 }
 
+function checkUserExists($email)
+{
+    global $db;
+    connect();
+
+    $sql = "SELECT count(*) FROM player WHERE email=?";
+
+    $statement = $db->prepare($sql);
+    $statement->bind_param(":email", $email);
+    $results = $statement->execute();
+    $user_exists = 0;
+    $statement->bind_result($user_exists);
+    if ($results) {
+        $statement->fetch();
+        return $user_exists == 1;
+    }
+    $statement->close();
+    return false;
+}
+
 function removePlayer($player_id) {
 
     global $db;

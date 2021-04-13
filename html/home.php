@@ -21,10 +21,14 @@
   <title> Chain Reaction Home </title>
 
   <link rel="stylesheet" href="..\css\main.css">
+
+  
 </head>
 
 <body>
   <header>
+    <?php include('../php/navbar.php'); ?>
+
 
     <nav class="navbar navbar-expand-md bg-dark navbar-dark">
       <a class="navbar-brand" href="home.html">Chain Reaction</a>

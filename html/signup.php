@@ -1,6 +1,36 @@
 <!doctype html>
 <html>
 
+<?php 
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Handle user creation form.
+    if (isset($_POST['email']) && isset($_POST['password']) && isset($_POST['password2'])) {
+        $email = $_POST['email'];
+        $password = $_POST['password1'];
+        $confirm_password = $_POST['password2'];
+        $firstname = $_POST['firstname'];
+        $lastname = $_POST['lastname'];
+
+        if ($password != $confirm_password) {
+            global $ERROR;
+            $ERROR = "Account creation failed: passwords do not match.";
+        } else if (checkUserExists($email)) {
+            global $ERROR;
+            $ERROR = "Account creation failed: user already exists.";
+        } else {
+            insertPlayer($email, $password);
+            if (checkUserExists($email)) {
+                $MESSAGE = "User creation succeeded! Now log in below.";
+            } else {
+                global $ERROR;
+                $ERROR = "Account creation failed; database failure or password doesn't meet requirements.";
+            }
+        }
+    }
+}
+
+?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -58,7 +88,7 @@
     
 
             <label for="password">Password</label>
-            <input type="password" id="psw" name="psw" pattern="(?=.*\d)(?=.*[A-Za-z\W+])(?=.*[a-z])(?=.*[A-Z]).{8,}"
+            <input type="password" id="password" name="password" pattern="(?=.*\d)(?=.*[A-Za-z\W+])(?=.*[a-z])(?=.*[A-Z]).{8,}"
                 title="Must contain at least one number, one special character, one uppercase and lowercase letter, and at least 10 or more characters"
                 required>
             <div id="message">
@@ -89,7 +119,7 @@
 
     // learned a W3 Schools tutorial to understand this
     function showPassword() {
-        var x = document.getElementById("psw");
+        var x = document.getElementById("password");
         if (x.type === "password") {
             x.type = "text";
         } else {
@@ -104,7 +134,7 @@
         }
     }
 
-    var myPassword = document.getElementById("psw");
+    var myPassword = document.getElementById("password");
     var letter = document.getElementById("letter");
     var capital = document.getElementById("capital");
     var number = document.getElementById("number");
@@ -176,7 +206,7 @@
 
     // learned from GeeksforGeeks tutorial
     function checkPassword(form) {
-        password = form.psw.value;
+        password = form.password.value;
         password2 = form.password2.value;
 
         // If password not entered 
