@@ -1,6 +1,42 @@
 <!doctype html>
 <html>
 
+<?php 
+session_start();
+$_SESSION = array();
+session_destroy();
+include "../db/database.php";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Handle user creation form.
+    if (isset($_POST['email']) && isset($_POST['password']) && isset($_POST['password2'])) {
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+        $confirm_password = $_POST['password2'];
+        $firstname = $_POST['firstname'];
+        $lastname = $_POST['lastname'];
+
+        if ($password != $confirm_password) {
+            global $ERROR;
+            $ERROR = "Account creation failed: passwords do not match.";
+        } else if (checkUserExists($email)) {
+            global $ERROR;
+            $ERROR = "Account creation failed: user already exists.";
+        } else {
+            $player_id = insertPlayer($email, $password, $firstname, $lastname);
+            if (checkUserExists($email)) {
+                $MESSAGE = "User creation succeeded! Now log in below.";
+                session_start();
+                $_SESSION["playerID"] = $player_id;
+                header("Location: ./account.php");
+            } else {
+                global $ERROR;
+                $ERROR = "Account creation failed; database failure or password doesn't meet requirements.";
+            }
+        }
+    }
+}
+
+?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,26 +54,7 @@
 
 <header>
 
-    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-        <a class="navbar-brand" href="home.html">Chain Reaction</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="roomcodeplay.html">Play</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="signup.html">Sign Up</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="login.html">Log In</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+    <?php include "../php/navbar.php" ?>
 
 </header>
 
@@ -45,7 +62,7 @@
     <div class="container">
         <h1> Sign Up </h1>
 
-        <form onSubmit="return checkPassword(this)">
+        <form onSubmit="return checkPassword(this)" method="post" action="./signup.php">
             <label for="firstname">First name</label>
             <input type="text" id="firstname" name="firstname" required>
 
@@ -58,7 +75,7 @@
     
 
             <label for="password">Password</label>
-            <input type="password" id="psw" name="psw" pattern="(?=.*\d)(?=.*[A-Za-z\W+])(?=.*[a-z])(?=.*[A-Z]).{8,}"
+            <input type="password" id="password" name="password" pattern="(?=.*\d)(?=.*[A-Za-z\W+])(?=.*[a-z])(?=.*[A-Z]).{8,}"
                 title="Must contain at least one number, one special character, one uppercase and lowercase letter, and at least 10 or more characters"
                 required>
             <div id="message">
@@ -89,7 +106,7 @@
 
     // learned a W3 Schools tutorial to understand this
     function showPassword() {
-        var x = document.getElementById("psw");
+        var x = document.getElementById("password");
         if (x.type === "password") {
             x.type = "text";
         } else {
@@ -104,7 +121,7 @@
         }
     }
 
-    var myPassword = document.getElementById("psw");
+    var myPassword = document.getElementById("password");
     var letter = document.getElementById("letter");
     var capital = document.getElementById("capital");
     var number = document.getElementById("number");
@@ -176,7 +193,7 @@
 
     // learned from GeeksforGeeks tutorial
     function checkPassword(form) {
-        password = form.psw.value;
+        password = form.password.value;
         password2 = form.password2.value;
 
         // If password not entered 

@@ -1,72 +1,102 @@
-changeText = () => {
-    var chain_string = "";
-    for(var i = 1; i <= 7; i++) {
-      var id = "mid" + i.toString();
-      chain_string += document.getElementById(id).innerHTML;
-      if(i != 7) {
-          chain_string += " - ";
+import { ChainList } from "./chain.js";
+import { requestPlayerID, requestChains} from "./request.js"; 
+
+let chainList;
+
+function handleData(playerID, jsonData) {
+  if (playerID == undefined || jsonData == undefined) {
+    return false;
+  }
+  chainList = new ChainList(playerID, jsonData);
+  return true;
+}
+
+function getDOMObjects(setName) {
+  var arr = []
+  for(var i = 1; i <= 7; i++) {
+    var id = setName + i.toString();
+    var id_elem = document.getElementById(id);
+    arr.push(id_elem);
+  }
+  return arr;
+}
+
+function setLeft() {
+  let objects = getDOMObjects("left");
+  let words = chainList.getLeft();
+  for(var i = 0; i < words.length; i++) {
+    objects[i].innerHTML = words[i];
+  }
+}
+
+function setMid() {
+  let objects = getDOMObjects("mid");
+  let words = chainList.getMiddle();
+  for(var i = 0; i < words.length; i++) {
+    objects[i].innerHTML = words[i];
+  }
+}
+
+function setRight() {
+  let objects = getDOMObjects("right");
+  let words = chainList.getRight();
+  for(var i = 0; i < words.length; i++) {
+    objects[i].innerHTML = words[i];
+  }
+}
+
+function setAll() {
+  setLeft();
+  setMid();
+  setRight();
+}
+
+
+function loadChains() {
+  // first get playerID, then get data, then handle data, then setAll
+  requestPlayerID() // returns a promise
+  .then(function(playerID) {
+    console.log("Requesting chains!");
+    requestChains(playerID)
+    .then(function(data) {
+      console.log("Handling data!");
+      return handleData(data[0], data[1]);
+    })
+    .then(function(haveData) {
+      if(haveData) {
+        console.log("Setting data!");
+        setAll();
       }
-    }
-    chain_msg.innerHTML = chain_string.toUpperCase();
-  }
-  var chain_msg = document.getElementById("chain-text");
-  var confirm_button = document.getElementById("use-button");
-  var defaults = ["default1", "default2", "default3","default4", "default5", "default6", "default7"];
+    })
+  });
+}
 
-  getSet = (setName) => {
-    var arr = []
-    for(var i = 1; i <= 7; i++) {
-      var id = setName + i.toString();
-      var id_elem = document.getElementById(id);
-      arr.push(id_elem);
-    }
-    return arr;
-  }
+function shiftLeft() {
+  chainList.shiftLeft();
+  setAll();
+}
 
-  getAllSets = () => {
-    var left = getSet("left");
-    var mid = getSet("mid");
-    var right = getSet("right");
-    var arr = [left, mid, right];
-    return arr;
-  }
+function shiftRight() {
+  chainList.shiftRight();
+  setAll();
+}
 
-  dirToInd = (dir) => {
-    if (dir == "left") {
-      return 0;
-    } else if (dir == "mid") {
-      return 1;
-    } else {
-      return 2;
+
+function changeText() {
+  var chain_string = "";
+  for(var i = 1; i <= 7; i++) {
+    var id = "mid" + i.toString();
+    chain_string += document.getElementById(id).innerHTML;
+    if(i != 7) {
+      chain_string += " - ";
     }
   }
+  chain_msg.innerHTML = chain_string.toUpperCase();
+}
+var chain_msg = document.getElementById("chain-text");
+var confirm_button = document.getElementById("use-button");
 
-  shift = (from, into) => {
-    var sets = getAllSets();
-    var setDest = getSet(into);
-    var setSrc = getSet(from);
-    var dest = dirToInd(into);
-    var src = dirToInd(from);
-    for(var i = 0; i < setDest.length; i++) {
-      sets[dest][i].innerHTML = sets[src][i].innerHTML;
-    }
-  }
-
-  shiftLeft = () => {
-    shift("mid", "left");
-    shift("right", "mid");
-    setToDefault("right");
-  }
-
-  shiftRight = () => {
-    shift("mid", "right");
-    shift("left", "mid");
-    setToDefault("left");
-  }
-
-  setToDefault = (name) => {
-    var side = getSet(name);
-    for(var i = 0; i < side.length; i++) {
-      side[i].innerHTML = defaults[i];
-    }
-  }
+document.addEventListener('DOMContentLoaded', loadChains(), false);
+document.getElementById("leftBtn").addEventListener("click", shiftLeft, false);
+document.getElementById("rightBtn").addEventListener("click", shiftRight, false);
+confirm_button.addEventListener("mouseover", changeText, false);

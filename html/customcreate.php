@@ -8,33 +8,19 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
     integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
   
+    <link rel="stylesheet" href="..\css\button.css">
     <link rel="stylesheet" href="..\css\gameplay.css">
+    <link rel="stylesheet" href="..\css\chain.css">
 </head>
+
+<?php
+  // session_start();
+  // $_SESSION["playerID"] = "aaaaaaaaaa";
+?>
 
 <header>
 
-  <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-    <a class="navbar-brand" href="home.html">Chain Reaction</a>
-
-
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="roomcodeplay.html">Play</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="signup.html">Sign Up</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="login.html">Log In</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+  <?php include "../php/navbar.php" ?>
 
 </header>
 
@@ -42,7 +28,7 @@
     <h1 class="big-title"> Custom Create </h1>
     <div>
       <a href="waitingroom.html">
-        <button id="use-button" class="direction-button use-chain" onmouseover="changeText()">Use Chain</button>
+        <button id="use-button" class="direction-button use-chain">Use Chain</button>
       </a>
       <p id="chain-text" class="confirmation-chain">Word 1 - Word 2 - Word 3 - Word 4 - Word 5 - Word 6 - Word 7</p>
     </div>
@@ -80,10 +66,11 @@
       <tr><td id="right7">Word 7</td></tr>
     </table>
   </div>
-  <button class="direction-button" onclick="shiftRight()">→</button>
-  <button class="direction-button">Add New Chain</button>
-  <button class="direction-button" onclick="shiftLeft()">←</button>
+  <button class="direction-button" id="rightBtn">→</button>
+  <!-- <button class="direction-button">Chain Inventory</button> -->
+  <a href="./chain-inventory/inventory.php"><button class="direction-button">Chain Inventory</button></a>
+  <button class="direction-button" id="leftBtn">←</button>
 </div>
-<script src="../js/customcreate.js"></script>
+<script type="module" src="../js/customcreate.js"></script>
 </body>
 </html>
