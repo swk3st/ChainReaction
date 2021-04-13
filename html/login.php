@@ -45,6 +45,28 @@
     </nav>
 
   </header>
+
+  <?php 
+    include("../php/session.php");
+    if(isset($_POST["email"])) {
+      $email = $_POST['email'];
+      $password = $_POST['pwd'];
+      $error_msg = "";
+      $state = login($email, $password);
+      $player_id = NULL;
+      // print_r($state);
+      if($state[0]){
+        $player_id = retrievePlayerID($email);
+        if (isset($_POST["remember"])){
+          setcookie("login", $player_id, time() + (60*60*2));
+        }
+          header("Location: ./account.php");
+        } else {
+            // header("login.html");
+            $error_msg = $state[1];
+        }
+    }
+  ?>
   
 <body>
 
@@ -54,14 +76,16 @@
                 <img src="..\resources\chainreactionlogo.png" class="brand_logo" alt="Chain Reaction Retro Logo">
             </div>
 
-            <form action="account.php" method="post">
+            <p><?php if (isset($error_msg)) echo $error_msg ?></p>
+
+            <form action="login.php" method="post">
                 <label>Email:</label><input type="text" name="email" id="email" autofocus required />
                 <br>
-                <label> Password:</label><input type="text" name="pwd" id="password" required />
+                <label> Password:</label><input type="text" name="pwd" id="pwd" required />
 
 
                 <div class="checkbox">
-                    <input type="checkbox">
+                    <input type="checkbox" id="remember" name="remember">
                     <label>Remember me</label>
                 </div>
 
