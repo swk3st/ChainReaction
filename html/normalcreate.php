@@ -10,6 +10,12 @@
 </head>
 
 <body>
+
+<header>
+  <?php include('../php/navbar.php'); ?>
+
+</header>
+
 <h1> CREATE A GAME! </h1>
 <div class="normal-create-container">
     <a href="waitingroom.html">

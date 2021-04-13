@@ -11,6 +11,12 @@
 </head>
 
 <body>
+
+<header>
+    <?php include('../php/navbar.php'); ?>
+
+</header>
+
 <h1 id="waitingText"> WAITING... </h1>
 <div class="waiting-room-container">
     <p grid-row-start=1 class="room-code">Room Code</p>

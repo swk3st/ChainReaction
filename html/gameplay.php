@@ -10,6 +10,10 @@
     <link rel="stylesheet" href="..\css\gameplay.css">
 
 </head>
+  <header>
+    <?php include('../php/navbar.php'); ?>
+
+  </header>
 
 <body>
 <h1> C-H-A-I-N--R-E-A-C-T-I-O-N </h1>
