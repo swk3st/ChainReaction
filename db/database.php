@@ -20,11 +20,11 @@ function connect () {
 
         // if PHP is on GCP standard App Engine, use instance name to connect
         // $host = 'instance-connection-name';
-        // $host = 'db';
+        $host = 'db';
 
         // if PHP is hosted somewhere else (non-GCP), use public IP address to connect
         // $host = "public-IP-address-to-cloud-instance";
-            $host = "34.86.237.81";
+            // $host = "34.86.237.81";
 
 
         /******************************/
