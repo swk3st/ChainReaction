@@ -7,11 +7,12 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav w-100">
-        <?php
+      <?php
         // Get the current page and set the active nav item based on the current page.
-        $nav_current_page = explode("/", $_SERVER["PHP_SELF"]);
-        $nav_current_page = $nav_current_page[sizeof($nav_current_page) - 1];
-        ?>
+        $file_content = explode("/", $_SERVER["PHP_SELF"]);
+        $nav_current_page = $file_content[sizeof($file_content) - 1];
+          ?>
+        
         
         <li class="nav-item<?php echo $nav_current_page == "romecodeplay.php" ? " active" : ""?>">
           <a class="nav-link" href="roomcodeplay.php"> Play <span class="sr-only">(current)</span></a>
