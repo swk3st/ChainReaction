@@ -22,6 +22,9 @@
         <li class="nav-item<?php echo $nav_current_page == "account.php" ? " active" : ""?>">
           <a class="nav-link" href="account.php"> Account <span class="sr-only">(current)</span></a>
         </li>
+        <li class="nav-item<?php echo $nav_current_page == "logout.php" ? " active" : ""?>">
+          <a class="nav-link" href="logout.php"> Logout <span class="sr-only">(current)</span></a>
+        </li>
     
     </div>
   </nav>
