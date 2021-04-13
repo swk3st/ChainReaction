@@ -1,16 +1,13 @@
 <?php
 include('../db/database.php');
 
+session_start();
+
 if(!isset($_SESSION['playerID'])){
-    header("location:guestnavbar.php"); 
+    include("location:guestnavbar.php"); 
 } 
 else{
-    header("location:usernavbar.php");
+    include("location:usernavbar.php");
 }
 ?>
 
-<?php if(!$_SESSION['playerID']) {
-    header("location:guestnavbar.php"); 
-      } else {
-    header("location:usernavbar.php");
-    } ?>

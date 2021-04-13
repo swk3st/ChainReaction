@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             global $ERROR;
             $ERROR = "Account creation failed: user already exists.";
         } else {
-            insertPlayer($email, $password);
+            insertPlayer($email, $password, $firstname, $lastname);
             if (checkUserExists($email)) {
                 $MESSAGE = "User creation succeeded! Now log in below.";
             } else {
