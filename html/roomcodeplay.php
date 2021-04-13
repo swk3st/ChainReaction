@@ -28,7 +28,7 @@
   <form action=#>
     <input class="code-text" type="text" id="input-code" name="room-code">
   </form>
-  <a href="waitingroom.html">
+  <a href="waitingroom.php">
     <button class="big-button">JOIN!</button>
   </a>
 </div>

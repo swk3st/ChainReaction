@@ -34,7 +34,7 @@
             <p>Will</p>
         </div>
     </div>
-    <a href="gameplay.html">
+    <a href="gameplay.php">
         <button class="big-button" grid-row-start=3>Start</button>
     </a>
 </div>
