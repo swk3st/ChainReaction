@@ -11,20 +11,26 @@
         // Get the current page and set the active nav item based on the current page.
         $file_content = explode("/", $_SERVER["PHP_SELF"]);
         $nav_current_page = $file_content[sizeof($file_content) - 1];
+        $dirs = explode("\\", getcwd());
+        $curr_dir = $dirs[count($dirs) - 1];
+        $need_dots = false;
+        if ($curr_dir == "chain-inventory") {
+          $need_dots = true;
+        }
           ?>
         
         
         <li class="nav-item<?php echo $nav_current_page == "romecodeplay.php" ? " active" : ""?>">
-          <a class="nav-link" href="roomcodeplay.php"> Play <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href=<?php if($need_dots) echo "../roomcodeplay.php"; else echo "roomcodeplay.php"; ?>> Play <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item<?php echo $nav_current_page == "normalcreate.php" ? " active" : ""?>">
-          <a class="nav-link" href="normalcreate.php"> Create <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href=<?php if($need_dots) echo "../normalcreate.php"; else echo "normalcreate.php"; ?>> Create <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item<?php echo $nav_current_page == "account.php" ? " active" : ""?>">
-          <a class="nav-link" href="account.php"> Account <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href=<?php if($need_dots) echo "../account.php"; else echo "account.php"; ?>> Account <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item<?php echo $nav_current_page == "logout.php" ? " active" : ""?>">
-          <a class="nav-link" href="logout.php"> Logout <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href=<?php if($need_dots) echo "../logout.php"; else echo "logout.php"; ?>> Logout <span class="sr-only">(current)</span></a>
         </li>
     
     </div>
