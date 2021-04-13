@@ -3,7 +3,7 @@
     include "../db/database.php";
     // Call this function when the user is beginning their session
     function login($email, $pwd) {
-        session_start();
+        startSession();
         $returnCode = [false, "Something went wrong."];
         $playerInfo = getPlayerID($email);
         if (count($playerInfo) == 0) { 
@@ -23,7 +23,7 @@
 
     // Call this function when the user is ending their session
     function logout() {
-        session_start();
+        startSession();
         $_SESSION = array();
         session_destroy();
     }
@@ -33,4 +33,10 @@
         return getPlayerID($email)[0]["player_id"];
     }
 
+
+    function startSession() {
+        if(session_id() == '') {
+            session_start();
+        }
+    }
 ?>
