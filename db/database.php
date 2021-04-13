@@ -138,8 +138,8 @@ function checkPwd($player_id, $pwd) {
     $statement->bindParam(":player_id", $player_id);
     $statement->execute();
     $result = $statement->fetchAll();
-    $retrived_pwd = $result[0][0];
-    return strcmp(encrypt($pwd), $retrived_pwd);
+    $retrived_pwd = $result[0]["encrypted_pwd"];
+    return strcmp(encrypt($pwd), $retrived_pwd) == 0;
 }
 
 function getPlayerID($email) {
