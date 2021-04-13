@@ -1,7 +1,7 @@
 <?php
-unset($_SESSION["playerID"])
-session_destroy();
+session_start();
 $_SESSION = array();
-header("Location: login.php");
+session_destroy();
+header("Location: ../html/home.php");
 exit;
 ?>

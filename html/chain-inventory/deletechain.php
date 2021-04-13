@@ -13,36 +13,8 @@
     <link rel="stylesheet" href="..\..\css\gameplay.css">
 </head>
 
-<?php
-  session_start();
-  // $_SESSION["playerID"] = "aaaaaaaaaa";
-?>
-
 <header>
-
-  <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-    <a class="navbar-brand" href="../home.html">Chain Reaction</a>
-
-
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="../roomcodeplay.html">Play</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="../signup.html">Sign Up</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="../login.html">Log In</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-
+  <?php include('../php/navbar.php'); ?>
 </header>
 
 <body>
