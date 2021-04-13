@@ -2,12 +2,15 @@
 <html>
 
 <?php 
-
+session_start();
+$_SESSION = array();
+session_destroy();
+include "../db/database.php";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Handle user creation form.
     if (isset($_POST['email']) && isset($_POST['password']) && isset($_POST['password2'])) {
         $email = $_POST['email'];
-        $password = $_POST['password1'];
+        $password = $_POST['password'];
         $confirm_password = $_POST['password2'];
         $firstname = $_POST['firstname'];
         $lastname = $_POST['lastname'];
@@ -19,9 +22,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             global $ERROR;
             $ERROR = "Account creation failed: user already exists.";
         } else {
-            insertPlayer($email, $password, $firstname, $lastname);
+            $player_id = insertPlayer($email, $password, $firstname, $lastname);
             if (checkUserExists($email)) {
                 $MESSAGE = "User creation succeeded! Now log in below.";
+                session_start();
+                $_SESSION["playerID"] = $player_id;
+                header("Location: ./account.php");
             } else {
                 global $ERROR;
                 $ERROR = "Account creation failed; database failure or password doesn't meet requirements.";
@@ -48,26 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <header>
 
-    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-        <a class="navbar-brand" href="home.html">Chain Reaction</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="roomcodeplay.html">Play</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="signup.html">Sign Up</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="login.html">Log In</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+    <?php include "../php/navbar.php" ?>
 
 </header>
 
@@ -75,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="container">
         <h1> Sign Up </h1>
 
-        <form onSubmit="return checkPassword(this)">
+        <form onSubmit="return checkPassword(this)" method="post" action="./signup.php">
             <label for="firstname">First name</label>
             <input type="text" id="firstname" name="firstname" required>
 

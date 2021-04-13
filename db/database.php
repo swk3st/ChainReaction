@@ -158,19 +158,25 @@ function checkUserExists($email)
     global $db;
     connect();
 
-    $sql = "SELECT count(*) FROM player WHERE email=?";
+    // $sql = "SELECT count(*) FROM player WHERE email= :email";
 
+    // $statement = $db->prepare($sql);
+    // $statement->bindParam(":email", $email);
+    // $results = $statement->execute();
+    // $user_exists = 0;
+    // $statement->bindValue($user_exists);
+    // if ($results) {
+    //     $statement->fetch();
+    //     return $user_exists == 1;
+    // }
+    // $statement->close();
+    // return false;
+
+    $sql = "SELECT player_id FROM player WHERE email = :email";
     $statement = $db->prepare($sql);
-    $statement->bind_param(":email", $email);
-    $results = $statement->execute();
-    $user_exists = 0;
-    $statement->bind_result($user_exists);
-    if ($results) {
-        $statement->fetch();
-        return $user_exists == 1;
-    }
-    $statement->close();
-    return false;
+    $statement->bindParam(":email", $email);
+    $statement->execute();
+    return $statement->rowCount() != 0;
 }
 
 function removePlayer($player_id) {
