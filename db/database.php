@@ -107,7 +107,7 @@ function decrypt($encrypted_text) {
     return $encrypted_text;
 }
 
-function insertPlayer($email, $pwd) {
+function insertPlayer($email, $pwd, $fname, $lname) {
 
     global $db;
     connect();
@@ -115,7 +115,7 @@ function insertPlayer($email, $pwd) {
     $player_id = generateID("player", "player_id");
     $encrypted_pwd = encrypt($pwd);
 
-    $sql = "INSERT INTO player (player_id, email, encrypted_pwd, earnings, guesses, correct) VALUES (:player_id, :email, :encrypted_pwd, :earnings, :guesses, :correct)";
+    $sql = "INSERT INTO player (player_id, email, encrypted_pwd, earnings, guesses, correct, firstname, lastname) VALUES (:player_id, :email, :encrypted_pwd, :earnings, :guesses, :correct, :fname, :lname)";
     $statement = $db->prepare($sql);
     $statement->bindParam(":player_id", $player_id);
     $statement->bindParam(":email", $email);
@@ -123,6 +123,8 @@ function insertPlayer($email, $pwd) {
     $statement->bindValue(":earnings", 0);
     $statement->bindValue(":guesses", 0);
     $statement->bindValue(":correct", 0);
+    $statement->bindParam(":fname", $fname);
+    $statement->bindParam(":lname", $lname);
     $statement->execute();
 
     return $player_id;
