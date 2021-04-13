@@ -23,7 +23,7 @@
 <?php
   include "../db/database.php";
   session_start();
-  $_SESSION["playerID"] = "aaaaaaaaaa";
+  // $_SESSION["playerID"] = "aaaaaaaaaa";
   $data = playerInfo($_SESSION["playerID"]);
   if (isset($_POST["displayName"])) {
     $_SESSION["displayName"] = $_POST["displayName"];
