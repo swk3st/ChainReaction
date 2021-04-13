@@ -38,7 +38,7 @@ include "../db/database.php";
   }
   else if(isset($_COOKIE["displayName"])) {
     $_SESSION["displayName"] = $_COOKIE["displayName"];
-  } else {
+  } else if(!isset($_SESSION["displayName"])) {
     $_SESSION["displayName"] = $data[0]["email"];
   }
   $earnings = $data[0]["earnings"];
