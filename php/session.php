@@ -23,4 +23,10 @@
         session_destroy();
     }
 
+    // Call this function to get playerID
+    function retrievePlayerID($email) {
+        include "../db/database.php";
+        return getPlayerID($email)[0]["player_id"];
+    }
+
 ?>
