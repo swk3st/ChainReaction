@@ -24,7 +24,7 @@
  include('../php/navbar.php');
 
   include "../db/database.php";
-  session_start();
+  // session_start();
   // $_SESSION["playerID"] = "aaaaaaaaaa";
   $data = playerInfo($_SESSION["playerID"]);
   if (isset($_POST["displayName"])) {
