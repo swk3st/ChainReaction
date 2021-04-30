@@ -460,4 +460,15 @@ function updateOwner($game_id, $player_id) {
     $statement->execute();
     return "";
 }
+
+function updateGameStatus($game_id, $status) {
+    global $db;
+    connect();
+    $sql = "UPDATE game SET game_status = :s WHERE game_id = :g";
+    $statement = $db->prepare();
+    $statement->bindParam(":g", $game_id);
+    $statement->bindParam(":s", $status);
+    $statement->execute();
+    return "";
+}
 ?>
