@@ -427,7 +427,7 @@ function playerIDCheck($player_id) {
     return true;
 }
 
-function switchTeams($game_id, $player_id, $team_num) {
+function switchTeams($game_id, $player_id, $current_team_num) {
     global $db;
     connect();
     if (!playerIDCheck($player_id)) {
@@ -438,7 +438,22 @@ function switchTeams($game_id, $player_id, $team_num) {
     if ($currentTeam >= $otherTeam) {
         return "Swapping to a team will end up with more players on that team's side";
     }
-    $sql = "UPDATE team_num FROM game WHERE game_id = :g AND player_id = :p";
+    $sql = "UPDATE game SET team_num = :t WHERE game_id = :g AND player_id = :p";
+    $statement = $db->prepare();
+    $statement->bindParam(":g", $game_id);
+    $statement->bindParam(":p", $player_id);
+    $statement->bindParam(":t", $otherTeam);
+    $statement->execute();
+    return "";
+}
+
+function updateOwner($game_id, $player_id) {
+    global $db;
+    connect();
+    if (!playerIDCheck($player_id)) {
+        return "Player is not allowed to be an owner";
+    }
+    $sql = "UPDATE game SET owner_id = :p WHERE game_id = :g";
     $statement = $db->prepare();
     $statement->bindParam(":g", $game_id);
     $statement->bindParam(":p", $player_id);
