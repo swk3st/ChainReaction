@@ -413,7 +413,14 @@ function playerJoin($game_id, $player_id, $team_num) {
 }
 
 function getTeam($game_id, $player_id) {
-
+    global $db;
+    connect();
+    $sql = "SELECT team_num FROM game WHERE game_id = :g AND player_id = :p";
+    $statement = $db->prepare();
+    $statement->bindParam(":g", $game_id);
+    $statement->bindParam(":p", $player_id);
+    $statement->execute();
+    return $statement->fetchAll()[0][0];
 }
 
 
