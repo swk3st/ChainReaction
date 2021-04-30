@@ -423,8 +423,26 @@ function getTeam($game_id, $player_id) {
     return $statement->fetchAll()[0][0];
 }
 
+function playerIDCheck($player_id) {
+    return true;
+}
 
 function switchTeams($game_id, $player_id, $team_num) {
-
+    global $db;
+    connect();
+    if (!playerIDCheck($player_id)) {
+        return "Player is not allowed to switch teams";
+    }
+    $currentTeam = playerCount($game_id)[$team_num][0];
+    $otherTeam = playerCount($game_id)[($team_num + 1) % 2][0];  
+    if ($currentTeam >= $otherTeam) {
+        return "Swapping to a team will end up with more players on that team's side";
+    }
+    $sql = "UPDATE team_num FROM game WHERE game_id = :g AND player_id = :p";
+    $statement = $db->prepare();
+    $statement->bindParam(":g", $game_id);
+    $statement->bindParam(":p", $player_id);
+    $statement->execute();
+    return "";
 }
 ?>
