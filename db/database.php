@@ -516,4 +516,42 @@ function correctGuessPlayer($game_id, $player_id) {
     incrementEarnings($game_id, $player_id);
 
 }
+
+function gameState($game_id) {
+    global $db;
+    connect();
+    $sql = "SELECT * FROM game WHERE game_id = :g";
+    $statement = $db->prepare();
+    $statement->bindParam(":g", $game_id);
+    $statement->execute();
+    return $statement->fetchAll()[0];
+}
+
+function updateWord($game_id, $word, $num) {
+    global $db;
+    connect();
+    $sql = "UPDATE game SET word" . strval($num) . " = :w WHERE game_id = :g";
+    $statement = $db->prepare();
+    $statement->bindParam(":w", $word);
+    $statement->bindParam(":g", $game_id);
+    $statement->execute();
+}
+
+function updateAbove($game_id) {
+    global $db;
+    connect();
+    $sql = "UPDATE game SET above = above - 1 WHERE game_id = :g";
+    $statement = $db->prepare();
+    $statement->bindParam(":g", $game_id);
+    $statement->execute();
+}
+
+function updateBelow($game_id) {
+    global $db;
+    connect();
+    $sql = "UPDATE game SET below = below + 1 WHERE game_id = :g";
+    $statement = $db->prepare();
+    $statement->bindParam(":g", $game_id);
+    $statement->execute();
+}
 ?>
