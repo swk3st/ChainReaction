@@ -364,6 +364,16 @@ function createTeam($game_id, $team_num) {
     $statement->execute();
 }
 
+function getOwner($game_id) {
+    global $db;
+    connect();
+    $sql = "SELECT owner_id FROM game WHERE game_id = :g";
+    $statement = $db->prepare();
+    $statement->bindParam(":g", $game_id);
+    $statement->execute();
+    return $statement->fetchAll()[0][0];
+}
+
 function playerCount($game_id) {
     global $db;
     connect();
@@ -406,11 +416,6 @@ function getTeam($game_id, $player_id) {
 
 }
 
-function getOwner($game_id) {
-    global $db;
-    connect();
-    $sql = ""
-}
 
 function switchTeams($game_id, $player_id, $team_num) {
 
