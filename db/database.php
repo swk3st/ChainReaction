@@ -301,29 +301,6 @@ function checkChainOwnership($player_id, $chain_id) {
     return $statement->rowCount() != 0;
 }
 
-function newGame($player_id) {
-    global $db;
-    connect();
-    $game_id = generateID("game", "game_id");
-    $sql = "INSERT INTO game (game_id, owner_id) VALUES (:g, :o)";
-    $statement = $db->prepare($sql);
-    $statement->bindParam(":g", $game_id);
-    $statement->bindParam(":o", $player_id);
-    $statement->execute();
-    newPlaying($player_id, $game_id, "1");
-    return $game_id;
-}
-
-function newPlaying($player_id, $game_id, $team) {
-    global $db;
-    connect();
-    $sql = "INSERT INTO playing (player_id, game_id, team) VALUES (:p, :g, :t)";
-    $statement = $db->prepare($sql);
-    $statement->bindParam(":p", $player_id);
-    $statement->bindParam(":g", $game_id);
-    $statement->bindParam(":t", $team);
-    $statement->execute();
-}
 
 function countPlayers($game_id) {
     global $db;
@@ -335,36 +312,6 @@ function countPlayers($game_id) {
     return $statement->rowCount();
 }
 
-function leaveGame($player_id, $game_id) {
-    global $db;
-    connect();
-    $sql = "DELETE FROM playing WHERE player_id = :p AND game_id = :g";
-    $statement = $db->prepare($sql);
-    $statement->bindParam(":p", $player_id);
-    $statement->bindParam(":g", $game_id);
-    $statement->execute();
-}
-
-function deleteGame($game_id) {
-    global $db;
-    connect();
-    $sql = "DELETE FROM game WHERE game_id = :g";
-    $statement = $db->prepare($sql);
-    $statement->bindParam(":g", $game_id);
-    $statement->execute();
-}
-
-function changeTeams($player_id, $game_id, $team) {
-    global $db;
-    connect();
-    $sql = "UPDATE playing SET team = :team WHERE player_id = :p AND game_id = :g";
-    $statement = $db->prepare($sql);
-    $statement->bindParam(":team", $team);
-    $statement->bindParam(":p", $player_id);
-    $statement->bindParam(":g", $game_id);
-    $statement->execute();
-}
-
 function playerInfo($player_id) {
     global $db;
     connect();
@@ -374,5 +321,98 @@ function playerInfo($player_id) {
     $statement->execute();
     $result = $statement->fetchAll();
     return $result;
+}
+
+function createCustomGame($owner_id, $chain_id) {
+    createGame($owner_id, $chain_id);
+}
+
+function createRandomGame($owner_id) {
+    $chain_id = "lol"; // randomly pick a pre created chain
+    createGame($owner_id, $chain_id);
+}
+
+function createGame($owner_id, $chain_id) {
+    global $db;
+    connect();
+    $sql = "INSERT INTO game (game_id, chain_id, owner_id, game_status, current_team) 
+        VALUES (:g, :c, :o, :s, :t)";
+    $statement = $db->prepare($sql);
+    $game_id = generateID("game", "game_id");
+    $statement->bindParam(":g", $game_id);
+    $statement->bindParam(":c", $chain_id);
+    $statement->bindParam(":o", $owner_id);
+    $statement->bindValue(":s", "waiting");
+    $statement->bindValue(":t", 1);
+    $statement->execute();
+    initalizeTeams($game_id);
+}
+
+function initalizeTeams($game_id) {
+    createTeam($game_id, 1);
+    createTeam($game_id, 2);
+}
+
+function createTeam($game_id, $team_num) {
+    global $db;
+    connect();
+    $sql = "INSERT INTO teams (game_id, team_num, turn) VALUES (:g, :n, :turn)";
+    $statement = $db->prepare($sql);
+    $statement->bindParam(":g", $game_id);
+    $statement->bindParam(":n", $team_num);
+    $statement->bindValue(":turn", 0);
+    $statement->execute();
+}
+
+function playerCount($game_id) {
+    global $db;
+    connect();
+    $sql = "SELECT COUNT(player_id) FROM teams WHERE game_id = :g GROUP BY team_num"
+    $statement = $db->prepare($sql);
+    $statement->bindParam(":g", $game_id);
+    $statement->execute();
+    return $statement->fetchAll();
+}
+
+function newPlayerJoin($game_id, $player_id) {
+    global $db;
+    connect();
+    $counts = playerCount($game_id);
+    $team1Count = $counts[0][0];
+    $team2Count = $counts[1][0];
+    if ($team1Count == $team2Count) {
+        playerJoin($game_id, $player_id, 0);
+    } else {
+        playerJoin($game_id, $player_id, 1);
+    }
+}
+
+function playerJoin($game_id, $player_id, $team_num) {
+    global $db;
+    connect();
+    $sql = "INSERT INTO playerData(game_id, team_num, player_id, correct, guesses, earnings) 
+        VALUES (:game_id, :team_num, :p, :c, :g, :e)";
+    $statement = $db->prepare();
+    $statement->bindParam(":game_id", $game_id);
+    $statement->bindParam(":team_num", $team_num);
+    $statement->bindParam(":p", $player_id);
+    $statement->bindValue(":c", 0);
+    $statement->bindValue(":g", 0);
+    $statement->bindValue(":e", 0);
+    $statement->execute();
+}
+
+function getTeam($game_id, $player_id) {
+
+}
+
+function getOwner($game_id) {
+    global $db;
+    connect();
+    $sql = ""
+}
+
+function switchTeams($game_id, $player_id, $team_num) {
+
 }
 ?>
