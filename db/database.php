@@ -471,4 +471,49 @@ function updateGameStatus($game_id, $status) {
     $statement->execute();
     return "";
 }
+
+function incrementGuess($game_id, $player_id) {
+    global $db;
+    connect();
+    $sql = "UPDATE playerData SET guesses = guesses + 1 WHERE game_id = :g AND player_id = :p";
+    $statement = $db->prepare();
+    $statement->bindParam(":g", $game_id);
+    $statement->bindParam(":p", $player_id);
+    $statement->execute();
+}
+
+function incrementCorrect($game_id, $player_id) {
+    global $db;
+    connect();
+    $sql = "UPDATE playerData SET correct = correct + 1 WHERE game_id = :g AND player_id = :p";
+    $statement = $db->prepare();
+    $statement->bindParam(":g", $game_id);
+    $statement->bindParam(":p", $player_id);
+    $statement->execute();
+}
+
+function incrementEarnings($game_id, $player_id) {
+    global $db;
+    connect();
+    $sql = "UPDATE playerData SET earnings = earnings + 100 WHERE game_id = :g AND player_id = :p";
+    $statement = $db->prepare();
+    $statement->bindParam(":g", $game_id);
+    $statement->bindParam(":p", $player_id);
+    $statement->execute();
+}
+
+function updateTeamTurn($game_id, $team_num) {
+
+}
+
+function incorrectGuessPlayer($game_id, $player_id) {
+    incrementGuess($game_id, $player_id);
+}
+
+function correctGuessPlayer($game_id, $player_id) {
+    incrementGuess($game_id, $player_id);
+    incrementCorrect($game_id, $player_id);
+    incrementEarnings($game_id, $player_id);
+
+}
 ?>
