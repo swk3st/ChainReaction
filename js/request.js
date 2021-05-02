@@ -47,4 +47,28 @@ function requestPlayerID() {
     })
   }
 
-  export { requestPlayerID, requestChains };
+  function requestGame(gameId) {
+    var xmlhttp = new XMLHttpRequest();
+    return new Promise ((resolve, reject) => {
+  
+      xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+          var data = JSON.parse(xmlhttp.responseText);
+          resolve(data);
+        }
+      }
+      let url = "../php/gamedata.php?gameID=";
+
+      var loc = window.location.pathname;
+      var dir = loc.substring(loc.lastIndexOf('/'));
+      if (dir == "/inventory.php") {
+        url = "../../php/gamedata.php?gameID=";
+      }
+
+      let request = gameId;
+      xmlhttp.open("GET", url+request, true);
+      xmlhttp.send();
+    });
+  }
+
+  export { requestPlayerID, requestChains, requestGame };
