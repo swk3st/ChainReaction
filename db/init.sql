@@ -1,4 +1,4 @@
-USE chain_reaction;
+-- USE chain_reaction;
 
 -- to ease development, will need to be removed later;
 -- SET FOREIGN_KEY_CHECKS = 0;
@@ -43,14 +43,13 @@ CREATE TABLE IF NOT EXISTS game (
     owner_id VARCHAR(10) NOT NULL,
     chain_id VARCHAR(10) NOT NULL,
     gameStatus VARCHAR(50) NOT NULL,
-    FOREIGN KEY (game_id) REFERENCES game(game_id),
     FOREIGN KEY (chain_id) REFERENCES chain(chain_id)
 );
 
 CREATE TABLE IF NOT EXISTS playing (
-    game_id VARCHAR(10) NOT NULL PRIMARY KEY,
-    player_id VARCHAR(10) NOT NULL PRIMARY KEY,
-    payout VARCHAR(5) NOT NULL DEFAULT,
+    game_id VARCHAR(10) NOT NULL,
+    player_id VARCHAR(10) NOT NULL,
+    payout VARCHAR(5) NOT NULL,
     FOREIGN KEY (game_id) REFERENCES game(game_id)
 );
 
@@ -58,6 +57,6 @@ CREATE TABLE IF NOT EXISTS history (
     game_id VARCHAR(10) NOT NULL,
     player_id VARCHAR(10) NOT NULL,
     payout VARCHAR(5) NOT NULL,
-    FOREIGN KEY (game_id) REFERENCES game(game_id)
-    FOREIGN KEY (player_id) REFERENCES player(player_id),
+    FOREIGN KEY (game_id) REFERENCES game(game_id),
+    FOREIGN KEY (player_id) REFERENCES player(player_id)
 );
