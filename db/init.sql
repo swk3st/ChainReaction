@@ -41,13 +41,23 @@ CREATE TABLE IF NOT EXISTS owns (
 CREATE TABLE IF NOT EXISTS game (
     game_id VARCHAR(10) NOT NULL PRIMARY KEY,
     owner_id VARCHAR(10) NOT NULL,
-    FOREIGN KEY (owner_id) REFERENCES player(player_id)
+    chain_id VARCHAR(10) NOT NULL,
+    gameStatus VARCHAR(50) NOT NULL,
+    FOREIGN KEY (game_id) REFERENCES game(game_id),
+    FOREIGN KEY (chain_id) REFERENCES chain(chain_id)
 );
 
 CREATE TABLE IF NOT EXISTS playing (
-    player_id VARCHAR(10) NOT NULL,
-    game_id VARCHAR(10) NOT NULL,
-    team VARCHAR(10) NOT NULL,
-    FOREIGN KEY (player_id) REFERENCES player(player_id),
+    game_id VARCHAR(10) NOT NULL PRIMARY KEY,
+    player_id VARCHAR(10) NOT NULL PRIMARY KEY,
+    payout VARCHAR(5) NOT NULL DEFAULT,
     FOREIGN KEY (game_id) REFERENCES game(game_id)
+);
+
+CREATE TABLE IF NOT EXISTS history (
+    game_id VARCHAR(10) NOT NULL,
+    player_id VARCHAR(10) NOT NULL,
+    payout VARCHAR(5) NOT NULL,
+    FOREIGN KEY (game_id) REFERENCES game(game_id)
+    FOREIGN KEY (player_id) REFERENCES player(player_id),
 );
