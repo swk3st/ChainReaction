@@ -12,6 +12,7 @@ function connect () {
         // connecting to GCP cloud SQL instance
 
             $username = 'root';
+
         // $password = 'your-root-password';
             $password = 'chainreaction';
 
@@ -377,7 +378,7 @@ function getOwner($game_id) {
 function playerCount($game_id) {
     global $db;
     connect();
-    $sql = "SELECT COUNT(player_id) FROM teams WHERE game_id = :g GROUP BY team_num"
+    $sql = "SELECT COUNT(player_id) FROM teams WHERE game_id = :g GROUP BY team_num";
     $statement = $db->prepare($sql);
     $statement->bindParam(":g", $game_id);
     $statement->execute();
