@@ -84,22 +84,22 @@ class Game {
 
     guessAbove = (guess) => {
         this.guesses++;
-        let success = this.board[this.above].guess(guess);
+        let success = this.board[this.above].guessWord(guess);
         if (success) {
             this.correct++;
             this.above++;
         }
-        return isFinished();
+        return this.isFinished();
     }
 
     guessBelow = (guess) => {
         this.guesses++;
-        let success = this.board[this.below].guess(guess);
+        let success = this.board[this.below].guessWord(guess);
         if (success) {
             this.correct++;
             this.below--;
         }
-        return isFinished();
+        return this.isFinished();
     }
 
     requestAbove = () => {
@@ -148,13 +148,4 @@ class Game {
     }
 }
 
-let game = new Game(["brad", "pace", "peyton", "colt", "card", "blonde", "aryan"], 60000, 5000);
-let count = 0;
-while (!game.isFinished()) {
-    game.requestAbove();
-    game.show();
-    game.requestBelow();
-    game.show();
-    count += 2;
-}
-console.log(count);
+export { Game };
