@@ -9,11 +9,9 @@ import { User } from '../user';
 })
 
 export class UserComponent implements OnInit { 
-  username: string;    
   user: User;
   
   constructor() {
-    this.username = 'somename';    
     this.user = new User(
       "$displayname",
       "$email",
@@ -24,17 +22,6 @@ export class UserComponent implements OnInit {
        );      
   }
 
-  manyusers = [
-    { name: 'Mickey', email: 'mickey@uva.edu' },
-    { name: 'Minnie', email: 'minnie@uva.edu' },
-    { name: 'duh', email: 'duh@uva.edu' },
-    { name: 'huh', email: 'huh@uva.edu' }
-   ];  
-
-   changeDefaultName(str: string) {
-    this.user.name = str;
-    }
-   
 
   ngOnInit(): void {
   }
