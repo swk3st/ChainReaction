@@ -38,11 +38,10 @@
     <h2 id='code' class='<?php if (isset($game_id)) echo $game_id?>'>Game Code: <?php if (isset($game_id)) echo $game_id?></h2>
     <br/>
     <button id="start-button" class='big-button'>START!<button>
-    <div id="lobby"></div>
 </div>
 
 <script type='module'>
-    import { requestGame, startGame, requestPlayers } from '../js/request.js';
+    import { requestGame, startGame } from '../js/request.js';
     let codeElem = document.getElementById('code');
     let gameId = codeElem.getAttribute('class');
     let countdown = -1;
@@ -53,13 +52,6 @@
             countdown = parseInt(data['start']) - Math.round(Date.now()/1000);
         });
     }
-
-    let lobby = [];
-    const lobbyUpdate = () => {
-        let lobbyElem = document.getElementById('lobby');
-    } 
-
-
     let timer = document.getElementById("timer");
     let cycle = 1000;
     let started = false;
