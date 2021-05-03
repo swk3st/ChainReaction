@@ -40,7 +40,7 @@
 </div>
 
 <script type='module'>
-    import { requestGame } from '../js/request.js';
+    import { requestGame, startGame } from '../js/request.js';
     let codeElem = document.getElementById('code');
     let gameId = codeElem.getAttribute('class');
     let countdown = -1;
@@ -66,6 +66,9 @@
     var ticker = setInterval(function () {
         timer.innerHTML = countdown;
         countdown-= 1;
+        if (countdown <= 0) {
+            gameStart(gameId);
+        }
     }, cycle);
 </script>
 </body>

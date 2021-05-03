@@ -398,4 +398,26 @@ function getHistory($player_id) {
     return $statement->fetchAll();
 }
 
+function startGame($game_id) {
+    global $db;
+    connect();
+    $sql = "UPDATE game SET gameStatus = started WHERE game_id = :g";
+    $statement = $db->prepare($sql);
+    $statement->bindParam(':g', $game_id);
+    $statement->execute();
+}
+
+function currentGameStatus($game_id) {
+    global $db;
+    connect();
+    $sql = "SELECT gameStatus FROM game WHERE game_id = :g";
+    $statement = $db->prepare($sql);
+    $statement->bindParam(":g", $game_id);
+    $statement->execute();
+
+    $result = $statement->fetchAll();
+    $status = $result[0]['gameStatus'];
+    return $status;
+}
+
 ?>
