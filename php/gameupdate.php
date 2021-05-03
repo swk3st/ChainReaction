@@ -1,8 +1,11 @@
 <?php
     include "..\db\database.php";
-    if (isset($_POST['start']))
-    {
-        $game_ID = $_POST['gameID'];
-        startGame($game_ID);
-    }
+    $data = json_decode(file_get_contents('php://input'), true);
+    $gameID = $data['gameID'];
+    // $playerID = $data['playerID'];
+    // $displayName = $data['displayName'];
+    $areSet = isset($gameID);
+    if ($areSet) {
+        startGame($gameID);
+    }  
 ?>

@@ -52,6 +52,7 @@
         timer.innerHTML = countdown;
         countdown-= 1;
         requestStatus(gameId).then((data) => {
+            console.log(data);
             if (data == 'started') {
                 requestPlayerID().then((id) => {
                     let playerId = id;
