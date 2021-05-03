@@ -20,7 +20,7 @@
 </header>
 
 <h1 id="waitingText"> WAITING... </h1>
-<h2 id='timer'></h2>
+<h2 id='timer' style='text-align: center;'></h2>
 <div class="waiting-room-container">
     <h2 id='code' class='<?php if (isset($_GET['gameID'])) echo $_GET['gameID']?>'>Game Code: <?php if (isset($_GET['gameID'])) echo $_GET['gameID']?></h2>
 </div>
