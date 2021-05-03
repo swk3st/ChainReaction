@@ -6,8 +6,9 @@ header('Access-Control-Max-Age: 1000');
 header('Access-Control-Allow-Methods: POST, GET, OPTIONS, DELETE, PUT');
 
 include '../db/database.php';
-if(isset($_GET['gameID'])) {
-    
+if(isset($_GET['playerID'])) {
+    $player_id = $_GET['playerID'];
+    echo json_encode(getHistory($player_id));
 }
 
 ?>
