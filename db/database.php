@@ -388,4 +388,14 @@ function joinGame($game_id, $player_id, $display_name) {
     $statement->execute();
 }
 
+function getHistory($player_id) {
+    global $db;
+    connect();
+    $sql = "SELECT * FROM history WHERE player_id = :p";
+    $statement = $db->prepare($sql);
+    $statement->bindParam(':p', $player_id);
+    $statement->execute();
+    return $statement->fetchAll();
+}
+
 ?>
