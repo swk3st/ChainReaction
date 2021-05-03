@@ -420,4 +420,16 @@ function currentGameStatus($game_id) {
     return $status;
 }
 
+function getPlayers($game_id) {
+    global $db;
+    connect();
+    $sql = "SELECT * FROM playing WHERE game_id = :g ORDER BY payout DESC";
+    $statement = $db->prepare($sql);
+    $statement->bindParam(":g", $game_id);
+    $statement->execute();
+
+    $result = $statement->fetchAll();
+    return $result;
+}
+
 ?>
