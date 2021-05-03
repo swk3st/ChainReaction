@@ -27,17 +27,17 @@
   <form action="./ownerlobby.php" method="post">
     <label for="time">Total Time (seconds)</label>
     </br>
-    <input type="number" id="time" name="time" min="0"/>
+    <input type="number" id="time" name="time" min="0" required/>
     </br>
     </br>
     <label for="cooldown">Cooldown (seconds)</label>
     </br>
-    <input type="number" id="cooldown" name="cooldown" min="0"/>
+    <input type="number" id="cooldown" name="cooldown" min="0" required/>
     </br>
     </br>
     <label for="cooldown">Lobby Duration (seconds)</label>
     </br>
-    <input type="number" id="start" name="start" min="0"/>
+    <input type="number" id="start" name="start" min="0" required/>
     </br>
     </br>
     <input type="hidden" id="chainID" name="chainID" value="<?php echo $_GET['chainID']?>"/>
