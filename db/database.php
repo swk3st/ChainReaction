@@ -375,4 +375,17 @@ function gameStatus($game_id) {
     return "";
 }
 
+function joinGame($game_id, $player_id, $display_name) {
+    global $db;
+    connect();
+    $payout = 0;
+    $sql = "INSERT INTO playing (game_id, player_id, display_name, payout) VALUES (:g, :p, :d, :pay)";
+    $statement = $db->prepare($sql);
+    $statement->bindParam(":g", $game_id);
+    $statement->bindParam(":p", $player_id);
+    $statement->bindParam(":d", $display_name);
+    $statement->bindParam(":payout", $payout);
+    $statement->execute();
+}
+
 ?>
