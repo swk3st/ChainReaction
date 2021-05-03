@@ -1,10 +1,13 @@
 import { ChainList } from "./chain.js";
 import { requestPlayerID, requestChains} from "./request.js"; 
 
-const playCell = () => {
+const playCell = (chainID) => {
     let newTd = document.createElement("td");
     let newButton = document.createElement("button");
     newButton.innerHTML = "Play";
+    newButton.onclick = () => {
+        location.href = "../creategame.php?chainID=" + chainID;
+    }
     newTd.appendChild(newButton);
     return newTd;
 }
@@ -62,7 +65,7 @@ const deleteCell = (chainID, words) => {
 }
 
 const appendChildren = (newTr, chainID, words) => {
-    newTr.appendChild(playCell());
+    newTr.appendChild(playCell(chainID));
     newTr.appendChild(chainCell(chainID));
     for(let word of wordCells(words)) {
         newTr.appendChild(word);
