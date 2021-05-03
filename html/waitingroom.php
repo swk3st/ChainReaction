@@ -21,29 +21,21 @@
 
 <h1 id="waitingText"> WAITING... </h1>
 <div class="waiting-room-container">
-    <p grid-row-start=1 class="room-code">Room Code</p>
-    <div class="team-group" grid-row-start=2>
-        <div class="team-grouping" grid-column-start=1>
-            <h2>Team 1</h2>
-            <p>Katie</p>
-            <p>Stephen</p>
-            <p>Liam</p>
-        </div>
-        <div class="team-grouping" grid-column-start=2>
-            <h2>Team 2</h2>
-            <p>Helen</p>
-            <p>Joey</p>
-            <p>Will</p>
-        </div>
-    </div>
-    <a href="gameplay.php">
-        <button class="big-button" grid-row-start=3>Start</button>
-    </a>
+    <h2>Game Code: <?php if (isset($_GET['gameID'])) echo $_GET['gameID']?></h2>
+    <p>cash</p>
+    <p>Another one</p>
+    <p>Another one</p>
+    <p>Another one</p>
+    <p>Another one</p>
+    <p>Another one</p>
+    <p>Another one</p>
 </div>
 <script>
     var arr = [" WAITING ", " WAITING. ", " WAITING.. ", " WAITING... "];
     var count = 0;
     var element = document.getElementById("waitingText");
+    let timer = document.getElementById("timer");
+    // let countdown = 0;
     var interval = setInterval(function () {
         element.innerHTML = arr[count];
         count++;
@@ -51,6 +43,10 @@
             count = 0;
         }
     }, 1000);
+    // var ticker = setInterval(function () {
+    //     timer.innerHTML = countdown;
+    //     countdown--;
+    // }, 1);
 </script>
 </body>
 </html>
