@@ -22,6 +22,21 @@
 </header>
 
 <body>
-  <div class="create-game-container"></div>
+    <h1> Create A Game! </h1>
+  <div class="form-container">
+  <form>
+    <label for="time">Enter A Total Time!</label>
+    </br>
+    <input type="number" id="time" name="time"/>
+    </br>
+    </br>
+    <label for="cooldown">Enter A Cooldown Period Between Guesses!</label>
+    </br>
+    <input type="number" id="cooldown" name="cooldown"/>
+    </br>
+    </br>
+    <input type="submit" value="Submit"/>
+  </form>
+  </div>
 </body>
 </html>
