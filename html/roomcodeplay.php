@@ -26,10 +26,10 @@
     <img src="../resources/chainreactionlogo.png" alt="Chain Reaction Retro Logo" width="400"
     height="160">
   <form action=#>
-    <input class="code-text" type="text" id="input-code" name="room-code">
+    <input class="code-text" type="text" id="input-code" name="room-code" <?php if (!isset($_SESSION['playerID'])) echo "disabled"?>>
   </form>
   <!-- <a href="waitingroom.php"> -->
-    <button class="big-button" id="join">JOIN!</button>
+    <button class="big-button" id="join" <?php if (!isset($_SESSION['playerID'])) echo "disabled"?>>JOIN!</button>
   <!-- </a> -->
   <p id="error"></p>
 </div>
@@ -39,29 +39,31 @@
   import { requestGame, playerJoin, requestPlayerID, requestDisplayName } from "../js/request.js";
   let button = document.getElementById("join");
   let input = document.getElementById("input-code");
-  let playerID;
-  let displayName;
-  requestPlayerID().then((data) => {
-    playerID = data;
-  });
-  requestDisplayName().then((data) => {
-    displayName = data;
-  });
-  const buttonHandler = () => {
-    let gameID = input.value;
-    requestGame(gameID).then((data) => {
-      let gameData = data[0];
-      let errorMessage = data[1];
-      if (errorMessage == '') {
-        playerJoin(gameID, playerID, displayName).then(() => {
-          location.href = "./waitingroom.php?" + gameID; 
-        });
-      } else {
-        let errorPar = document.getElementById("error");
-        errorPar.innerHTML = errorMessage; 
-      }
+  if (!input.hasAttribute("disabled")) {
+    let playerID;
+    let displayName;
+    requestPlayerID().then((data) => {
+      playerID = data;
     });
+    requestDisplayName().then((data) => {
+      displayName = data;
+    });
+    const buttonHandler = () => {
+      let gameID = input.value;
+      requestGame(gameID).then((data) => {
+        let gameData = data[0];
+        let errorMessage = data[1];
+        if (errorMessage == '') {
+          playerJoin(gameID, playerID, displayName).then(() => {
+            location.href = "./waitingroom.php?" + gameID; 
+          });
+        } else {
+          let errorPar = document.getElementById("error");
+          errorPar.innerHTML = errorMessage; 
+        }
+      });
+    }
+    button.onclick = buttonHandler;
   }
-  button.onclick = buttonHandler;
 </script>
 </html>
