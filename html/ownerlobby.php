@@ -20,7 +20,7 @@
         include "../db/database.php";
         $start = time() + $_POST['start'] * 1000;
         $cooldown = $_POST['cooldown'] * 1000;
-        $time = time() + $_POST['time'] * 1000;
+        $time = $start + $_POST['time'] * 1000;
         $chain_id = $_POST['chainID'];
         $owner_id = $_SESSION['playerID'];
         $display_name = $_SESSION['displayName'];
