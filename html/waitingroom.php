@@ -25,7 +25,7 @@
     <h2 id='code' class='<?php if (isset($_GET['gameID'])) echo $_GET['gameID']?>'>Game Code: <?php if (isset($_GET['gameID'])) echo $_GET['gameID']?></h2>
 </div>
 <script type='module'>
-    import { requestGame, requestStatus } from '../js/request.js';
+    import { requestGame, requestStatus, requestPlayerID } from '../js/request.js';
     let codeElem = document.getElementById('code');
     let gameId = codeElem.getAttribute('class');
     let countdown = -1;
@@ -53,7 +53,10 @@
         countdown-= 1;
         requestStatus(gameId).then((data) => {
             if (data == 'started') {
-                
+                requestPlayerID().then((id) => {
+                    let playerId = id;
+                    location.href = './gameplay?gameID=' + gameId + "&playerID=" + playerId;
+                })
             }
         });
     }, cycle);
