@@ -24,7 +24,7 @@
 <body>
     <h1> Create A Game! </h1>
   <div class="form-container">
-  <form>
+  <form action="./ownerlobby.php" method="post">
     <label for="time">Enter A Total Time!</label>
     </br>
     <input type="number" id="time" name="time"/>
