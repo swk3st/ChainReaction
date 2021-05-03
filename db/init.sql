@@ -41,6 +41,7 @@ CREATE TABLE IF NOT EXISTS owns (
 CREATE TABLE IF NOT EXISTS game (
     game_id VARCHAR(10) NOT NULL PRIMARY KEY,
     owner_id VARCHAR(10) NOT NULL,
+    display_name VARCHAR (10) NOT NULL,
     chain_id VARCHAR(10) NOT NULL,
     gameStatus VARCHAR(50) NOT NULL,
     time INTEGER NOT NULL,
@@ -51,6 +52,7 @@ CREATE TABLE IF NOT EXISTS game (
 CREATE TABLE IF NOT EXISTS playing (
     game_id VARCHAR(10) NOT NULL,
     player_id VARCHAR(10) NOT NULL,
+    display_name VARCHAR(255) NOT NULL,
     payout VARCHAR(5) NOT NULL,
     FOREIGN KEY (game_id) REFERENCES game(game_id)
 );
