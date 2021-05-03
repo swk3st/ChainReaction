@@ -46,6 +46,7 @@ CREATE TABLE IF NOT EXISTS game (
     gameStatus VARCHAR(50) NOT NULL,
     time INTEGER NOT NULL,
     cooldown INTEGER NOT NULL,
+    start INTEGER NOT NULL,
     FOREIGN KEY (chain_id) REFERENCES chain(chain_id)
 );
 
