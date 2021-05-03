@@ -324,4 +324,22 @@ function playerInfo($player_id) {
     return $result;
 }
 
+function createGame($player_id, $display_name, $start, $time, $cooldown, $chain_id) {
+    global $db;
+    connect();
+    $sql = "INSERT INTO game (game_id, owner_id, display_name, chain_id, gameStatus, time, cooldown, start) VALUES (:gid, :oid, :diname, :cid, :gs, :t, :cd, :start)";
+    $statement = $db->prepare($sql);
+    $game_id = generateID("history", "game_id");
+    $initStatus = "lobby";
+    $statement->bindParam(":gid", $game_id);
+    $statement->bindParam(":oid", $player_id);
+    $statement->bindParam(":diname", $display_name);
+    $statement->bindParam(":cid", $chain_id);
+    $statement->bindParam(":gs", $initStatus);
+    $statement->bindParam(":t", $time);
+    $statement->bindParam(":cd", $cooldown);
+    $statement->bindParam(":start", $start);
+    $statement->execute();
+}
+
 ?>
