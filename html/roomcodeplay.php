@@ -36,16 +36,24 @@
 </body>
 
 <script type="module">
-  import { requestGame, playerJoin } from "../js/request.js";
+  import { requestGame, playerJoin, requestPlayerID, requestDisplayName } from "../js/request.js";
   let button = document.getElementById("join");
   let input = document.getElementById("input-code");
+  let playerID;
+  let displayName;
+  requestPlayerID().then((data) => {
+    playerID = data;
+  });
+  requestDisplayName().then((data) => {
+    displayName = data;
+  });
   const buttonHandler = () => {
     let gameID = input.value;
     requestGame(gameID).then((data) => {
       let gameData = data[0];
       let errorMessage = data[1];
       if (errorMessage == '') {
-        playerJoin.then(() => {
+        playerJoin(gameID, playerID, displayName).then(() => {
           location.href = "./waitingroom.php?" + gameID; 
         });
       } else {

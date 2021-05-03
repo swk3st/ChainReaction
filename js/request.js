@@ -22,6 +22,31 @@ function requestPlayerID() {
       xmlhttp.send();
     });
     }
+
+    function requestDisplayName() {
+      var xmlhttp = new XMLHttpRequest();
+      return new Promise ((resolve, reject) => {
+        let dN = "";
+    
+        xmlhttp.onreadystatechange = function() {
+          if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+            dN = JSON.parse(xmlhttp.responseText);
+            return resolve(dN);
+          }
+        }
+        let dNUrl = "../php/sessiondata.php?var=displayName";
+  
+        var loc = window.location.pathname;
+        var dir = loc.substring(loc.lastIndexOf('/'));
+        console.log(dir);
+        if (dir == "/inventory.php") {
+          dNUrl = "../../php/sessiondata.php?var=displayName";
+        }     
+  
+        xmlhttp.open("GET", dNUrl, true);
+        xmlhttp.send();
+      });
+      }
   
   function requestChains(playerID) {
     var xmlhttp = new XMLHttpRequest();
@@ -95,4 +120,4 @@ function requestPlayerID() {
     });
   }
 
-  export { requestPlayerID, requestChains, requestGame, playerJoin };
+  export { requestPlayerID, requestDisplayName, requestChains, requestGame, playerJoin };
