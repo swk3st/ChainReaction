@@ -340,6 +340,7 @@ function createGame($player_id, $display_name, $start, $time, $cooldown, $chain_
     $statement->bindParam(":cd", $cooldown);
     $statement->bindParam(":start", $start);
     $statement->execute();
+    return $game_id;
 }
 
 ?>
