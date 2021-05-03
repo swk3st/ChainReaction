@@ -121,7 +121,7 @@ function requestPlayerID() {
     });
   }
 
-  function gameStart(gameId) {
+  function startGame(gameId) {
     var xmlhttp = new XMLHttpRequest();
     return new Promise ((resolve, reject) => {      
       let url = "../php/gameupdate.php";
@@ -169,4 +169,4 @@ function requestPlayerID() {
     });
   }
 
-  export { requestPlayerID, requestDisplayName, requestChains, requestGame, playerJoin, gameStart, requestStatus };
+  export { requestPlayerID, requestDisplayName, requestChains, requestGame, playerJoin, startGame, requestStatus };

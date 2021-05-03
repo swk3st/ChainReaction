@@ -33,10 +33,11 @@
 
 <body>
 <h1>Owner Room</h1>
-<h1 id="waitingText"> WAITING... </h1>
 <h2 id='timer' style='text-align: center;'></h2>
 <div class="waiting-room-container">
-    <h2 id='code' class='<?php if (isset($_GET['gameID'])) echo $_GET['gameID']?>'>Game Code: <?php if (isset($_GET['gameID'])) echo $_GET['gameID']?></h2>
+    <h2 id='code' class='<?php if (isset($game_id)) echo $game_id?>'>Game Code: <?php if (isset($game_id)) echo $game_id?></h2>
+    <br/>
+    <button id="start-button" class='big-button'>START!<button>
 </div>
 
 <script type='module'>
@@ -51,23 +52,23 @@
             countdown = parseInt(data['start']) - Math.round(Date.now()/1000);
         });
     }
-    var arr = [" WAITING ", " WAITING. ", " WAITING.. ", " WAITING... "];
-    var count = 0;
-    var element = document.getElementById("waitingText");
     let timer = document.getElementById("timer");
-    var interval = setInterval(function () {
-        element.innerHTML = arr[count];
-        count++;
-        if(count > arr.length - 1) {
-            count = 0;
-        }
-    }, 1000);
     let cycle = 1000;
+    let started = false;
+    let startButton = document.getElementById('start-button');
+    let force = false;
+    startButton.addEventListener('click', () => {
+        force = true;
+    });
     var ticker = setInterval(function () {
         timer.innerHTML = countdown;
         countdown-= 1;
-        if (countdown <= 0) {
-            gameStart(gameId);
+        if (countdown <= 0 || force) {
+            startGame(gameId);
+            started = true;
+        }
+        if (started) {
+            clearInterval(ticker);
         }
     }, cycle);
 </script>
