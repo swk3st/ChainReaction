@@ -51,6 +51,8 @@ include "../db/database.php";
   $percentage = strval($percent * 100) . "%";
 
   header("location:http://localhost:9001?earnings=$earnings&guesses=$guessess&correct=$correct&percent=$percent") 
+  change to some json format
+  
   ?>
 
 

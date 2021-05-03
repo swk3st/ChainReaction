@@ -19,6 +19,11 @@ export class UserComponent implements OnInit {
       0,
       0,
       0,
+
+      http constructor
+
+      get call 
+      
        );      
   }
 
