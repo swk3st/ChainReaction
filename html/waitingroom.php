@@ -56,7 +56,7 @@
             if (data == 'started') {
                 requestPlayerID().then((id) => {
                     let playerId = id;
-                    location.href = './gameplay?gameID=' + gameId + "&playerID=" + playerId;
+                    location.href = './gameplay.php?gameID=' + gameId + "&playerID=" + playerId;
                 })
             }
         });
