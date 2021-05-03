@@ -18,9 +18,9 @@
     <?php include('../php/navbar.php'); ?>
     <?php
         include "../db/database.php";
-        $start = time() + $_POST['start'] * 1000;
-        $cooldown = $_POST['cooldown'] * 1000;
-        $time = $start + $_POST['time'] * 1000;
+        $start = time() + $_POST['start'] * 60;
+        $cooldown = $_POST['cooldown'];
+        $time = $start + $_POST['time'] * 60;
         $chain_id = $_POST['chainID'];
         $owner_id = $_SESSION['playerID'];
         $display_name = $_SESSION['displayName'];
@@ -32,6 +32,41 @@
 </header>
 
 <body>
-<h1>Game Lobby Code: <?php echo $game_id?></h1>
+<h1>Owner Room</h1>
+<h1 id="waitingText"> WAITING... </h1>
+<h2 id='timer' style='text-align: center;'></h2>
+<div class="waiting-room-container">
+    <h2 id='code' class='<?php if (isset($_GET['gameID'])) echo $_GET['gameID']?>'>Game Code: <?php if (isset($_GET['gameID'])) echo $_GET['gameID']?></h2>
+</div>
+
+<script type='module'>
+    import { requestGame } from '../js/request.js';
+    let codeElem = document.getElementById('code');
+    let gameId = codeElem.getAttribute('class');
+    let countdown = -1;
+    if (gameId != undefined) {
+        requestGame(gameId).then((gameData) => {
+            let data = gameData[0][0];
+            let date = new Date();
+            countdown = parseInt(data['start']) - Math.round(Date.now()/1000);
+        });
+    }
+    var arr = [" WAITING ", " WAITING. ", " WAITING.. ", " WAITING... "];
+    var count = 0;
+    var element = document.getElementById("waitingText");
+    let timer = document.getElementById("timer");
+    var interval = setInterval(function () {
+        element.innerHTML = arr[count];
+        count++;
+        if(count > arr.length - 1) {
+            count = 0;
+        }
+    }, 1000);
+    let cycle = 1000;
+    var ticker = setInterval(function () {
+        timer.innerHTML = countdown;
+        countdown-= 1;
+    }, cycle);
+</script>
 </body>
 </html>
