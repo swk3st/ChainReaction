@@ -20,22 +20,26 @@
 </header>
 
 <h1 id="waitingText"> WAITING... </h1>
+<h2 id='timer'></h2>
 <div class="waiting-room-container">
-    <h2>Game Code: <?php if (isset($_GET['gameID'])) echo $_GET['gameID']?></h2>
-    <p>cash</p>
-    <p>Another one</p>
-    <p>Another one</p>
-    <p>Another one</p>
-    <p>Another one</p>
-    <p>Another one</p>
-    <p>Another one</p>
+    <h2 id='code' class='<?php if (isset($_GET['gameID'])) echo $_GET['gameID']?>'>Game Code: <?php if (isset($_GET['gameID'])) echo $_GET['gameID']?></h2>
 </div>
-<script>
+<script type='module'>
+    import { requestGame } from '../js/request.js';
+    let codeElem = document.getElementById('code');
+    let gameId = codeElem.getAttribute('class');
+    let countdown = -1;
+    if (gameId != undefined) {
+        requestGame(gameId).then((gameData) => {
+            let data = gameData[0][0];
+            let date = new Date();
+            countdown = parseInt(data['start']) - Math.round(Date.now()/1000);
+        });
+    }
     var arr = [" WAITING ", " WAITING. ", " WAITING.. ", " WAITING... "];
     var count = 0;
     var element = document.getElementById("waitingText");
     let timer = document.getElementById("timer");
-    // let countdown = 0;
     var interval = setInterval(function () {
         element.innerHTML = arr[count];
         count++;
@@ -43,10 +47,11 @@
             count = 0;
         }
     }, 1000);
-    // var ticker = setInterval(function () {
-    //     timer.innerHTML = countdown;
-    //     countdown--;
-    // }, 1);
+    let cycle = 1000;
+    var ticker = setInterval(function () {
+        timer.innerHTML = countdown;
+        countdown-= 1;
+    }, cycle);
 </script>
 </body>
 </html>

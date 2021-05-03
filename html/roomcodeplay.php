@@ -55,7 +55,7 @@
         let errorMessage = data[1];
         if (errorMessage == '') {
           playerJoin(gameID, playerID, displayName).then(() => {
-            location.href = "./waitingroom.php?" + gameID; 
+            location.href = "./waitingroom.php?gameID=" + gameID; 
           });
         } else {
           let errorPar = document.getElementById("error");
