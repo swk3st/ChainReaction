@@ -1,9 +1,60 @@
 <body>
-    <div>
-      <h1>
-        {{ title }}!
-        Hello {{ friendname }}
+  <div>
+    <h1>
+      {{ title }}!
 
-      </h1>
+      <p [style.color]="'black'">Welcome to Chain Reaction.</p>
+
+      Get ready to play, {{ username }}
+
+    </h1>
+
+    <p>{{ user | json }} </p>
+    <p>{{ user.name | uppercase }}</p>
+
+
+  </div>
+
+  <div *ngIf="user.name=='Humpty'">What's up Humpty?</div>
+
+  <h4>List of many users</h4>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+  <tr *ngFor="let myuser of manyusers">
+    <td>{{ myuser.name }}</td>
+    <td>{{ myuser.email }}</td>
+  </tr>
+</table>
+
+<!-- Maybe create a form to add friend names to your account? -->
+<form #infoForm="ngForm">
+  <div class="form-group">
+     <label for="name">Username:</label>
+     <input [(ngModel)]="user.name" type="text" class="form-control" name="username" />
     </div>
-    </body>
+  <div class="form-group">
+     <label for="comment">Email:</label>
+     <input [(ngModel)]="email.name" type="text" class="form-control" name="email" />
+    </div>
+
+ </p>
+ <button (click)="changeDefaultName('someone')" class="btn btn-primary">Click to change the name</button>
+
+</form>
+
+<p><b>Retrieve values from the form: </b> <br/>
+  {{ infoForm.value | json }}  <br/>
+  {{ infoForm.value.username }} <br/> 
+  {{ infoForm.value.email }} 
+
+<p><b>Retrieve values from the model:</b> <br/>
+  {{ user.name }} <br/> 
+  {{ user.email }} 
+</p> 
+
+</body>
