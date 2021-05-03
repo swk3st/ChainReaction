@@ -384,7 +384,7 @@ function joinGame($game_id, $player_id, $display_name) {
     $statement->bindParam(":g", $game_id);
     $statement->bindParam(":p", $player_id);
     $statement->bindParam(":d", $display_name);
-    $statement->bindParam(":payout", $payout);
+    $statement->bindParam(":pay", $payout, PDO::PARAM_INT);
     $statement->execute();
 }
 

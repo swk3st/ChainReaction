@@ -1,6 +1,11 @@
 <?php
     include "..\db\database.php";
-    if (isset($_POST['playerID']) && isset($_POST['gameID']) && isset($_POST['displayName'])) {
-        allChains($_POST['gameID'], $_POST['playerID'], $_POST['displayName']);
-    }
+    $data = json_decode(file_get_contents('php://input'), true);
+    $gameID = $data['gameID'];
+    $playerID = $data['playerID'];
+    $displayName = $data['displayName'];
+    $areSet = isset($gameID) && isset($playerID) && isset($displayName);
+    if ($areSet) {
+        joinGame($gameID, $playerID, $displayName);
+    }  
 ?>

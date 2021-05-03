@@ -104,7 +104,7 @@ function requestPlayerID() {
       var loc = window.location.pathname;
       var dir = loc.substring(loc.lastIndexOf('/'));
       if (dir == "/inventory.php") {
-        url = "../../php/playerjoin.php?";
+        url = "../../php/playerjoin.php";
       }
 
       xmlhttp.open("POST", url, true);
@@ -116,6 +116,7 @@ function requestPlayerID() {
         }
       }
       let data = {'gameID': gameId, 'playerID': playerId, 'displayName': displayName};
+      console.log(JSON.stringify(data));
       xmlhttp.send(JSON.stringify(data));
     });
   }
