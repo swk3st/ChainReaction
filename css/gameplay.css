@@ -51,10 +51,9 @@ h1 {
 }
 
 .waiting-room-container {
-    display: grid;
+    display: flex;
     /* width: 100vw; */
-    height: 50vh;
-    grid-template-rows: 1fr 3fr 1fr;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     justify-items: center;
