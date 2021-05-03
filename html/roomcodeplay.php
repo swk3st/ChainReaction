@@ -28,10 +28,25 @@
   <form action=#>
     <input class="code-text" type="text" id="input-code" name="room-code">
   </form>
-  <a href="waitingroom.php">
-    <button class="big-button">JOIN!</button>
-  </a>
+  <!-- <a href="waitingroom.php"> -->
+    <button class="big-button" id="join">JOIN!</button>
+  <!-- </a> -->
   <p><?php if (isset($_POST['error'])) echo $_POST['error'];?></p>
 </div>
 </body>
+
+<script type="module">
+  import { requestGame } from "../js/request.js";
+  let button = document.getElementById("join");
+  let input = document.getElementById("input-code");
+  const buttonHandler = () => {
+    let gameID = input.value;
+    let error;
+    requestGame(gameID).then((data) => {
+      console.log(data[0]);
+      console.log(data[1]);
+    });
+  }
+  button.onclick = buttonHandler;
+</script>
 </html>

@@ -343,4 +343,36 @@ function createGame($player_id, $display_name, $start, $time, $cooldown, $chain_
     return $game_id;
 }
 
+function gameInfo($game_id) {
+    global $db;
+    connect();
+    $sql = "SELECT * FROM game WHERE game_id = :g";
+    $statement = $db->prepare($sql);
+    $statement->bindParam(":g", $game_id);
+    $statement->execute();
+    $result = $statement->fetchAll();
+    return $result;
+}
+
+function gameStatus($game_id) {
+    global $db;
+    connect();
+    $sql = "SELECT gameStatus FROM game WHERE game_id = :g";
+    $statement = $db->prepare($sql);
+    $statement->bindParam(":g", $game_id);
+    $statement->execute();
+
+    if ($statement->rowCount() == 0) {
+        return "Could not find any games with the game code $game_id";
+    }
+
+    $result = $statement->fetchAll();
+    $status = $result[0]['gameStatus'];
+
+    if ($status != 'lobby') {
+        return "The game code $game_id is able to be joined rn. Status: $status";
+    }
+    return "";
+}
+
 ?>
