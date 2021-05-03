@@ -143,7 +143,6 @@ class Game {
         for (let word of this.board) {
             words.push(word.current);
         }
-        console.log(words);
         return words;
     }
 }
