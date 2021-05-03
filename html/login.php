@@ -70,13 +70,11 @@
                 <button type="reset" value="Reset">Reset</button>
             </form>
 
-            <div class="d-flex justify-content-center ">
-                Don't have an account? <a href="#" class="ml-2">Sign Up</a>
+            <div class="d-flex justify-content-left ">
+                Don't have an account? <a href="signup.php" class="ml-2">Sign Up</a>
             </div>
 
-            <div class="d-flex justify-content-center">
-                <a href="#">Forgot your password?</a>
-            </div>
+
         </div>
 
     </div>

@@ -2,22 +2,13 @@
   <div>
     <h1>
       {{ title }}!
-
-      <p [style.color]="'black'">Welcome to Chain Reaction.</p>
-
-      Get ready to play, {{ username }}
-
+      <p [style.color]="'black'"> Welcome {{username}}!</p>
     </h1>
-
-    <p>{{ user | json }} </p>
-    <p>{{ user.name | uppercase }}</p>
-
-
   </div>
 
-  <div *ngIf="user.name=='Humpty'">What's up Humpty?</div>
+  <div *ngIf="user.career_earnings >= 10000"> You are amazing!</div>
 
-  <h4>List of many users</h4>
+  <h4>List of career games</h4>
 <table>
   <thead>
     <tr>
