@@ -31,6 +31,7 @@
   <a href="waitingroom.php">
     <button class="big-button">JOIN!</button>
   </a>
+  <p><?php if (isset($_POST['error'])) echo $_POST['error'];?></p>
 </div>
 </body>
 </html>
