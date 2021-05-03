@@ -2,59 +2,82 @@
   <div>
     <h1>
       {{ title }}!
-
-      <p [style.color]="'black'">Welcome to Chain Reaction.</p>
-
-      Get ready to play, {{ username }}
-
+      <p [style.color]="'black'"> Welcome {{username}}!</p>
     </h1>
-
-    <p>{{ user | json }} </p>
-    <p>{{ user.name | uppercase }}</p>
-
-
   </div>
 
-  <div *ngIf="user.name=='Humpty'">What's up Humpty?</div>
+  <div *ngIf="user.earnings >= 10000"> You are amazing!</div>
+ 
 
-  <h4>List of many users</h4>
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Email</th>
+  <!-- Would take from component.ts -->
+  <div class="account-container">
+    <h1>
+      <?php echo $_SESSION["displayName"]; ?>
+    </h1>
+    <div class="stats-container">
+      <p> Career Earnings:
+        <?php echo strval($earnings); ?>
+      </p>&nbsp;&nbsp;&nbsp;&nbsp;
+      <p> Guesses:
+        <?php echo strval($guesses); ?>
+      </p>&nbsp;&nbsp;&nbsp;&nbsp;
+      <p> Correct Guesses:
+        <?php echo strval($correct); ?>
+      </p>&nbsp;&nbsp;&nbsp;&nbsp;
+      <p> Percent Guessed Correct:
+        <?php echo $percentage; ?>
+      </p>
+    </div>
+  </div>
+
+<!-- <h4>List of career games</h4> -->
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tr *ngFor="let myuser of manyusers">
+      <td>{{ myuser.name }}</td>
+      <td>{{ myuser.email }}</td>
     </tr>
-  </thead>
-  <tr *ngFor="let myuser of manyusers">
-    <td>{{ myuser.name }}</td>
-    <td>{{ myuser.email }}</td>
-  </tr>
-</table>
+  </table>
 
-<!-- Maybe create a form to add friend names to your account? -->
-<form #infoForm="ngForm">
-  <div class="form-group">
-     <label for="name">Username:</label>
-     <input [(ngModel)]="user.name" type="text" class="form-control" name="username" />
+  <form class="change-display-name-container" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+    <label for="displayName">Change Display Name? </label>
+    <input type="text" id="displayName" name="displayName">
+    <div>
+      <label for="remember">Remember?</label>
+      <input type="checkbox" id="remember" name="remember">
     </div>
-  <div class="form-group">
-     <label for="comment">Email:</label>
-     <input [(ngModel)]="email.name" type="text" class="form-control" name="email" />
+    <div>
+      <input type="submit" value="Submit">
+    </div>
+  </form>
+
+   <!-- FORM EXAMPLE -->
+   <form #infoForm="ngForm">
+    <div class="form-group">
+      <label for="name">Username:</label>
+      <input [(ngModel)]="user.name" type="text" class="form-control" name="username" />
+    </div>
+    <div class="form-group">
+      <label for="comment">Email:</label>
+      <input [(ngModel)]="email.name" type="text" class="form-control" name="email" />
     </div>
 
- </p>
- <button (click)="changeDefaultName('someone')" class="btn btn-primary">Click to change the name</button>
+    </p>
+    <button (click)="changeDefaultName('someone')" class="btn btn-primary">Click to change the name</button>
+  </form>
 
-</form>
+  <p><b>Retrieve values from the form: </b> <br />
+    {{ infoForm.value | json }} <br />
+    {{ infoForm.value.username }} <br />
+    {{ infoForm.value.email }}
 
-<p><b>Retrieve values from the form: </b> <br/>
-  {{ infoForm.value | json }}  <br/>
-  {{ infoForm.value.username }} <br/> 
-  {{ infoForm.value.email }} 
-
-<p><b>Retrieve values from the model:</b> <br/>
-  {{ user.name }} <br/> 
-  {{ user.email }} 
-</p> 
-
+  <p><b>Retrieve values from the model:</b> <br />
+    {{ user.name }} <br />
+    {{ user.email }}
+  </p>
 </body>

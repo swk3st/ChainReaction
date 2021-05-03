@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../user'; 
 
-
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
@@ -9,36 +8,25 @@ import { User } from '../user';
   
 })
 
-
-
-export class UserComponent implements OnInit {
- 
-  
-  username: string;    // from previous activity
+export class UserComponent implements OnInit { 
   user: User;
   
-
   constructor() {
-    this.username = 'somename';    // from previous activity
     this.user = new User(
-       'Humpty',
-       'humpty@uva.edu');
+      "$displayname",
+      "$email",
+      0,
+      0,
+      0,
+      0,
 
+      http constructor
+
+      get call 
       
+       );      
   }
 
-  manyusers = [
-    { name: 'Mickey', email: 'mickey@uva.edu' },
-    { name: 'Minnie', email: 'minnie@uva.edu' },
-    { name: 'duh', email: 'duh@uva.edu' },
-    { name: 'huh', email: 'huh@uva.edu' }
-    
-   ];  
-
-   changeDefaultName(str: string) {
-    this.user.name = str;
-    }
-   
 
   ngOnInit(): void {
   }

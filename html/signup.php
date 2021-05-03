@@ -89,11 +89,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <label for="password">Confirm Password</label>
             <input type="password" id="password2" name="password2" required>
+            
+            <input type="checkbox" onclick="showPassword()"> Show Password
 
-            <input type="checkbox" onclick="showPassword()"> Show Password <br>
+            <div class="center space-between">
 
-            <input type="submit" value="Submit">
-            <input type="reset" value="Reset">
+                <input type="submit" value="Submit">
+                <input type="reset" value="Reset">
+            </div>
 
         </form>
     </div>
