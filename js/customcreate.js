@@ -35,6 +35,7 @@ function setMid() {
   for(var i = 0; i < words.length; i++) {
     objects[i].innerHTML = words[i];
   }
+  current_chain = chainList.getMiddleId();
 }
 
 function setRight() {
@@ -95,8 +96,14 @@ function changeText() {
 }
 var chain_msg = document.getElementById("chain-text");
 var confirm_button = document.getElementById("use-button");
+let current_chain = undefined;
 
 document.addEventListener('DOMContentLoaded', loadChains(), false);
 document.getElementById("leftBtn").addEventListener("click", shiftLeft, false);
 document.getElementById("rightBtn").addEventListener("click", shiftRight, false);
 confirm_button.addEventListener("mouseover", changeText, false);
+confirm_button.addEventListener('click', () => {
+  if(current_chain != undefined) {
+    location.href = "./creategame.php?chainID=" + current_chain;
+  }
+});

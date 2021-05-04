@@ -195,6 +195,14 @@ class Chain {
       }
     }
   
+
+    getMiddleId = () => {
+      if (this.middle == -1) {
+        return undefined;
+      } else {
+        return this.chains[this.middle].chainID;
+      }
+    }
   }
 
 export { ChainList };
