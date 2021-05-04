@@ -219,6 +219,12 @@ const writeTable = () => {
         } else {
             word.innerHTML = game.board[i].current;
         }
+        if (i != 0 && i < game.above || i != words.length - 1 && i > game.below) {
+            word.style.color = 'yellow';
+        }
+        if (i == 0 || i == words.length - 1) {
+            word.style.fontStyle = 'italic';
+        }
         i++;
     }
 }
@@ -236,6 +242,7 @@ const clock = setInterval(() => {
 
 const gameTicker = setInterval(() => {
     if (game.isFinished()) {
+        writeTable();
         done = true;
         disableAll();
         clearInterval(gameTicker);
