@@ -139,7 +139,7 @@ const writeToHistory = () => {
 
 const clock = setInterval(() => {
     timeRemaining--;
-    clockElem.innerHTML = timeRemaining;
+    clockElem.innerHTML = "Clock: " + timeRemaining;
     if (timeRemaining <= -1) {
         done = true;
         disableAll();
@@ -164,7 +164,7 @@ const gameTicker = setInterval(() => {
             maximumFractionDigits: 0, 
           });
         const currentScore = game.calculateScore(getUsedTime(timeRemaining));
-        scoreElem.innerHTML = formatter.format(game.score);
+        scoreElem.innerHTML = "Potential Payout: " + formatter.format(game.score);
         console.log(game);
     }
 }, 1000);
