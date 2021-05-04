@@ -3,7 +3,6 @@
 <link rel="icon" href="/resources/chainreactionlogo.png">
 
 
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -23,7 +22,6 @@
 
 <header>
   <?php include('../php/navbar.php'); ?>
-  
 </header>
 
 <?php
@@ -51,15 +49,28 @@ include "../db/database.php";
     $percent = bcdiv($correct, $guesses, 4);
   }
   $percentage = strval($percent * 100) . "%";
-
-  // header('Access-Control-Allow-Origin: http://localhost:4200');
-    header('Access-Control-Allow-Origin: *');
-    header('Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Authorization, Accept, Client-Security-Token, Accept-Encoding');
-    header('Access-Control-Max-Age: 1000');  
-    header('Access-Control-Allow-Methods: POST, GET, OPTIONS, DELETE, PUT');
-
-  header("location:http://localhost:9001?earnings=$earnings&guesses=$guessess&correct=$correct&percent=$percent") 
-  
   ?>
 
 
+<body>
+<div class="account-container">
+  <h1> <?php echo $_SESSION["displayName"]; ?> </h1>
+  <div class="stats-container">
+    <p> Career Earnings: <?php echo strval($earnings); ?> </p>&nbsp;&nbsp;&nbsp;&nbsp;
+    <p> Guesses: <?php echo strval($guesses); ?> </p>&nbsp;&nbsp;&nbsp;&nbsp;
+    <p> Correct Guesses: <?php echo strval($correct); ?> </p>&nbsp;&nbsp;&nbsp;&nbsp;
+    <p> Percent Guessed Correct: <?php echo $percentage; ?> </p>
+  </div>
+</div>
+<form class="change-display-name-container" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+  <label for="displayName">Change Display Name? </label>
+  <input type="text" id="displayName" name="displayName">
+  <div>
+    <label for="remember">Remember?</label>
+    <input type="checkbox" id="remember" name="remember">
+  </div>
+  <div>
+    <input type="submit" value="Submit">
+  </div>
+</form>
+</body>
