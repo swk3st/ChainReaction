@@ -493,4 +493,14 @@ function writeHistory($game_id, $player_id, $display_name, $payout) {
     $statement->execute();
 
 }
+
+function gameHistory($game_id) {
+    global $db;
+    connect();
+    $sql = 'SELECT * FROM history WHERE game_id = :game_id ORDER BY payout DESC';
+    $statement = $db->prepare($sql);
+    $statement->bindParam(':game_id', $game_id);
+    $statement->execute();
+    return $statement->fetchAll();
+}
 ?>
