@@ -18,9 +18,9 @@
     <?php include('../php/navbar.php'); ?>
     <?php
         include "../db/database.php";
-        $start = time() + $_POST['start'] * 1000;
-        $cooldown = $_POST['cooldown'] * 1000;
-        $time = $start + $_POST['time'] * 1000;
+        $start = time() + $_POST['start'] * 60;
+        $cooldown = $_POST['cooldown'];
+        $time = $start + $_POST['time'] * 60;
         $chain_id = $_POST['chainID'];
         $owner_id = $_SESSION['playerID'];
         $display_name = $_SESSION['displayName'];
@@ -32,6 +32,45 @@
 </header>
 
 <body>
-<h1>Game Lobby Code: <?php echo $game_id?></h1>
+<h1>Owner Room</h1>
+<h2 id='timer' style='text-align: center;'></h2>
+<div class="waiting-room-container">
+    <h2 id='code' class='<?php if (isset($game_id)) echo $game_id?>'>Game Code: <?php if (isset($game_id)) echo $game_id?></h2>
+    <br/>
+    <button id="start-button" class='big-button'>START!<button>
+</div>
+
+<script type='module'>
+    import { requestGame, startGame } from '../js/request.js';
+    let codeElem = document.getElementById('code');
+    let gameId = codeElem.getAttribute('class');
+    let countdown = -1;
+    if (gameId != undefined) {
+        requestGame(gameId).then((gameData) => {
+            let data = gameData[0][0];
+            let date = new Date();
+            countdown = parseInt(data['start']) - Math.round(Date.now()/1000);
+        });
+    }
+    let timer = document.getElementById("timer");
+    let cycle = 1000;
+    let started = false;
+    let startButton = document.getElementById('start-button');
+    let force = false;
+    startButton.addEventListener('click', () => {
+        force = true;
+    });
+    var ticker = setInterval(function () {
+        timer.innerHTML = countdown;
+        countdown-= 1;
+        if (countdown <= 0 || force) {
+            startGame(gameId);
+            started = true;
+        }
+        if (started) {
+            clearInterval(ticker);
+        }
+    }, cycle);
+</script>
 </body>
 </html>

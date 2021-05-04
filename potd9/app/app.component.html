@@ -1,0 +1,79 @@
+<div class="container">
+  <h1>{{ title }}</h1>
+  <form #orderForm="ngForm" (ngSubmit)="onSubmit(orderForm.value)">
+     <div class="form-group">
+      <label>Name: </label>
+      <input type="text"
+           required minlength="8"
+           #name="ngModel"
+           [class.is-invalid]="(name.invalid && name.touched)"
+           class="form-control is-invalid" [(ngModel)]="orderModel.name"
+           name="name">   <!-- note: we don't use autofocus here. Why? -->
+      <small class="text-danger" [class.d-none]="name.valid || name.untouched">
+        Name is required and must be at least 8 characters.
+      </small>
+    </div>
+
+    <div class="form-group">
+      <label>Email: </label>
+      <input type="email" class="form-control" required
+             #email="ngModel"
+             pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"
+             [class.is-invalid]="email.invalid && email.touched"
+             [(ngModel)]="orderModel.email" name="email">
+      <small class="text-danger" [class.d-none]="email.valid || email.untouched">Email is required and must be in proper format</small>
+    </div>
+
+    <div class="form-group">
+      <label>Phone: </label>
+      <input type="tel" class="form-control" required
+          #phone="ngModel" pattern="^\d{10}$"
+          [class.is-invalid]="phone.invalid && phone.touched"
+          [(ngModel)]="orderModel.phone"  name="phone">
+      <small class="text-danger" [class.d-none]="phone.valid || phone.untouched">Phone number is required and must be 10 digits</small>
+    </div>
+
+    <div class="form-group">
+      <select required class="custom-select" [(ngModel)]="orderModel.drink" name="drink_option">
+        <option value="">What would you like to drink? </option>
+        <option *ngFor="let drink of drinks">{{drink}} </option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Hot or cold?</label>
+      <div class="form-check">
+        <input required class="form-check-input" type="radio" [(ngModel)]="orderModel.tempPreference"  name="tempPreference" value="hot">
+        <label class="form-check-label">Hot</label>
+      </div>
+      <div class="form-check">
+        <input required class="form-check-input" type="radio" [(ngModel)]="orderModel.tempPreference"  name="tempPreference" value="cold">
+        <label class="form-check-label">Cold</label>
+      </div>
+    </div>
+
+    <div class="form-check mb-3">
+      <input class="form-check-input" type="checkbox" [(ngModel)]="orderModel.sendText" name="sendtxt">
+      <label class="form-check-label">Send me a text message when my order is ready </label>
+    </div>
+
+    <button class="btn btn-primary" type="submit"
+          [disabled]="!orderForm.form.valid"
+          (click)="confirmOrder(orderForm.value)"
+          title="always enabled"
+          name="btn" value="placeorder">
+      Place order
+    </button>
+
+    <!--  type="submit" class="btn btn-success"
+            [disabled]="!orderForm.form.valid">
+      Submit
+    </button> -->
+  </form>
+
+
+<p>Response from PHP: {{ responsedata | json }} </p>
+<p>From form: {{ orderForm.value | json }} </p>
+<p>From model: {{ orderModel | json }} </p>
+
+</div>

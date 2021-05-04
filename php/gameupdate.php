@@ -1,13 +1,11 @@
 <?php
     include "..\db\database.php";
-    if (isset($_POST['guessType']))
-    {
-        $game_ID = $_POST['gameID'];
-        $player_ID = $_POST['playerID'];
-        if($_POST['guessType'] == 'correct') {
-            correctGuessPlayer($game_ID, $player_ID)
-        } else {
-            incorrectGuessPlayer($game_ID, $player_ID);
-        }
-    }
+    $data = json_decode(file_get_contents('php://input'), true);
+    $gameID = $data['gameID'];
+    // $playerID = $data['playerID'];
+    // $displayName = $data['displayName'];
+    $areSet = isset($gameID);
+    if ($areSet) {
+        startGame($gameID);
+    }  
 ?>

@@ -25,9 +25,9 @@
     <h1> Create A Game! </h1>
   <div class="form-container">
   <form action="./ownerlobby.php" method="post">
-    <label for="time">Total Time (seconds)</label>
+    <label for="time">Total Time (minutes)</label>
     </br>
-    <input type="number" id="time" name="time" min="0" required/>
+    <input type="number" id="time" name="time" min="0" max='10' required/>
     </br>
     </br>
     <label for="cooldown">Cooldown (seconds)</label>
@@ -35,9 +35,9 @@
     <input type="number" id="cooldown" name="cooldown" min="0" required/>
     </br>
     </br>
-    <label for="cooldown">Lobby Duration (seconds)</label>
+    <label for="cooldown">Lobby Duration (minutes)</label>
     </br>
-    <input type="number" id="start" name="start" min="0" required/>
+    <input type="number" id="start" name="start" min="0" max='10'required/>
     </br>
     </br>
     <input type="hidden" id="chainID" name="chainID" value="<?php echo $_GET['chainID']?>"/>

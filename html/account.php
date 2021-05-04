@@ -60,7 +60,6 @@ include "../db/database.php";
     header('Access-Control-Allow-Methods: POST, GET, OPTIONS, DELETE, PUT');
 
   header("location:http://localhost:9001?earnings=$earnings&guesses=$guessess&correct=$correct&percent=$percent") 
-  change to some json format
   
   ?>
 
