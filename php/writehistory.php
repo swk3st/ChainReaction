@@ -13,7 +13,7 @@ $displayName = $data['displayName'];
 $payout = $data['payout'];
 $areSet = isset($gameID) && isset($playerID) && isset($displayName) && isset($payout);
 if ($areSet) {
-    writeHistory($gameID, $playerID, $displayName, $payout);
+    safeWriteHistory($gameID, $playerID, $displayName, $payout);
 }  
 
 ?>

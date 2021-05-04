@@ -468,6 +468,19 @@ function getChain($chain_id) {
     return $result;
 }
 
+function safeWriteHistory($game_id, $player_id, $display_name, $payout) {
+    global $db;
+    connect();
+    $sql = "SELECT * FROM history WHERE game_id = :g AND player_id = :pid";
+    $statement = $db->prepare($sql);
+    $statement->bindParam(":g", $game_id);
+    $statement->bindParam(":pid", $player_id);
+    $statement->execute();
+    if ($statement->rowCount() == 0) {
+        writeHistory($game_id, $player_id, $display_name, $payout);
+    }
+}
+
 function writeHistory($game_id, $player_id, $display_name, $payout) {
     global $db;
     connect();

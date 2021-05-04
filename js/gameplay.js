@@ -246,6 +246,7 @@ const clock = setInterval(() => {
         clearInterval(clock);
         writeStatus('times up!');
         writeToHistory();
+        leaveGame(playerId, gameId);
     }
 }, 1000);
 
@@ -257,7 +258,7 @@ const gameTicker = setInterval(() => {
         clearInterval(gameTicker);
         writeStatus('completed!');
         writeToHistory();
-        leaveGame();
+        leaveGame(playerId, gameId);
     } else {
         updateDatabase();
     }
