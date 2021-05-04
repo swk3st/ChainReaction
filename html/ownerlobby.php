@@ -38,7 +38,6 @@
     <h2 id='code' class='<?php if (isset($game_id)) echo $game_id?>'>Game Code: <?php if (isset($game_id)) echo $game_id?></h2>
     <br/>
     <button id="start-button" class='big-button'>START!<button>
-    <br/>
 </div>
 
 <script type='module'>
@@ -99,7 +98,7 @@
 
     let updateLobby = (newLobby) => {
         let waitingRoom = document.getElementById('wr');
-        while (waitingRoom.lastChild.tagName != 'BR') {
+        while (waitingRoom.lastChild.tagName != 'BUTTON') {
             waitingRoom.removeChild(waitingRoom.lastChild);
         }
         // while (waitingRoom.lastChild) {
