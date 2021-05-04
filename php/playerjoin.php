@@ -6,6 +6,6 @@
     $displayName = $data['displayName'];
     $areSet = isset($gameID) && isset($playerID) && isset($displayName);
     if ($areSet) {
-        joinGame($gameID, $playerID, $displayName);
+        safeJoin($gameID, $playerID, $displayName);
     }  
 ?>
