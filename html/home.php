@@ -100,8 +100,9 @@
   <div class="top-banner container">
     <div class="row">
       <div class="col-md-6">
-        <h2 style="font-family: RetroFunk; text-align: center">Perks of having an account:</h2>
+        <h2 style="font-family: RetroFunk; text-align: center">Perks of Having an Account:</h2>
         <ul>
+          <li aria-level="1">Get to play Chain Reaction!</li>
           <li aria-level="1">Keep track of your game stats</li>
           <ul>
             <li aria-level="2">Career earnings</li>
@@ -173,7 +174,6 @@
           <div class="col-md-6">
             <h4 aria-level="1" style="font-family: RetroFunk">Friend Joing A Game:</h4>
             <ul>
-              <li aria-level="2">This user can be a guest user, no account needed!</li>
               <li aria-level="2">They will need to use a game code to join a game</li>
               <ul>
                 <li aria-level="3">Important: make sure its a code actually in play</li>
