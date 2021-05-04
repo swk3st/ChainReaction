@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { Ticket } from './ticket';
 
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
-import { ChainRec } from './chain';
 
 @Component({
   selector: 'app-root',
@@ -63,7 +62,7 @@ export class AppComponent {
      // then we subscribe to this observable
 
      // this.http.get<Order>('http://localhost/cs4640/ng-php/ng-get.php?str='+params)
-     this.http.post<Ticket>('http://localhost/php/ng-post.php', params)
+     this.http.post<Ticket>('http://localhost/src/php/ng-post.php', params)
      .subscribe((response_from_php) => {
         // Receive a response successfully, do something here
 
