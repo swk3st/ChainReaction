@@ -1,5 +1,5 @@
 import { Game } from './game.js';
-import { requestChain, requestGame } from './request.js';
+import { requestChain, requestGame, saveHistory, leaveGame } from './request.js';
 
 let game;
 let aboveLetterButton, belowLetterButton;
@@ -15,6 +15,7 @@ let gameTime, cooldown, timeRemaining;
 let params = new URLSearchParams(location.search);
 let gameId = params.get('gameID');
 let playerId = params.get('playerID');
+let displayName = document.getElementById('displayName').innerHTML;
 let done = false;
 
 requestGame(gameId).then((data) => {
@@ -208,6 +209,7 @@ const updateDatabase = () => {
 const writeToHistory = () => {
     const timeUsed = getUsedTime();
     const payout = game.calculatePayout(timeUsed);
+    saveHistory(gameId, playerId, displayName, payout);
     // make an ajax call to insert the data into history table
     // make an ajax call to remove a player from the playing table
 };
@@ -255,6 +257,7 @@ const gameTicker = setInterval(() => {
         clearInterval(gameTicker);
         writeStatus('completed!');
         writeToHistory();
+        leaveGame();
     } else {
         updateDatabase();
     }
