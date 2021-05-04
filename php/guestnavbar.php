@@ -17,9 +17,11 @@
           $need_dots = true;
         }
           ?>
-            
-        <li class="nav-item<?php echo $nav_current_page == "romecodeplay.php" ? " active" : ""?>">
-          <a class="nav-link" href=<?php if($need_dots) echo "../roomcodeplay.php"; else echo "roomcodeplay.php"; ?>> Play <span class="sr-only">(current)</span></a></li>
+           
+           <!--
+        <li class="nav-item<?php /* echo $nav_current_page == "romecodeplay.php" ? " active" : "" */?>">
+          <a class="nav-link" href=<?php /* if($need_dots) echo "../roomcodeplay.php"; else echo "roomcodeplay.php"; */ ?>> Play <span class="sr-only">(current)</span></a></li>
+-->
         <li class="nav-item<?php echo $nav_current_page == "signup.php" ? " active" : ""?>">
         <a class="nav-link" href=<?php if($need_dots) echo "../signup.php"; else echo "signup.php"; ?>> Sign Up <span class="sr-only">(current)</span></a>
         </li>
