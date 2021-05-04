@@ -38,6 +38,7 @@
     <h2 id='code' class='<?php if (isset($game_id)) echo $game_id?>'>Game Code: <?php if (isset($game_id)) echo $game_id?></h2>
     <br/>
     <button id="start-button" class='big-button'>START!<button>
+    <br/>
 </div>
 
 <script type='module'>
@@ -79,11 +80,10 @@
         if (started) {
             clearInterval(ticker);
         }
-        console.log(gameId);
         requestPlayers(gameId).then((players) => {
-            console.log(players);
             if(!sameLobby(lobby, players)) {
                 console.log('Update!');
+                lobby = players;
                 updateLobby(players);
             }
         });
@@ -99,13 +99,16 @@
 
     let updateLobby = (newLobby) => {
         let waitingRoom = document.getElementById('wr');
-        while (waitingRoom.lastChild.tagName != 'BUTTON') {
+        while (waitingRoom.lastChild.tagName != 'BR') {
             waitingRoom.removeChild(waitingRoom.lastChild);
         }
+        // while (waitingRoom.lastChild) {
+        //     waitingRoom.removeChild(waitingRoom.lastChild);
+        // }
         for (const player of newLobby) {
             const p = document.createElement('p');
-            const displayName = p.displayName;
-            const payout = p.payout;
+            const displayName = player.display_name;
+            const payout = player.payout;
             p.innerHTML = `${displayName}\t\t--\t\t${payout}`;
             waitingRoom.appendChild(p);
         }

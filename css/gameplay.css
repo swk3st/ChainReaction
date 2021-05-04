@@ -56,18 +56,18 @@ h1 {
     align-items: center;
     justify-content: center;
     justify-items: center;
+    background-color: #ADC698
 }
 
-.team-group {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    column-gap: 50vw;
-}
-
-.team-grouping {
-    display: grid;
-    grid-template-rows: 2fr 1fr 1fr 1fr;
-    justify-content: center;
+.lobby {
+    display: flex;
+    flex-wrap: wrap-reverse;
+    flex-direction: column;
+    justify-content: space-between;
+    justify-items: space-between;
+    align-items: center;
+    align-content: center;
+    background-color: #ADC698
 }
 
 .gameplay-container {
