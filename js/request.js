@@ -193,4 +193,28 @@ function requestPlayerID() {
     });
   }
 
-  export { requestPlayerID, requestDisplayName, requestChains, requestGame, playerJoin, startGame, requestStatus, requestPlayers };
+  function leaveGame(playerId, gameId) {
+    var xmlhttp = new XMLHttpRequest();
+    return new Promise ((resolve, reject) => {      
+      let url = "../php/leavegame.php";
+
+      var loc = window.location.pathname;
+      var dir = loc.substring(loc.lastIndexOf('/'));
+      if (dir == "/inventory.php") {
+        url = "../../php/leavegame.php";
+      }
+
+      xmlhttp.open("POST", url, true);
+      xmlhttp.setRequestHeader('Content-Type', 'application/json');
+      
+      xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+          resolve();
+        }
+      }
+      let data = {'playerID': playerId, 'gameID': gameId};
+      xmlhttp.send(JSON.stringify(data));
+    });
+  }
+
+  export { requestPlayerID, requestDisplayName, requestChains, requestGame, playerJoin, startGame, requestStatus, requestPlayers, leaveGame };

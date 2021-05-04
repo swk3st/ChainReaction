@@ -445,4 +445,14 @@ function getPlayers($game_id) {
     $result = $statement->fetchAll();
     return $result;
 }
+
+function leaveGame($player_id, $game_id) {
+    global $db;
+    connect();
+    $sql = "DELETE FROM playing WHERE player_id = :p AND game_id =  :g";
+    $statement = $db->prepare($sql);
+    $statement->bindParam(":g", $game_id);
+    $statement->bindParam(":p", $player_id);
+    $statement->execute();
+}
 ?>
