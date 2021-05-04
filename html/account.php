@@ -3,6 +3,8 @@
 <link rel="icon" href="/resources/chainreactionlogo.png">
 
 
+
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,6 +24,7 @@
 
 <header>
   <?php include('../php/navbar.php'); ?>
+  
 </header>
 
 <?php
@@ -49,6 +52,12 @@ include "../db/database.php";
     $percent = bcdiv($correct, $guesses, 4);
   }
   $percentage = strval($percent * 100) . "%";
+
+  // header('Access-Control-Allow-Origin: http://localhost:4200');
+    header('Access-Control-Allow-Origin: *');
+    header('Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Authorization, Accept, Client-Security-Token, Accept-Encoding');
+    header('Access-Control-Max-Age: 1000');  
+    header('Access-Control-Allow-Methods: POST, GET, OPTIONS, DELETE, PUT');
 
   header("location:http://localhost:9001?earnings=$earnings&guesses=$guessess&correct=$correct&percent=$percent") 
   change to some json format

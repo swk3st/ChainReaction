@@ -13,9 +13,7 @@
     integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 
   <title> Chain Reaction Home </title>
-
   <link rel="stylesheet" href="..\css\main.css">
-
   </head>
 
 <body>
@@ -23,8 +21,7 @@
     <?php include('../php/navbar.php'); ?>
   </header>
 
-
-  <div class="container space-between">
+  <div class="top-banner container">
       <div class="row">
         <div class="col-md-4">
         <h1> Welcome to Chain Reaction! </h1>

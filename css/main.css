@@ -16,6 +16,13 @@ body,html{
     background-color: #ADC698;
 }
 
+div.top-banner{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: #7b8d6d
+}
+
 
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300&family=Playfair+Display&display=swap');
 
