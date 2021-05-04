@@ -53,19 +53,12 @@
                 <img src="..\resources\chainreactionlogo.png" class="brand_logo" alt="Chain Reaction Retro Logo">
             </div>
 
-<<<<<<< HEAD:html/login.html
-            <form action="../html/account.html" >
-                <label>Email:</label><input type="text" name="email" id="email" autofocus />
-                <br>
-                <label> Password:</label><input type="text" name="pwd" id="password" />
-=======
             <p><?php if (isset($error_msg)) echo $error_msg ?></p>
 
             <form action="login.php" method="post">
                 <label>Email:</label><input type="text" name="email" id="email" autofocus required />
                 <br>
                 <label> Password:</label><input type="text" name="pwd" id="pwd" required />
->>>>>>> dev:html/login.php
 
 
                 <div class="checkbox">

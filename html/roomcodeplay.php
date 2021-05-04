@@ -21,7 +21,7 @@
 
 </header>
 
-<body>
+<body style="background-color:#ADC698">
   <div class="codeplay-container">
     <img src="../resources/chainreactionlogo.png" alt="Chain Reaction Retro Logo" width="400"
     height="160">
