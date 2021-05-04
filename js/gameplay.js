@@ -3,6 +3,8 @@ import { requestChain, requestGame } from './request';
 
 let game;
 let aboveLetterButton, belowLetterButton;
+let aboveField, belowField;
+let aboveGuessButton, belowGuessButton;
 let chainId, timeData, cooldownData;
 let chainWords;
 let params = new URLSearchParams(location.search);
@@ -34,4 +36,22 @@ game = new Game(chainWords, gameTime, cooldown);
 
 aboveLetterButton = document.getElementById('above-letter');
 belowLetterButton = document.getElementById('below-letter');
+aboveField = document.getElementById('above-field');
+belowField = document.getElementById('below-field');
+aboveGuessButton = document.getElementById('above-guess');
+belowGuessButton = document.getElementById('below-guess');
 
+
+aboveLetterButton.addEventListener('click');
+belowLetterButton.addEventListener('click');
+aboveGuessButton.addEventListener('click');
+belowGuessButton.addEventListener('click');
+
+const disableAll = () => {
+    aboveLetterButton.disabled = true;
+    belowLetterButton.disabled = true;
+    aboveField.disabled = true;
+    belowField.disabled = true;
+    aboveGuessButton.disabled = true;
+    belowGuessButton.disabled = true;
+}
