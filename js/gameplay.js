@@ -7,7 +7,7 @@ let aboveField, belowField;
 let aboveGuessButton, belowGuessButton;
 let chainId, timeData, cooldownData;
 let chainWords;
-let gameTime, cooldown;
+let gameTime, cooldown, timeRemaining;
 let params = new URLSearchParams(location.search);
 let gameId = params.get('gameID');
 let playerId = params.get('playerID');
@@ -27,11 +27,11 @@ requestGame(gameId).then((data) => {
         chainWords.push(chain[0].word5);
         chainWords.push(chain[0].word6);
         chainWords.push(chain[0].word7);
-        console.log(chainWords);
         const currTime = Math.round(Date.now()/1000);
         gameTime = Math.round((timeData - currTime), 2);
         cooldown = cooldownData;
         game = new Game(chainWords, gameTime, cooldown);
+        timeRemaining = gameTime;
     });
 });
 
@@ -83,11 +83,12 @@ const disableAll = () => {
     belowGuessButton.disabled = true;
 }
 
-let timeRemaining = gameTime;
 let clockElem = document.getElementById('clock');
 let scoreElem = document.getElementById('score');
 
-const getUsedTime = () => gameTime - timeRemaining;
+const getUsedTime = (timeLeft) => {
+    return gameTime - timeLeft;
+};
 
 
 const updateDatabase = () => {
@@ -104,15 +105,15 @@ const writeToHistory = () => {
 };
 
 
-// const clock = setInterval(() => {
-//     timeRemaining--;
-//     clockElem.innerHTML = timeRemaining;
-//     if (timeRemaining <= -1) {
-//         done = true;
-//         disableAll();
-//         clearInterval(clock);
-//     }
-// }, 1000);
+const clock = setInterval(() => {
+    timeRemaining--;
+    clockElem.innerHTML = timeRemaining;
+    if (timeRemaining <= -1) {
+        done = true;
+        disableAll();
+        clearInterval(clock);
+    }
+}, 1000);
 
 const gameTicker = setInterval(() => {
     if (game.isFinished()) {
@@ -124,8 +125,14 @@ const gameTicker = setInterval(() => {
     }
 
     if (!done) {
-        const currentScore = game.calculateScore(getUsedTime());
-        scoreElem.innerHTML = game.score;
+        var formatter = new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD',
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 0, 
+          });
+        const currentScore = game.calculateScore(getUsedTime(timeRemaining));
+        scoreElem.innerHTML = formatter.format(game.score);
         console.log(game);
     }
-}, 5000);
+}, 1000);
