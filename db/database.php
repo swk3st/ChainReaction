@@ -467,4 +467,17 @@ function getChain($chain_id) {
     $result = $statement->fetchAll();
     return $result;
 }
+
+function writeHistory($game_id, $player_id, $payout) {
+    global $db;
+    connect();
+    $sql = "INSERT INTO history (game_id, player_id, display_name, payout) VALUES (:g, :pid, :d, :pay)";
+    $statement = $db->prepare($sql);
+    $statement->bindParam(":g", $game_id);
+    $statement->bindParam(":pid", $player_id);
+    $statement->bindParam(":d", $display_name);
+    $statement->bindParam(":pay", $payout);
+    $statement->execute();
+
+}
 ?>
