@@ -33,7 +33,7 @@
     <button id="leave-button" class='big-button'>LEAVE LOBBY<button>
 </div>
 <script type='module'>
-    import { requestGame, requestStatus, requestPlayerID, leaveGame } from '../js/request.js';
+    import { requestGame, requestStatus, requestPlayerID, requestPlayers, leaveGame } from '../js/request.js';
 
 
     let codeElem = document.getElementById('code');
@@ -107,7 +107,7 @@
 
     let updateLobby = (newLobby) => {
         let waitingRoom = document.getElementById('wr');
-        while (waitingRoom.lastChild.tagName != 'H2') {
+        while (waitingRoom.lastChild.tagName != 'BUTTON') {
             waitingRoom.removeChild(waitingRoom.lastChild);
         }
         // while (waitingRoom.lastChild) {
