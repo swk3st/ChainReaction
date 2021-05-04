@@ -122,7 +122,7 @@ class Game {
 
     recalculateCurrentChars = () => {
         let sum = 0;
-        for (let i = 1; i < this.chains.length - 1; i++) {
+        for (let i = 1; i < this.board.length - 1; i++) {
             sum += this.board[i].current.length;
         }
         this.currentChars = sum;

@@ -215,7 +215,7 @@ const writeTable = () => {
     let i = 0;
     for (let word of words) {
         if (game.board[i].current.length == 0) {
-            word.innerHTML = '.';
+            word.innerHTML = '_';
         } else {
             word.innerHTML = game.board[i].current;
         }
@@ -260,6 +260,6 @@ const gameTicker = setInterval(() => {
         const penalty = game.calculateScore(getUsedTime(timeRemaining));
         scoreElem.innerHTML = "Potential Payout: " + formatter.format(game.score);
         writeTable();
-        console.log(game);
+        console.log(game.calculatePayout(getUsedTime(timeRemaining)));
     }
 }, 1000);
