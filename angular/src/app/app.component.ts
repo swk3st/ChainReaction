@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { Order } from './order';
+import { Ticket } from './ticket';
 
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
+import { ChainRec } from './chain';
 
 @Component({
   selector: 'app-root',
@@ -13,29 +14,27 @@ export class AppComponent {
   // dependency injection
   constructor(private http: HttpClient) {  }
 
-  title = 'Angular - backend, HttpClient';
-  author = 'your name';
+  title = 'Contact Us';
 
-  drinks = ['Coffee', 'Tea', 'Milk'];
+  cats = ['Complaints', 'Compliments', 'New Chains', 'New Features', 'New To Game', 'Other'];
 
   confirm_msg = '';
   data_submitted = '';
 
-
   /* create an instance of an Order, assuming there is an existent order */
   /* we will bind orderModel to the form, allowing an update / delete transaction */
   /* orderModel = new Order('duh', 'duh@uva.edu', 1112223333, 'Tea', 'hot', true); */  /* note on case sensitive, radio button value='hot' */
-  orderModel = new Order('', '', null, '', '', null);
+  ticketModel = new Ticket('', '', '',  '', '', '', null);
 
 
-  confirmOrder(data: any): void {
+  confirmTicket(data: any): void {
      console.log(data);
-     this.confirm_msg = 'Thank you, ' + data.name + '(' + data.name.length + ')';
-     this.confirm_msg += '. You ordered ' + data.drink_option;
+     this.confirm_msg = 'Thank you, ' + data.fname + ' ' + data.lname;
+     this.confirm_msg += '.\n We recieved your message: ' + data.msg;
   }
 
 
-  responsedata = new Order('','',null,'','',null);    // to store a response from the backend
+  responsedata = new Ticket('','','','','','', null);    // to store a response from the backend
 
   // passing in a form variable of type any, no return result
   onSubmit(form: any): void {
@@ -64,7 +63,7 @@ export class AppComponent {
      // then we subscribe to this observable
 
      // this.http.get<Order>('http://localhost/cs4640/ng-php/ng-get.php?str='+params)
-     this.http.post<Order>('http://localhost/cs4640/ng-php/ng-post.php', params)
+     this.http.post<Ticket>('http://localhost/php/ng-post.php', params)
      .subscribe((response_from_php) => {
         // Receive a response successfully, do something here
 

@@ -14,7 +14,6 @@ $postdata = file_get_contents("php://input");
 
 // Extract json format to PHP array
 $request = json_decode($postdata);
-
 $data = [];
 foreach ($request as $k => $v)
 {
