@@ -46,11 +46,13 @@ belowGuessButton = document.getElementById('below-guess');
 
 const aLBHandle = () => {
     game.requestAbove();
+    cooldownButtons();
     console.log(game.show());
 }
 
 const bLBHandle = () => {
     game.requestBelow();
+    cooldownButtons();
     console.log(game.show());
 }
 
@@ -81,6 +83,36 @@ const disableAll = () => {
     belowField.disabled = true;
     aboveGuessButton.disabled = true;
     belowGuessButton.disabled = true;
+};
+
+const lockButtons = () => {
+    aboveLetterButton.disabled = true;
+    belowLetterButton.disabled = true;
+    styleButton(aboveLetterButton, true);
+    styleButton(belowLetterButton, true);
+};
+
+const unlockButtons = () => {
+    aboveLetterButton.disabled = false;
+    belowLetterButton.disabled = false;
+    styleButton(aboveLetterButton, false);
+    styleButton(belowLetterButton, false);
+
+}
+
+const cooldownButtons = () => {
+    lockButtons();
+    setTimeout(unlockButtons, cooldown*1000);
+}
+
+const styleButton = (button, stylize) => {
+    if (stylize) {
+        button.style.backgroundColor = 'black';
+        button.style.opacity = '0.1';
+    } else {
+        button.style.backgroundColor = '';
+        button.style.opacity = '1';
+    }
 }
 
 let clockElem = document.getElementById('clock');
