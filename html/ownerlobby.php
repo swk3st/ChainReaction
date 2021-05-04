@@ -13,7 +13,6 @@
 </head>
 
 <header>
-    <?php include('../php/navbar.php'); ?>
 <header>
     <?php include('../php/navbar.php'); ?>
     <?php
