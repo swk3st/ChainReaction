@@ -7,6 +7,8 @@ let aboveField, belowField;
 let aboveGuessButton, belowGuessButton;
 let word1, word2, word3, word4, word5, word6, word7;
 let words;
+let row1, row2, row3, row4, row5, row6, row7;
+let rows;
 let chainId, timeData, cooldownData;
 let chainWords;
 let gameTime, cooldown, timeRemaining;
@@ -55,32 +57,82 @@ word6 = document.getElementById('word6');
 word7 = document.getElementById('word7');
 words = [word1, word2, word3, word4, word5, word6, word7];
 
+row1 = document.getElementById('row1');
+row2 = document.getElementById('row2');
+row3 = document.getElementById('row3');
+row4 = document.getElementById('row4');
+row5 = document.getElementById('row5');
+row6 = document.getElementById('row6');
+row7 = document.getElementById('row7');
+rows = [row1, row2, row3, row4, row5, row6, row7];
+
 
 
 const aLBHandle = () => {
+    aboveDefaultHandle();
     game.requestAbove();
     cooldownButtons();
-    console.log(game.show());
 }
 
 const bLBHandle = () => {
+    belowDefaultHandle();
     game.requestBelow();
     cooldownButtons();
-    console.log(game.show());
 }
 
 const aGBHandle = () => {
+    aboveDefaultHandle();
     const guess = aboveField.value;
     aboveField.value = '';
     game.guessAbove(guess);
-    console.log(game.show());
 }
 
 const bGBHandle = () => {
+    belowDefaultHandle();
     const guess = belowField.value;
     belowField.value = '';
     game.guessBelow(guess);
-    console.log(game.show());
+}
+
+
+const hover = (row) => {
+    row.style.backgroundColor = 'floralwhite';
+    let textElem = row.firstChild;
+    textElem.style.fontWeight = 'bold';
+    textElem.style.fontSize = '48px';
+    textElem.style.color = 'black';
+}
+
+const noHover = (row) => {
+    row.style.backgroundColor = '';
+    let textElem = row.firstChild;
+    textElem.style.fontWeight = '';
+    textElem.style.fontSize = '';
+    textElem.style.color = '';
+}
+
+const aboveHoverHandle = () => {
+    let above = game.above;
+    let row = rows[above];
+    hover(row);
+}
+
+const belowHoverHandle = () => {
+    let below = game.below;
+    let row = rows[below];
+    hover(row);
+}
+
+const aboveDefaultHandle = () => {
+    let above = game.above;
+    let row = rows[above];
+    noHover(row);
+}
+
+const belowDefaultHandle = () => {
+    let below = game.below;
+    let row = rows[below];
+    noHover(row);
 }
 
 
@@ -88,6 +140,16 @@ aboveLetterButton.addEventListener('click', aLBHandle);
 belowLetterButton.addEventListener('click', bLBHandle);
 aboveGuessButton.addEventListener('click', aGBHandle);
 belowGuessButton.addEventListener('click', bGBHandle);
+
+aboveLetterButton.addEventListener('mouseover', aboveHoverHandle);
+belowLetterButton.addEventListener('mouseover', belowHoverHandle);
+aboveGuessButton.addEventListener('mouseover', aboveHoverHandle);
+belowGuessButton.addEventListener('mouseover', belowHoverHandle);
+
+aboveLetterButton.addEventListener('mouseout', aboveDefaultHandle);
+belowLetterButton.addEventListener('mouseout', belowDefaultHandle);
+aboveGuessButton.addEventListener('mouseout', aboveDefaultHandle);
+belowGuessButton.addEventListener('mouseout', belowDefaultHandle);
 
 const disableAll = () => {
     aboveLetterButton.disabled = true;
@@ -190,7 +252,6 @@ const gameTicker = setInterval(() => {
           });
         const penalty = game.calculateScore(getUsedTime(timeRemaining));
         scoreElem.innerHTML = "Potential Payout: " + formatter.format(game.score);
-        console.log(penalty);
         writeTable();
         console.log(game);
     }

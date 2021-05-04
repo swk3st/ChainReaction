@@ -40,13 +40,13 @@
       <div class='right-half'>
       <div class="chain-table">
       <table>
-        <tr id='r1'><td id="word1">~</td></tr>
-        <tr id='r2'><td id="word2">~</td></tr>
-        <tr id='r3'><td id="word3">~</td></tr>
-        <tr id='r4'><td id="word4">~</td></tr>
-        <tr id='r5'><td id="word5">~</td></tr>
-        <tr id='r6'><td id="word6">~</td></tr>
-        <tr id='r7'><td id="word7">~</td></tr>
+        <tr id='row1'><td id="word1">~</td></tr>
+        <tr id='row2'><td id="word2">~</td></tr>
+        <tr id='row3'><td id="word3">~</td></tr>
+        <tr id='row4'><td id="word4">~</td></tr>
+        <tr id='row5'><td id="word5">~</td></tr>
+        <tr id='row6'><td id="word6">~</td></tr>
+        <tr id='row7'><td id="word7">~</td></tr>
       </table>
   </div>
       </div>
