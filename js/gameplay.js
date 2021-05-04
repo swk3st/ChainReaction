@@ -5,6 +5,8 @@ let game;
 let aboveLetterButton, belowLetterButton;
 let aboveField, belowField;
 let aboveGuessButton, belowGuessButton;
+let word1, word2, word3, word4, word5, word6, word7;
+let words;
 let chainId, timeData, cooldownData;
 let chainWords;
 let gameTime, cooldown, timeRemaining;
@@ -43,6 +45,17 @@ aboveField = document.getElementById('above-field');
 belowField = document.getElementById('below-field');
 aboveGuessButton = document.getElementById('above-guess');
 belowGuessButton = document.getElementById('below-guess');
+
+word1 = document.getElementById('word1');
+word2 = document.getElementById('word2');
+word3 = document.getElementById('word3');
+word4 = document.getElementById('word4');
+word5 = document.getElementById('word5');
+word6 = document.getElementById('word6');
+word7 = document.getElementById('word7');
+words = [word1, word2, word3, word4, word5, word6, word7];
+
+
 
 const aLBHandle = () => {
     game.requestAbove();
@@ -136,6 +149,18 @@ const writeToHistory = () => {
     // make an ajax call to remove a player from the playing table
 };
 
+const writeTable = () => {
+    let i = 0;
+    for (let word of words) {
+        if (game.board[i].current.length == 0) {
+            word.innerHTML = '.';
+        } else {
+            word.innerHTML = game.board[i].current;
+        }
+        i++;
+    }
+}
+
 
 const clock = setInterval(() => {
     timeRemaining--;
@@ -165,6 +190,7 @@ const gameTicker = setInterval(() => {
           });
         const currentScore = game.calculateScore(getUsedTime(timeRemaining));
         scoreElem.innerHTML = "Potential Payout: " + formatter.format(game.score);
+        writeTable();
         console.log(game);
     }
 }, 1000);
