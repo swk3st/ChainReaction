@@ -41,11 +41,35 @@ belowField = document.getElementById('below-field');
 aboveGuessButton = document.getElementById('above-guess');
 belowGuessButton = document.getElementById('below-guess');
 
+const aLBHandle = () => {
+    game.requestAbove();
+    console.log(game.show());
+}
 
-aboveLetterButton.addEventListener('click');
-belowLetterButton.addEventListener('click');
-aboveGuessButton.addEventListener('click');
-belowGuessButton.addEventListener('click');
+const bLBHandle = () => {
+    game.requestBelow();
+    console.log(game.show());
+}
+
+const aGBHandle = () => {
+    const guess = aboveField.value;
+    aboveField.value = '';
+    game.guessAbove(guess);
+    console.log(game.show());
+}
+
+const bGBHandle = () => {
+    const guess = belowField.value;
+    belowField.value = '';
+    game.guessBelow(guess);
+    console.log(game.show());
+}
+
+
+aboveLetterButton.addEventListener('click', aLBHandle);
+belowLetterButton.addEventListener('click', bLBHandle);
+aboveGuessButton.addEventListener('click', aGBHandle);
+belowGuessButton.addEventListener('click', bGBHandle);
 
 const disableAll = () => {
     aboveLetterButton.disabled = true;
