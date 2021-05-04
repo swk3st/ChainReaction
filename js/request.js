@@ -217,4 +217,30 @@ function requestPlayerID() {
     });
   }
 
-  export { requestPlayerID, requestDisplayName, requestChains, requestGame, playerJoin, startGame, requestStatus, requestPlayers, leaveGame };
+  function requestChain(chainId) {
+    var xmlhttp = new XMLHttpRequest();
+    return new Promise ((resolve, reject) => {
+  
+      xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+          var data = JSON.parse(xmlhttp.responseText);
+          resolve(data);
+        }
+      }
+      let url = "../php/players.php?chainID=";
+
+      var loc = window.location.pathname;
+      var dir = loc.substring(loc.lastIndexOf('/'));
+      if (dir == "/inventory.php") {
+        url = "../../php/players.php?chainID=";
+      }
+
+      let request = chainId;
+      xmlhttp.open("GET", url+request, true);
+      xmlhttp.send();
+    });
+  }
+
+  export { requestPlayerID, requestDisplayName, requestChains, 
+    requestGame, playerJoin, startGame, requestStatus, 
+    requestPlayers, leaveGame, requestChain };

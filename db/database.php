@@ -455,4 +455,16 @@ function leaveGame($player_id, $game_id) {
     $statement->bindParam(":p", $player_id);
     $statement->execute();
 }
+
+function getChain($chain_id) {
+    global $db;
+    connect();
+    $sql = "SELECT * FROM chain WHERE chain_id = :c";
+    $statement = $db->prepare($sql);
+    $statement->bindParam(":c", $chain_id);
+    $statement->execute();
+
+    $result = $statement->fetchAll();
+    return $result;
+}
 ?>
