@@ -192,6 +192,7 @@ const styleButton = (button, stylize) => {
 
 let clockElem = document.getElementById('clock');
 let scoreElem = document.getElementById('score');
+let statusElem = document.getElementById('status');
 
 const getUsedTime = (timeLeft) => {
     return gameTime - timeLeft;
@@ -229,6 +230,10 @@ const writeTable = () => {
     }
 }
 
+const writeStatus = (status) => {
+    statusElem.innerHTML = "Status: " + status;
+};
+
 
 const clock = setInterval(() => {
     timeRemaining--;
@@ -237,6 +242,8 @@ const clock = setInterval(() => {
         done = true;
         disableAll();
         clearInterval(clock);
+        writeStatus('times up!');
+        writeToHistory();
     }
 }, 1000);
 
@@ -246,6 +253,8 @@ const gameTicker = setInterval(() => {
         done = true;
         disableAll();
         clearInterval(gameTicker);
+        writeStatus('completed!');
+        writeToHistory();
     } else {
         updateDatabase();
     }

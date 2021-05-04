@@ -22,6 +22,7 @@
 <body>
   <div class='info'>
     <h2><?php echo $_SESSION['displayName']?><h2>
+    <h2 id='status'></h2>
     <h2 id='score'></h2>
     <h2 id='clock'></h2>
   </div>
