@@ -25,8 +25,13 @@ requestGame(gameId).then((data) => {
     });
 });
 
+let d = new Date();
+let gameTime = Math.round((timeData - d.now())/1000);
+let cooldown = cooldownData;
 
-game = new Game();
+game = new Game(chainWords, gameTime, cooldown);
+
+
 aboveLetterButton = document.getElementById('above-letter');
 belowLetterButton = document.getElementById('below-letter');
 
