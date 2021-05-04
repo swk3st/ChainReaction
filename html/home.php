@@ -118,11 +118,8 @@
       <div class="col-md-6">
         <h2 style="font-family: RetroFunk; text-align: center">How to Play:</h2>
         <ul>
-          <li aria-level="1">Go to &ldquo;Play&rdquo; and insert the room code that your friends are playing with. In
-            order
-            to generate a room code, you will need to create an account but users can still play without an
-            account!&nbsp;
-          </li>
+          <li aria-level="1"> <a href="login.php"> After Logging in </a>, go to Play and insert the room code that your
+            friends are playing with. </li>
         </ul>
       </div>
     </div>
@@ -150,104 +147,88 @@
                 <li aria-level="2">They will press deploy, and a game code will be created</li>
                 <li aria-level="2">They will be able to see who is in the game</li>
               </ul>
-          </div>
-          <div class="col-md-6">
 
+              <br>
+              <h4 aria-level="1" style="font-family: RetroFunk">Friend Joing A Game:</h4>
+              <ul>
+                <li aria-level="2">They will need to use a game code to join a game</li>
+                <ul>
+                  <li aria-level="3">Important: make sure its a code actually in play</li>
+                </ul>
+                <li aria-level="2">They will be moved to a waiting room, with the other players</li>
+                <li aria-level="2">They will be able to see who else in the room (see display names)</li>
+                <li aria-level="2">They will see the timer counting down</li>
+                <li aria-level="2">They will see the game code they are in as well and who is the owner of the game</li>
+                <li aria-level="2">The game will then start till the timer reaches 0</li>
+                <li aria-level="2">After the game has been started, no one will be able to use the game code again to
+                  enter
+                </li>
+              </ul>
+            </ul>
+          </div>
+
+          <div class="col-md-6">
             <h4 aria-level="1" style="font-family: RetroFunk">Game Start (Owner POV):</h4>
             <ul>
               <li aria-level="2">They will see the current payouts of each player</li>
               <li aria-level="2">They will see the timer counting down</li>
               <li aria-level="2">They will see the final leaderboard</li>
             </ul>
-            <ul>
 
-          </div>
-
-
-
-        </div>
-      </div>
-
-      <div class="top-banner container center">
-
-        <div class="row">
-          <div class="col-md-6">
-            <h4 aria-level="1" style="font-family: RetroFunk">Friend Joing A Game:</h4>
-            <ul>
-              <li aria-level="2">They will need to use a game code to join a game</li>
+              <h4 aria-level="1" style="font-family: RetroFunk">Game Start (Friend):</h4>
               <ul>
-                <li aria-level="3">Important: make sure its a code actually in play</li>
-              </ul>
-              <li aria-level="2">They will be moved to a waiting room, with the other players</li>
-              <li aria-level="2">They will be able to see who else in the room (see display names)</li>
-              <li aria-level="2">They will see the timer counting down</li>
-              <li aria-level="2">They will see the game code they are in as well and who is the owner of the game</li>
-              <li aria-level="2">The game will then start till the timer reaches 0</li>
-              <li aria-level="2">After the game has been started, no one will be able to use the game code again to
-                enter
-              </li>
-            </ul>
-            </ul>
-
-
-          </div>
-          <div class="col-md-6">
-
-            <h4 aria-level="1" style="font-family: RetroFunk">Game Start (Friend):</h4>
-            <ul>
-              <li aria-level="2">Each player can either ask for a letter or guess a word</li>
-              <li aria-level="2">There will be a cooldown between letter guesses</li>
-              <ul>
-                <li aria-level="3">This is determined by the owner at the beginning</li>
-              </ul>
-              <li aria-level="2">There will be a timer to finish the game</li>
-              <ul>
-                <li aria-level="3">This is determined by the owner at the beginning</li>
-              </ul>
-              <li aria-level="2">The maximum number of points = sum of characters per word for all 5 words * 10,000</li>
-              <li aria-level="2">Each second of thinking reduces the points by a flat amount</li>
-              <ul>
-                <li aria-level="3">If they are 100 seconds to play then, each second will reduce your score by 1% of the
-                  maximum
-                  points</li>
-                <li aria-level="3">If they are 50 seconds to play, then each second will reduce your score by 2% of the
-                  maximum
-                  points</li>
-              </ul>
-              <li aria-level="2">The penalty for asking for a letter = 5x penalty for each second</li>
-              <li aria-level="2">The score</a> will be whatever is remaining from max points - penalties</li>
-              <li aria-level="2">The payout will be % of characters gotten * score</li>
-              <li aria-level="2">The game will end when a player either runs out of points or they are finished</li>
-              <li aria-level="2">Once finished, they&rsquo;ll be able to see your final payout</li>
-              <li aria-level="2">Once the lobby is finished, they&rsquo;ll be shown a final leaderboard</li>
-              <li aria-level="2">A player can leave the game whenever, but it will not count towards their personal
-                leaderboard
-              </li>
-            </ul>
+                <li aria-level="2">Each player can either ask for a letter or guess a word</li>
+                <li aria-level="2">There will be a cooldown between letter guesses</li>
+                <ul>
+                  <li aria-level="3">This is determined by the owner at the beginning</li>
+                </ul>
+                <li aria-level="2">There will be a timer to finish the game</li>
+                <ul>
+                  <li aria-level="3">This is determined by the owner at the beginning</li>
+                </ul>
+                <li aria-level="2">The maximum number of points = sum of characters per word for all 5 words * 10,000
+                </li>
+                <li aria-level="2">Each second of thinking reduces the points by a flat amount</li>
+                <ul>
+                  <li aria-level="3">If they are 100 seconds to play then, each second will reduce your score by 1% of
+                    the
+                    maximum
+                    points</li>
+                  <li aria-level="3">If they are 50 seconds to play, then each second will reduce your score by 2% of
+                    the
+                    maximum
+                    points</li>
+                </ul>
+                <li aria-level="2">The penalty for asking for a letter = 5x penalty for each second</li>
+                <li aria-level="2">The score</a> will be whatever is remaining from max points - penalties</li>
+                <li aria-level="2">The payout will be % of characters gotten * score</li>
+                <li aria-level="2">The game will end when a player either runs out of points or they are finished</li>
+                <li aria-level="2">Once finished, they&rsquo;ll be able to see your final payout</li>
+                <li aria-level="2">Once the lobby is finished, they&rsquo;ll be shown a final leaderboard</li>
+                <li aria-level="2">A player can leave the game whenever, but it will not count towards their personal
+                  leaderboard
+                </li>
             </ul>
           </div>
         </div>
       </div>
-    </div>
 
-    <br>
-    <br>
+      <br>
 
-
-    <div class="footer">
-      <h6 class="text-uppercase font-weight-bold">Contact</h6>
-      <p> Michael Asare | msa8wsy@virginia.edu </p>
-      <p> Solimar Kwa | swk3st@virginia.edu </p>
-    </div>
+      <div class="footer">
+        <h6 class="text-uppercase font-weight-bold">Contact</h6>
+        <p> Michael Asare | msa8wsy@virginia.edu </p>
+        <p> Solimar Kwa | swk3st@virginia.edu </p>
+      </div>
 
 
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-      crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
-      crossorigin="anonymous"></script>
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+        crossorigin="anonymous"></script>
 
 
 </body>
