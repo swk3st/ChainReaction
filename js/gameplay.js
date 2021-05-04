@@ -188,8 +188,9 @@ const gameTicker = setInterval(() => {
             minimumFractionDigits: 0,
             maximumFractionDigits: 0, 
           });
-        const currentScore = game.calculateScore(getUsedTime(timeRemaining));
+        const penalty = game.calculateScore(getUsedTime(timeRemaining));
         scoreElem.innerHTML = "Potential Payout: " + formatter.format(game.score);
+        console.log(penalty);
         writeTable();
         console.log(game);
     }

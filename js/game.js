@@ -58,7 +58,7 @@ class Game {
         this.time = time;
         this.cooldown = Math.max(cooldown, 1);
         this.timePenalty = 1/time*this.max;
-        this.letterPenalty = time / cooldown * this.timePenalty;
+        this.letterPenalty = this.totalChars / cooldown * this.timePenalty;
     }
 
     calculateMax = () => {
@@ -129,7 +129,9 @@ class Game {
     }
 
     calculateScore = (timeUsed) => {
-        this.score = (this.max - (timeUsed * this.timePenalty + this.requests * this.letterPenalty)).toFixed(2);
+        let penalty = (timeUsed * this.timePenalty + this.requests * this.letterPenalty).toFixed(2);
+        this.score = Math.max((this.max - penalty), 0);
+        return penalty;
     }
 
     calculatePayout = (timeUsed) => {
