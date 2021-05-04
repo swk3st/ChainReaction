@@ -1,5 +1,5 @@
 import { Game } from './game.js';
-import { requestChain, requestGame } from './request';
+import { requestChain, requestGame } from './request.js';
 
 let game;
 let aboveLetterButton, belowLetterButton;
@@ -7,6 +7,7 @@ let aboveField, belowField;
 let aboveGuessButton, belowGuessButton;
 let chainId, timeData, cooldownData;
 let chainWords;
+let gameTime, cooldown;
 let params = new URLSearchParams(location.search);
 let gameId = params.get('gameID');
 let playerId = params.get('playerID');
@@ -24,14 +25,15 @@ requestGame(gameId).then((data) => {
         chainWords.push(chain[0].word5);
         chainWords.push(chain[0].word6);
         chainWords.push(chain[0].word7);
+        console.log(chainWords);
+        let d = new Date();
+        gameTime = Math.round((timeData - d.now)/1000);
+        cooldown = cooldownData;
+        
+        game = new Game(chainWords, gameTime, cooldown);
     });
 });
 
-let d = new Date();
-let gameTime = Math.round((timeData - d.now())/1000);
-let cooldown = cooldownData;
-
-game = new Game(chainWords, gameTime, cooldown);
 
 
 aboveLetterButton = document.getElementById('above-letter');

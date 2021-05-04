@@ -16,8 +16,8 @@
   </header>
 
 <body>
-    <button id='above-button'>Grab an Above Letter</button>
-    <button id='below-button'>Grab a Below Letter</button>
+    <button id='above-letter'>Grab an Above Letter</button>
+    <button id='below-letter'>Grab a Below Letter</button>
     <label for="above-field"><button id='above-guess'>Guess Above</button></label>
     <input type="text" id="above-field" name="above-field">
     <label for="below-field"><button id='below-guess'>Guess Below</button></label>
