@@ -11,6 +11,7 @@ let gameTime, cooldown;
 let params = new URLSearchParams(location.search);
 let gameId = params.get('gameID');
 let playerId = params.get('playerID');
+let done = false;
 
 requestGame(gameId).then((data) => {
     let info  = data[0][0];
@@ -27,10 +28,9 @@ requestGame(gameId).then((data) => {
         chainWords.push(chain[0].word6);
         chainWords.push(chain[0].word7);
         console.log(chainWords);
-        let d = new Date();
-        gameTime = Math.round((timeData - d.now)/1000);
+        const currTime = Math.round(Date.now()/1000);
+        gameTime = Math.round((timeData - currTime), 2);
         cooldown = cooldownData;
-        
         game = new Game(chainWords, gameTime, cooldown);
     });
 });
@@ -82,3 +82,50 @@ const disableAll = () => {
     aboveGuessButton.disabled = true;
     belowGuessButton.disabled = true;
 }
+
+let timeRemaining = gameTime;
+let clockElem = document.getElementById('clock');
+let scoreElem = document.getElementById('score');
+
+const getUsedTime = () => gameTime - timeRemaining;
+
+
+const updateDatabase = () => {
+    // const timeUsed = getUsedTime();
+    // const payout = game.calculatePayout(timeUsed);
+    // make an ajax call to update the playing table
+};
+
+const writeToHistory = () => {
+    const timeUsed = getUsedTime();
+    const payout = game.calculatePayout(timeUsed);
+    // make an ajax call to insert the data into history table
+    // make an ajax call to remove a player from the playing table
+};
+
+
+// const clock = setInterval(() => {
+//     timeRemaining--;
+//     clockElem.innerHTML = timeRemaining;
+//     if (timeRemaining <= -1) {
+//         done = true;
+//         disableAll();
+//         clearInterval(clock);
+//     }
+// }, 1000);
+
+const gameTicker = setInterval(() => {
+    if (game.isFinished()) {
+        done = true;
+        disableAll();
+        clearInterval(gameTicker);
+    } else {
+        updateDatabase();
+    }
+
+    if (!done) {
+        const currentScore = game.calculateScore(getUsedTime());
+        scoreElem.innerHTML = game.score;
+        console.log(game);
+    }
+}, 5000);

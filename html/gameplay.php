@@ -16,13 +16,14 @@
   </header>
 
 <body>
+    <h2 id='score'></h2>
+    <h2 id='clock'></h2>
     <button id='above-letter'>Grab an Above Letter</button>
     <button id='below-letter'>Grab a Below Letter</button>
     <label for="above-field"><button id='above-guess'>Guess Above</button></label>
     <input type="text" id="above-field" name="above-field">
     <label for="below-field"><button id='below-guess'>Guess Below</button></label>
     <input type="text" id="below-field" name="below-field">
-
     <script type='module' src='../js/gameplay.js'></script>
 </body>
 </html>
