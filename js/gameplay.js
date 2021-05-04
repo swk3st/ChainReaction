@@ -18,6 +18,7 @@ requestGame(gameId).then((data) => {
     timeData = info.time;
     cooldownData = info.cooldown;
     requestChain(chainId).then((chain) => {
+        chainWords = [];
         chainWords.push(chain[0].word1);
         chainWords.push(chain[0].word2);
         chainWords.push(chain[0].word3);
