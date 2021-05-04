@@ -34,14 +34,15 @@
 <body>
 <h1>Owner Room</h1>
 <h2 id='timer' style='text-align: center;'></h2>
-<div class="waiting-room-container">
+<div class="waiting-room-container" id='wr'>
     <h2 id='code' class='<?php if (isset($game_id)) echo $game_id?>'>Game Code: <?php if (isset($game_id)) echo $game_id?></h2>
     <br/>
     <button id="start-button" class='big-button'>START!<button>
 </div>
 
 <script type='module'>
-    import { requestGame, startGame } from '../js/request.js';
+    import { requestGame, startGame, requestPlayers } from '../js/request.js';
+    
     let codeElem = document.getElementById('code');
     let gameId = codeElem.getAttribute('class');
     let countdown = -1;
@@ -52,17 +53,25 @@
             countdown = parseInt(data['start']) - Math.round(Date.now()/1000);
         });
     }
+
+
     let timer = document.getElementById("timer");
     let cycle = 1000;
     let started = false;
     let startButton = document.getElementById('start-button');
     let force = false;
+    
+    
     startButton.addEventListener('click', () => {
         force = true;
     });
+
+
+    let lobby = [];
+
     var ticker = setInterval(function () {
         timer.innerHTML = countdown;
-        countdown-= 1;
+        countdown-= cycle/1000;
         if (countdown <= 0 || force) {
             startGame(gameId);
             started = true;
@@ -70,7 +79,39 @@
         if (started) {
             clearInterval(ticker);
         }
+        console.log(gameId);
+        requestPlayers(gameId).then((players) => {
+            console.log(players);
+            if(!sameLobby(lobby, players)) {
+                console.log('Update!');
+                updateLobby(players);
+            }
+        });
     }, cycle);
+
+    let sameLobby = (org, other) => {
+        if (org.length != other.length) {
+            return false;
+        }
+        return JSON.stringify(other.sort()) === JSON.stringify(other.sort());
+    }
+
+
+    let updateLobby = (newLobby) => {
+        let waitingRoom = document.getElementById('wr');
+        while (waitingRoom.lastChild.tagName != 'BUTTON') {
+            waitingRoom.removeChild(waitingRoom.lastChild);
+        }
+        for (const player of newLobby) {
+            const p = document.createElement('p');
+            const displayName = p.displayName;
+            const payout = p.payout;
+            p.innerHTML = `${displayName}\t\t--\t\t${payout}`;
+            waitingRoom.appendChild(p);
+        }
+    }
+
+    
 </script>
 </body>
 </html>

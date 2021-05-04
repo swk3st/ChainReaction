@@ -7,8 +7,8 @@ header('Access-Control-Allow-Methods: POST, GET, OPTIONS, DELETE, PUT');
 
 include '../db/database.php';
 if(isset($_GET['gameID'])) {
-    $player_id = $_GET['gameID'];
-    echo json_encode(getHistory($game_id));
+    $game_id = $_GET['gameID'];
+    echo json_encode(getPlayers($game_id));
 }
 
 ?>

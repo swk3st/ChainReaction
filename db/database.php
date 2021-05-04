@@ -388,6 +388,20 @@ function joinGame($game_id, $player_id, $display_name) {
     $statement->execute();
 }
 
+function safeJoin($game_id, $player_id, $display_name) {
+    global $db;
+    connect();
+    $payout = 0;
+    $sql = "SELECT * FROM playing WHERE game_id = :g AND player_id = :p";
+    $statement = $db->prepare($sql);
+    $statement->bindParam(":g", $game_id);
+    $statement->bindParam(":p", $player_id);
+    $statement->execute();
+    if ($statement->rowCount() == 0) {
+        joinGame($game_id, $player_id, $display_name);
+    }
+}
+
 function getHistory($player_id) {
     global $db;
     connect();
@@ -431,5 +445,4 @@ function getPlayers($game_id) {
     $result = $statement->fetchAll();
     return $result;
 }
-
 ?>
