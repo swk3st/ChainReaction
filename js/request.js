@@ -227,12 +227,12 @@ function requestPlayerID() {
           resolve(data);
         }
       }
-      let url = "../php/players.php?chainID=";
+      let url = "../php/chaindata.php?chainID=";
 
       var loc = window.location.pathname;
       var dir = loc.substring(loc.lastIndexOf('/'));
       if (dir == "/inventory.php") {
-        url = "../../php/players.php?chainID=";
+        url = "../../php/chaindata.php?chainID=";
       }
 
       let request = chainId;
