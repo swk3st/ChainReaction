@@ -374,12 +374,12 @@ function requestPlayerID() {
           resolve(data);
         }
       }
-      let url = "../php/allcompletedgames.php?gameID=";
+      let url = "../php/matchdata.php?gameID=";
 
       var loc = window.location.pathname;
       var dir = loc.substring(loc.lastIndexOf('/'));
       if (dir == "/inventory.php") {
-        url = "../../php/allcompletedgames.php?gameID=";
+        url = "../../php/matchdata.php?gameID=";
       }
 
       let request = gameID;

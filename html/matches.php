@@ -20,7 +20,7 @@
 
 <h1> Player History </h1>
     <div class="matches-container">
-        <table class='nice-table matches-table'>
+        <table class='nice-table matches-table' id='matches-table'>
             <tr>
                 <th>Game Owner</th><th>Payout</th><th>Date</th><th>Link</th>
             </tr>
@@ -29,5 +29,6 @@
             </tr>
         </table>
     </div>
+    <script src='../js/player-history.js' type='module'></script>
 </body>
 </html>
