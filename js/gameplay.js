@@ -1,5 +1,5 @@
 import { Game } from './game.js';
-import { requestChain, requestGame, saveHistory, leaveGame, realTimeUpdate } from './request.js';
+import { requestChain, requestGame, saveHistory, leaveGame, realTimeUpdate, updateCareer } from './request.js';
 
 let game;
 let aboveLetterButton, belowLetterButton;
@@ -282,10 +282,18 @@ const formatPayout = (payout) => {
       return formatter.format(payout);
 }
 
+const careerUpdates = () => {
+    const earnings = Math.round(game.calculatePayout(getUsedTime(timeRemaining)));
+    const correct = game.correct;
+    const guesses = game.guesses;
+    updateCareer(playerId, earnings, correct, guesses);
+};
+
 const finalSequence = (status) => {
     writeStatus(status);
     writeToHistory();
     leaveGame(playerId, gameId);
+    careerUpdates();
     sendToWatchingRoom();
 }
 
