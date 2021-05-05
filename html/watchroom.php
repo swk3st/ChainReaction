@@ -27,7 +27,7 @@
                     <th>Display Name</th><th>Real Time Payout</th>
                 </tr>
                 <tr>
-                    <td>Bradley Martin</td><td>44</td>
+                    <!-- <td>Bradley Martin</td><td>44</td> -->
                 </tr>
             </table>
         </div>

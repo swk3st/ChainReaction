@@ -202,18 +202,3 @@ h1 {
     flex-direction: column;
     align-items: center;
 }
-
-.watch-room-container {
-    display: flex;
-    flex-direction: row;
-}
-
-.half {
-    display: flex;
-    width: 50%;
-    word-wrap: normal;
-    flex-direction: column;
-    justify-content: center;
-    align-content: center;
-    align-items: center;
-}
