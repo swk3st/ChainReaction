@@ -16,7 +16,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
     integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link rel="stylesheet" href="..\css\login.css">
-    <link rel="stylesheet" href="..\css\button.css">
     <link rel="stylesheet" href="..\css\gameplay.css">
 
 </head>
@@ -78,7 +77,7 @@
     <input type="submit" value="Submit">
   </div>
   <br/>
-  <button type='button' class='big-button <?=$_SESSION['playerID']?>' id='history'>Match History</button>
+  <button type='button' style='padding: 15px;'class='button-history <?=$_SESSION['playerID']?>' id='history'>Match History</button>
 </form>
 <script>
   let button = document.getElementById('history');
