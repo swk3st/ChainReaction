@@ -27,9 +27,6 @@
                 <tr>
                     <th>Display Name</th><th>Real Time Payout</th>
                 </tr>
-                <tr>
-                    <td>Bradley ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddMartin</td><td>44</td>
-                </tr>
             </table>
         </div>
         <div class='half'>
