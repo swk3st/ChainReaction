@@ -24,33 +24,36 @@
 <body>
   <header>
     <?php include('../php/navbar.php'); ?>
-<?php
+    <?php
 
-// include "../db/database.php";
-include getcwd() . '/../db/database.php';
-// session_start();
-// $_SESSION["playerID"] = "aaaaaaaaaa";
-$data = playerInfo($_SESSION["playerID"]);
-if (isset($_POST["displayName"])) {
-  $_SESSION["displayName"] = $_POST["displayName"];
-  if(isset($POST["remember"])) {
-    setcookie("displayName", $_POST["displayName"], time() + (60 * 5), "/");
-  }
-}
-else if(isset($_COOKIE["displayName"])) {
-  $_SESSION["displayName"] = $_COOKIE["displayName"];
-} else if(!isset($_SESSION["displayName"])) {
-  $_SESSION["displayName"] = $data[0]["email"];
-}
-$earnings = $data[0]["earnings"];
-$guesses = $data[0]["guesses"];
-$correct = $data[0]["correct"];
-$percent = 0.0;
-if ($guesses != 0) {
-  $percent = bcdiv($correct, $guesses, 4);
-}
-$percentage = strval($percent * 100) . "%";
-?>
+      // include "../db/database.php";
+      include getcwd() . '/../db/database.php';
+      // session_start();
+      // $_SESSION["playerID"] = "aaaaaaaaaa";
+      $data = playerInfo($_SESSION["playerID"]);
+      if (isset($_POST["displayName"])) {
+        $_SESSION["displayName"] = $_POST["displayName"];
+        if(isset($POST["remember"])) {
+          setcookie("displayName", $_POST["displayName"], time() + (60 * 5), "/");
+        }
+      }
+      else if(isset($_COOKIE["displayName"])) {
+        $_SESSION["displayName"] = $_COOKIE["displayName"];
+      } else if(!isset($_SESSION["displayName"])) {
+        $_SESSION["displayName"] = $data[0]["email"];
+      }
+        $earnings = $data[0]["earnings"];
+        $guesses = $data[0]["guesses"];
+        $correct = $data[0]["correct"];
+      $percent = 0.0;
+      // if ($guesses != 0) {
+      //   $percent = bcdiv($correct, $guesses, 4);
+      // }
+      if ($guesses != 0) {
+        $percent = $correct * 1.0 / $guesses;
+      }
+      $percentage = strval($percent * 100) . "%";
+    ?>
 
 
   </header>
