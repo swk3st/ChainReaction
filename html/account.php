@@ -26,7 +26,8 @@
 
 <?php
 
-include "../db/database.php";
+// include "../db/database.php";
+include getcwd() . '/../db/database.php';
   // session_start();
   // $_SESSION["playerID"] = "aaaaaaaaaa";
   $data = playerInfo($_SESSION["playerID"]);

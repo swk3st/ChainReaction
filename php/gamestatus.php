@@ -4,7 +4,8 @@ header('Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Au
 header('Access-Control-Max-Age: 1000');  
 header('Access-Control-Allow-Methods: POST, GET, OPTIONS, DELETE, PUT');
 
-    include "..\db\database.php";
+    // include "..\db\database.php";
+    include getcwd() . '/../db/database.php';
     $gameID = $_GET['gameID'];
     if (isset($gameID)) {
         echo json_encode(currentGameStatus($gameID));

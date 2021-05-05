@@ -5,7 +5,8 @@
 session_start();
 $_SESSION = array();
 session_destroy();
-include "../db/database.php";
+// include "../db/database.php";
+include getcwd() . '/../db/database.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Handle user creation form.
     if (isset($_POST['email']) && isset($_POST['password']) && isset($_POST['password2'])) {

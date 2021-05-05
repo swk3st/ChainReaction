@@ -16,7 +16,8 @@
 <header>
     <?php include('../php/navbar.php'); ?>
     <?php
-        include "../db/database.php";
+        // include "../db/database.php";
+        include getcwd() . '/../db/database.php';
         $start = time() + $_POST['start'] * 60;
         $cooldown = $_POST['cooldown'];
         $time = $start + $_POST['time'] * 60;
