@@ -30,27 +30,33 @@
   <br/>
     <div class='gameplay-container'>
       <div class='left-half'>
-        <button id='above-letter' class='game-button'>Grab an Above Letter</button>
-        <label for="above-field"><button id='above-guess' class='game-button'>Guess Above</button></label>
-        <input type="text" id="above-field" name="above-field">
-        <button id='below-letter' class='game-button'>Grab a Below Letter</button>
-        <label for="below-field"><button id='below-guess' class='game-button'>Guess Below</button></label>
-        <input type="text" id="below-field" name="below-field">
-        <script type='module' src='../js/gameplay.js'></script>
+        <button id='above-letter' class='game-button'>High Letter</button>
+        <div>
+          <label for="above-field"><button id='above-guess' class='game-button'>Guess High</button></label>
+          <input type="text" id="above-field" name="above-field">
+        </div>
+        <button id='below-letter' class='game-button'>Low Letter</button>
+        <div>
+          <input type="text" id="below-field" name="below-field">
+          <label for="below-field"><button id='below-guess' class='game-button'>Guess Low</button></label>
+        </div>
+        <br/>
+        <button type='button' id='leave'>Leave</button>
       </div>
       <div class='right-half'>
-      <div class="chain-table">
-      <table>
-        <tr id='row1'><td id="word1">~</td></tr>
-        <tr id='row2'><td id="word2">~</td></tr>
-        <tr id='row3'><td id="word3">~</td></tr>
-        <tr id='row4'><td id="word4">~</td></tr>
-        <tr id='row5'><td id="word5">~</td></tr>
-        <tr id='row6'><td id="word6">~</td></tr>
-        <tr id='row7'><td id="word7">~</td></tr>
-      </table>
-  </div>
+        <div class="chain-table">
+          <table>
+            <tr id='row1'><td id="word1">~</td></tr>
+            <tr id='row2'><td id="word2">~</td></tr>
+            <tr id='row3'><td id="word3">~</td></tr>
+            <tr id='row4'><td id="word4">~</td></tr>
+            <tr id='row5'><td id="word5">~</td></tr>
+            <tr id='row6'><td id="word6">~</td></tr>
+            <tr id='row7'><td id="word7">~</td></tr>
+          </table>
+        </div>
       </div>
-    <div>
+      <div>
+      <script type='module' src='../js/gameplay.js'></script>
 </body>
 </html>

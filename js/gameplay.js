@@ -333,3 +333,5 @@ const gameTicker = setInterval(() => {
         // console.log(game.calculatePayout(getUsedTime(timeRemaining)));
     }
 }, 1000);
+
+const leaveButton = document.getElementById('leave');
