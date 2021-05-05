@@ -31,7 +31,6 @@ const addRows = (players) => {
 
 const writeTable = () => {
     requestPlayers(gameID).then((players) => {
-        console.log(players);
         clearTable();
         addRows(players);
     });
