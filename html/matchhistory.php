@@ -89,8 +89,7 @@
                 });
             });
         }
-
-        
     </script>
+    <script src='../js/match.js' type='module'></script>
 </body>
 </html>
