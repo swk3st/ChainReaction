@@ -24,8 +24,8 @@
             $cooldown = $_POST['cooldown'];
             $time = $start + $_POST['time'] * 60;
             $chain_id = $_POST['chainID'];
-            $owner_id = $_SESSION['playerID'];
-            $display_name = $_SESSION['displayName'];
+            $owner_id = $_POST['playerID'];
+            $display_name = $_POST['displayName'];
             $game_id = createGame($owner_id, $display_name, $start, $time, $cooldown, $chain_id);
         ?>
     </header>

@@ -37,7 +37,9 @@
     <input type="number" id="start" name="start" min="0" max='10'required/>
     </br>
     </br>
-    <input type="hidden" id="chainID" name="chainID" value="<?php echo $_GET['chainID']?>"/>
+    <input type="hidden" id="chainID" name="chainID" value="<?php echo $_GET['chainID']; ?>"/>
+    <input type="hidden" id="playerID" name="playerID" value="<?php if (isset($_SESSION['playerID'])) echo $_SESSION['playerID']; else echo 'random'; ?>"/>
+    <input type="hidden" id="displayName" name="displayName" value="<?php if (isset($_SESSION['displayName'])) echo $_SESSION['displayName']; else echo 'random';?>"/>
     <input type="submit" value="Submit"/>
   </form>
   </div>

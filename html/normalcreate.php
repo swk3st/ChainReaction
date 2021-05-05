@@ -20,7 +20,7 @@
 
 <h1> CREATE A GAME! </h1>
 <div class="normal-create-container">
-    <a href="waitingroom.php">
+    <a href="randomcreate.php">
       <button type="button" class="big-button">RANDOM</button>
     </a>
     <div class="join-button">
