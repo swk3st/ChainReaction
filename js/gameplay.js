@@ -246,6 +246,25 @@ const writeStatus = (status) => {
     statusElem.innerHTML = "Status: " + status;
 };
 
+const sendToWatchingRoom = () => {
+    let watchTime = 5;
+    const watchTimer = setInterval(() => {
+        writeStatus(`sending to watch room in ${watchTime} seconds`)
+        watchTime--;
+        if (watchTime == 0) {
+            clearInterval(watchTimer);
+            location.href = `./watchroom.php?gameID=${gameId}`; 
+        }
+    }, 1000);
+}
+
+const finalSequence = (status) => {
+    writeStatus(status);
+    writeToHistory();
+    leaveGame(playerId, gameId);
+    sendToWatchingRoom();
+}
+
 
 const clock = setInterval(() => {
     timeRemaining--;
@@ -254,9 +273,7 @@ const clock = setInterval(() => {
         done = true;
         disableAll();
         clearInterval(clock);
-        writeStatus('times up!');
-        writeToHistory();
-        leaveGame(playerId, gameId);
+        finalSequence('times up!');
     }
 }, 1000);
 
@@ -266,9 +283,7 @@ const gameTicker = setInterval(() => {
         done = true;
         disableAll();
         clearInterval(gameTicker);
-        writeStatus('completed!');
-        writeToHistory();
-        leaveGame(playerId, gameId);
+        finalSequence('completed!');
     } else {
         updateDatabase();
     }
