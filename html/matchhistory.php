@@ -32,6 +32,7 @@
     ?>
     <header>
         <h1>Match History: <?php if (isset($gameID)) echo $gameID; ?></h1>
+        <p style='text-align: center; font-size: xx-small;'>(Refresh To Update)</p>
         <div class='match-history-container'>
             <div class='left-half'>
                 <table class='nice-table match-history'>
