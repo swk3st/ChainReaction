@@ -12,27 +12,24 @@
 
 </head>
 
-<header>
-<header>
-    <?php include('../php/navbar.php'); ?>
-    <?php
-        // include "../db/database.php";
-        include getcwd() . '/../db/database.php';
-        $start = time() + $_POST['start'] * 60;
-        $cooldown = $_POST['cooldown'];
-        $time = $start + $_POST['time'] * 60;
-        $chain_id = $_POST['chainID'];
-        $owner_id = $_SESSION['playerID'];
-        $display_name = $_SESSION['displayName'];
-        $game_id = createGame($owner_id, $display_name, $start, $time, $cooldown, $chain_id);
-    ?>
 
-</header>
-
-</header>
 
 <body>
-<h1>Owner Room</h1>
+    </header>
+        <?php include('../php/navbar.php'); ?>
+        <?php
+            // include "../db/database.php";
+            include getcwd() . '/../db/database.php';
+            $start = time() + $_POST['start'] * 60;
+            $cooldown = $_POST['cooldown'];
+            $time = $start + $_POST['time'] * 60;
+            $chain_id = $_POST['chainID'];
+            $owner_id = $_SESSION['playerID'];
+            $display_name = $_SESSION['displayName'];
+            $game_id = createGame($owner_id, $display_name, $start, $time, $cooldown, $chain_id);
+        ?>
+    </header>
+    <h1>Owner Room</h1>
 <h2 id='timer' style='text-align: center;'></h2>
 <div class="waiting-room-container" id='wr'>
     <h2 id='code' class='<?php if (isset($game_id)) echo $game_id?>'>Game Code: <?php if (isset($game_id)) echo $game_id?></h2>

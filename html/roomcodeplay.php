@@ -12,16 +12,14 @@
 
 </head>
 
-<header>
 
-<header>
-    <?php include('../php/navbar.php'); ?>
 
-</header>
 
-</header>
 
 <body style="background-color:#ADC698">
+  <header>
+      <?php include('../php/navbar.php'); ?>
+  </header>
   <div class="codeplay-container">
     <img src="../resources/chainreactionlogo.png" alt="Chain Reaction Retro Logo" width="400"
     height="160">

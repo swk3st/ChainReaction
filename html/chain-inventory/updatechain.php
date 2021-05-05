@@ -13,11 +13,11 @@
     <link rel="stylesheet" href="..\..\css\gameplay.css">
 </head>
 
-<header>
-<?php include('../../php/navbar.php'); ?>
-</header>
 
 <body>
+  <header>
+  <?php include('../../php/navbar.php'); ?>
+  </header>
 <h1> Update Chain </h1>
 <div class="form-container">
   <form class='nice-table' action="../../php/chaininventory.php" method="post">
