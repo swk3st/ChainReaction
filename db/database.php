@@ -547,7 +547,7 @@ function allCompletedGames($player_id) {
     global $db;
     connect();
     $sql = "SELECT * FROM game WHERE game_id IN 
-        (SELECT game_id FROM history WHERE player_id = :p)";
+        (SELECT game_id FROM history WHERE player_id = :p) ORDER BY start";
     $statement = $db->prepare($sql);
     $statement->bindParam(':p', $player_id);
     $statement->execute();

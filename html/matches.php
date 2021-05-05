@@ -19,13 +19,11 @@
 </header>
 
 <h1> Player History </h1>
+<p style='text-align: center; font-size: xx-small;'>(Refresh To Update)</p>
     <div class="matches-container">
         <table class='nice-table matches-table' id='matches-table'>
             <tr>
                 <th>Game Owner</th><th>Payout</th><th>Date</th><th>Link</th>
-            </tr>
-            <tr>
-                <td>BRADLEY</td><td>$44.00</td><td>DD:DD:DD</td><td>www.</td>
             </tr>
         </table>
     </div>
