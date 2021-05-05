@@ -34,7 +34,7 @@
                 <p>Watch others payouts while they are in the midst of playing!</p>
                 <p>Note: Only <em>in progress</em> games will be shown.</p>
                 <p>Please go to the match history for this game to see the other scores.<p>
-                <button class='big-button'>Match History</button>
+                <button class='big-button' id='match-button'>Match History</button>
             </div>
         </div>
 

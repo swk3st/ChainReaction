@@ -1,5 +1,5 @@
 import { Game } from './game.js';
-import { requestChain, requestGame, saveHistory, leaveGame, realTimeUpdate } from './request.js';
+import { requestChain, requestGame, saveHistory, leaveGame, realTimeUpdate, updateCareer } from './request.js';
 
 let game;
 let aboveLetterButton, belowLetterButton;
@@ -142,6 +142,19 @@ belowLetterButton.addEventListener('click', bLBHandle);
 aboveGuessButton.addEventListener('click', aGBHandle);
 belowGuessButton.addEventListener('click', bGBHandle);
 
+aboveField.addEventListener('keyup', (event) => {
+    if (event.key == 'Enter') {
+        aboveGuessButton.click();
+    }
+});
+
+belowField.addEventListener('keyup', (event) => {
+    if (event.key == 'Enter') {
+        console.log('here!!!');
+        belowGuessButton.click();
+    }
+})
+
 aboveLetterButton.addEventListener('mouseover', aboveHoverHandle);
 belowLetterButton.addEventListener('mouseover', belowHoverHandle);
 aboveGuessButton.addEventListener('mouseover', aboveHoverHandle);
@@ -203,7 +216,7 @@ const getUsedTime = (timeLeft) => {
 const updateDatabase = () => {
     const timeUsed = getUsedTime(timeRemaining);
     const payout = game.calculatePayout(timeUsed);
-    realTimeUpdate(gameId, playerId, displayName, payout);
+    realTimeUpdate(gameId, playerId, displayName, formatPayout(payout));
     // const timeUsed = getUsedTime();
     // const payout = game.calculatePayout(timeUsed);
     // make an ajax call to update the playing table
@@ -212,7 +225,7 @@ const updateDatabase = () => {
 const writeToHistory = () => {
     const timeUsed = getUsedTime(timeRemaining);
     const payout = game.calculatePayout(timeUsed);
-    saveHistory(gameId, playerId, displayName, payout);
+    saveHistory(gameId, playerId, displayName, formatPayout(payout));
     // make an ajax call to insert the data into history table
     // make an ajax call to remove a player from the playing table
 };
@@ -259,10 +272,28 @@ const sendToWatchingRoom = () => {
     }, 1000);
 }
 
+const formatPayout = (payout) => {
+    var formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0, 
+      });
+      return formatter.format(payout);
+}
+
+const careerUpdates = () => {
+    const earnings = Math.round(game.calculatePayout(getUsedTime(timeRemaining)));
+    const correct = game.correct;
+    const guesses = game.guesses;
+    updateCareer(playerId, earnings, correct, guesses);
+};
+
 const finalSequence = (status) => {
     writeStatus(status);
     writeToHistory();
     leaveGame(playerId, gameId);
+    careerUpdates();
     sendToWatchingRoom();
 }
 
@@ -297,7 +328,7 @@ const gameTicker = setInterval(() => {
             maximumFractionDigits: 0, 
           });
         const penalty = game.calculateScore(getUsedTime(timeRemaining));
-        scoreElem.innerHTML = "Potential Payout: " + formatter.format(game.score);
+        scoreElem.innerHTML = "Potential Payout: " + formatPayout(game.score);
         writeTable();
         // console.log(game.calculatePayout(getUsedTime(timeRemaining)));
     }

@@ -520,4 +520,26 @@ function realTimeUpdate($game_id, $player_id, $display_name, $payout) {
     $statement->execute();
 
 }
+
+function finishGame($game_id) {
+    global $db;
+    connect();
+    $sql = "UPDATE game SET gameStatus = 'completed' WHERE game_id = :g";
+    $statement = $db->prepare($sql);
+    $statement->bindParam(':g', $game_id);
+    $statement->execute();
+}
+
+function updateCareer($player_id, $earnings, $correct, $guesses) {
+    global $db;
+    connect();
+    $sql = "UPDATE player SET earnings = earnings + :e, 
+        correct = correct + :c, guesses = guesses + :g WHERE player_id = :p";
+    $statement = $db->prepare($sql);
+    $statement->bindParam(":p", $player_id);
+    $statement->bindParam(':e', $earnings, PDO::PARAM_INT);
+    $statement->bindParam(':c', $correct, PDO::PARAM_INT);
+    $statement->bindParam(':g', $guesses, PDO::PARAM_INT);
+    $statement->execute();
+}
 ?>
