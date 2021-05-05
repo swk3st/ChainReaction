@@ -266,7 +266,7 @@ const formatPayout = (payout) => {
         minimumFractionDigits: 0,
         maximumFractionDigits: 0, 
       });
-      formatter.format(payout);
+      return formatter.format(payout);
 }
 
 const finalSequence = (status) => {
