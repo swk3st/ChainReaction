@@ -22,7 +22,8 @@
             include getcwd() . '/../db/database.php';
             $start = time() + $_POST['start'] * 60;
             $cooldown = $_POST['cooldown'];
-            $time = $start + $_POST['time'] * 60;
+            // $time = $start + $_POST['time'] * 60;
+            $time = $_POST['time'] * 60;
             $chain_id = $_POST['chainID'];
             $owner_id = $_POST['playerID'];
             $display_name = $_POST['displayName'];

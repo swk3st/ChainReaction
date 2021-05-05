@@ -420,9 +420,11 @@ function getHistory($player_id) {
 function startGame($game_id) {
     global $db;
     connect();
-    $sql = "UPDATE game SET gameStatus = 'started' WHERE game_id = :g";
+    $current_time = time();
+    $sql = "UPDATE game SET gameStatus = 'started', time = time + :t WHERE game_id = :g";
     $statement = $db->prepare($sql);
     $statement->bindParam(':g', $game_id);
+    $statement->bindParam(':t', $current_time);
     $statement->execute();
 }
 
