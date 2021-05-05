@@ -68,5 +68,29 @@
                 </div>
             </div>
         </div>
+    <script type='module'>
+        import { requestGame, requestChain } from '../js/request.js';
+        let params = new URLSearchParams(location.search);
+        let gameID = params.get('gameID');
+        
+        if (gameID != undefined) {
+            requestGame(gameID).then((gameData) => {
+                let gameInfo = gameData[0][0];
+                let chainID = gameInfo.chain_id;
+                requestChain(chainID).then((chainData) => {
+                    document.getElementById('word1').innerHTML = chainData[0].word1.toUpperCase();
+                    document.getElementById('word2').innerHTML = chainData[0].word2.toUpperCase();
+                    document.getElementById('word3').innerHTML = chainData[0].word3.toUpperCase();
+                    document.getElementById('word4').innerHTML = chainData[0].word4.toUpperCase();
+                    document.getElementById('word5').innerHTML = chainData[0].word5.toUpperCase();
+                    document.getElementById('word6').innerHTML = chainData[0].word6.toUpperCase();
+                    document.getElementById('word7').innerHTML = chainData[0].word7.toUpperCase();
+
+                });
+            });
+        }
+
+        
+    </script>
 </body>
 </html>
