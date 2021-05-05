@@ -553,4 +553,17 @@ function allCompletedGames($player_id) {
     $statement->execute();
     return $statement->fetchAll();
 }
+
+function matchData($game_id, $player_id) {
+    global $db;
+    connect();
+    $sql = "SELECT * FROM history WHERE game_id = :g AND player_id = :p";
+    $statement = $db->prepare($sql);
+    $statement->bindParam(':g', $game_id);
+    $statement->bindParam(':p', $player_id);
+    $statement->execute();
+    return $statement->fetchAll();
+}
+
+
 ?>
