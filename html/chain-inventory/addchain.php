@@ -46,7 +46,7 @@
       <input type="hidden" id="playerID" name="playerID" value="<?php echo $_SESSION["playerID"]?>"/>
       <br/>
       <input type="submit" value="Submit"/>
-      <button id='back'>Back</button>
+      <button type='button' id='back'>Back</button>
   </form>
 </div>
 <script>

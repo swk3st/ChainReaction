@@ -47,8 +47,8 @@
       <input type="hidden" id="chainID" name="chainID" value="<?php if (isset($_GET["chainID"])) echo $_GET["chainID"]?>"/>
       <br/>
       <input type="submit" value="Submit"/>
-      <button id='back'>Back</button>
-  </form>
+      <button type='button' id='back'>Back</button>
+    </form>
 </div>
 <script>
   let button = document.getElementById('back');
