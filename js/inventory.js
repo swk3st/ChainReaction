@@ -105,6 +105,3 @@ const loadInventory = () => {
 }
 
 document.addEventListener("DOMContentLoaded", loadInventory(), false);
-document.addEventListener('click', () => {
-    location.href = '../normalcreate.php';
-})

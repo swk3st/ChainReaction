@@ -335,4 +335,8 @@ const gameTicker = setInterval(() => {
 }, 1000);
 
 const leaveButton = document.getElementById('leave');
+leaveButton.addEventListener('click', () => {
+    leaveGame(playerId, gameId);
+    location.href = './roomcodeplay.php';
+})
 
