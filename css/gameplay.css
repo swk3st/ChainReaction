@@ -202,3 +202,9 @@ h1 {
     flex-direction: column;
     align-items: center;
 }
+
+.nice-table {
+    border: 5px solid #FFCF79;
+    border-style: dashed;
+    background-color: #E5E4D7;
+}

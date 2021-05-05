@@ -9,6 +9,7 @@
     integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/button.css">
     <link rel="stylesheet" href="../css/gameplay.css">
+    <link rel='stylesheet' href='../css/watchroom.css'>
 
 </head>
 
@@ -22,12 +23,12 @@
     <h1>Watch Room!</h1>
     <div class='watch-room-container'>
         <div class='half'>
-            <table class='progress'>
+            <table class='in-game'>
                 <tr>
                     <th>Display Name</th><th>Real Time Payout</th>
                 </tr>
                 <tr>
-                    <!-- <td>Bradley Martin</td><td>44</td> -->
+                    <td>Bradley ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddMartin</td><td>44</td>
                 </tr>
             </table>
         </div>

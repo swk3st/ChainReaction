@@ -12,3 +12,18 @@
     align-content: center;
     align-items: center;
 }
+
+.in-game {
+    width: 100%;
+    margin-left: 5%;
+    word-wrap: break-word;
+    table-layout: fixed;
+    border: 5px solid #FFCF79;
+    border-style: dashed;
+    background-color: #E5E4D7;
+}
+
+td, th {
+    word-wrap: break-word;
+    padding: 15px;
+}
