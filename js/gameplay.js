@@ -1,5 +1,5 @@
 import { Game } from './game.js';
-import { requestChain, requestGame, saveHistory, leaveGame } from './request.js';
+import { requestChain, requestGame, saveHistory, leaveGame, realTimeUpdate } from './request.js';
 
 let game;
 let aboveLetterButton, belowLetterButton;
@@ -201,6 +201,9 @@ const getUsedTime = (timeLeft) => {
 
 
 const updateDatabase = () => {
+    const timeUsed = getUsedTime(timeRemaining);
+    const payout = game.calculatePayout(timeUsed);
+    realTimeUpdate(gameId, playerId, displayName, payout);
     // const timeUsed = getUsedTime();
     // const payout = game.calculatePayout(timeUsed);
     // make an ajax call to update the playing table
@@ -209,8 +212,6 @@ const updateDatabase = () => {
 const writeToHistory = () => {
     const timeUsed = getUsedTime(timeRemaining);
     const payout = game.calculatePayout(timeUsed);
-    console.log(timeUsed);
-    console.log(payout);
     saveHistory(gameId, playerId, displayName, payout);
     // make an ajax call to insert the data into history table
     // make an ajax call to remove a player from the playing table
