@@ -203,7 +203,7 @@ const getUsedTime = (timeLeft) => {
 const updateDatabase = () => {
     const timeUsed = getUsedTime(timeRemaining);
     const payout = game.calculatePayout(timeUsed);
-    realTimeUpdate(gameId, playerId, displayName, payout);
+    realTimeUpdate(gameId, playerId, displayName, formatPayout(payout));
     // const timeUsed = getUsedTime();
     // const payout = game.calculatePayout(timeUsed);
     // make an ajax call to update the playing table
@@ -212,7 +212,7 @@ const updateDatabase = () => {
 const writeToHistory = () => {
     const timeUsed = getUsedTime(timeRemaining);
     const payout = game.calculatePayout(timeUsed);
-    saveHistory(gameId, playerId, displayName, payout);
+    saveHistory(gameId, playerId, displayName, formatPayout(payout));
     // make an ajax call to insert the data into history table
     // make an ajax call to remove a player from the playing table
 };
@@ -259,6 +259,16 @@ const sendToWatchingRoom = () => {
     }, 1000);
 }
 
+const formatPayout = (payout) => {
+    var formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0, 
+      });
+      formatter.format(payout);
+}
+
 const finalSequence = (status) => {
     writeStatus(status);
     writeToHistory();
@@ -297,7 +307,7 @@ const gameTicker = setInterval(() => {
             maximumFractionDigits: 0, 
           });
         const penalty = game.calculateScore(getUsedTime(timeRemaining));
-        scoreElem.innerHTML = "Potential Payout: " + formatter.format(game.score);
+        scoreElem.innerHTML = "Potential Payout: " + formatPayout(game.score);
         writeTable();
         // console.log(game.calculatePayout(getUsedTime(timeRemaining)));
     }
