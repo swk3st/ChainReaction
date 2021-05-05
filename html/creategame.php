@@ -24,7 +24,7 @@
 <body>
     <h1> Create A Game! </h1>
   <div class="form-container">
-  <form action="./ownerlobby.php" method="post">
+  <form class='nice-table' action="./ownerlobby.php" method="post">
     <label for="time">Total Time (minutes)</label>
     </br>
     <input type="number" id="time" name="time" min="0" max='10' required/>

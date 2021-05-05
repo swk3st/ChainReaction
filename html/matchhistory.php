@@ -36,7 +36,7 @@
         <h1>Match History: <?php if (isset($gameID)) echo $gameID; ?></h1>
         <div id='match-history-container'>
             <div id='left-half'>
-                <table>
+                <table class='nice-table'>
                     <tr>
                         <th>DISPLAY NAME</th>
                         <th>PAYOUT</th>

@@ -23,7 +23,7 @@
     <h1>Watch Room!</h1>
     <div class='watch-room-container'>
         <div class='half'>
-            <table class='in-game'>
+            <table class='in-game nice-table'>
                 <tr>
                     <th>Display Name</th><th>Real Time Payout</th>
                 </tr>

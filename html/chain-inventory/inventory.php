@@ -26,7 +26,7 @@ Have an option to update a chain next to each in Inventory -->
         <input type='submit' id='chainID' value='Add New Chain'>
     </form>
     <div class="inventory-div">
-      <table class="inventory-table" id="inventory-table">
+      <table class="inventory-table nice-table" id="inventory-table">
           <tr>
               <th></th>
               <th>Chain ID</th>

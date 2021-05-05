@@ -20,7 +20,7 @@
 <body>
 <h1> Update Chain </h1>
 <div class="form-container">
-  <form action="../../php/chaininventory.php" method="post">
+  <form class='nice-table' action="../../php/chaininventory.php" method="post">
       <label for="word1">Header Word:</label>
       <input type="text" id="word1" name="word1" value="<?php if(isset($_GET["word1"])) echo $_GET["word1"]?>" required/>
       <br/>
