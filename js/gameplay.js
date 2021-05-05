@@ -207,8 +207,10 @@ const updateDatabase = () => {
 };
 
 const writeToHistory = () => {
-    const timeUsed = getUsedTime();
+    const timeUsed = getUsedTime(timeRemaining);
     const payout = game.calculatePayout(timeUsed);
+    console.log(timeUsed);
+    console.log(payout);
     saveHistory(gameId, playerId, displayName, payout);
     // make an ajax call to insert the data into history table
     // make an ajax call to remove a player from the playing table
@@ -216,6 +218,8 @@ const writeToHistory = () => {
 
 const writeTable = () => {
     let i = 0;
+    noHover(row1);
+    noHover(row7);
     for (let word of words) {
         if (game.board[i].current.length == 0) {
             word.innerHTML = '_';
@@ -273,6 +277,6 @@ const gameTicker = setInterval(() => {
         const penalty = game.calculateScore(getUsedTime(timeRemaining));
         scoreElem.innerHTML = "Potential Payout: " + formatter.format(game.score);
         writeTable();
-        console.log(game.calculatePayout(getUsedTime(timeRemaining)));
+        // console.log(game.calculatePayout(getUsedTime(timeRemaining)));
     }
 }, 1000);

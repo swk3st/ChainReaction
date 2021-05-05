@@ -86,7 +86,7 @@
 
 <header>
 
-    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+    <!-- <nav class="navbar navbar-expand-md bg-dark navbar-dark">
       <a class="navbar-brand" href="home.html">Chain Reaction</a>
 
 
@@ -107,7 +107,7 @@
           </li>
         </ul>
       </div>
-    </nav>
+    </nav> -->
 
   </header>
 
