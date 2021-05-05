@@ -19,9 +19,7 @@
 
 </head>
 
-<header>
-<?php include('../php/navbar.php'); ?>
-  </header>
+
 
   <?php 
     include("../php/session.php");
@@ -46,7 +44,9 @@
   ?>
   
 <body>
-
+<header>
+<?php include('../php/navbar.php'); ?>
+  </header>
     <div class="center">
         <div class="user_card">
             <div class="logo_container">

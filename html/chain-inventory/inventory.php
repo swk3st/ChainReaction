@@ -15,11 +15,11 @@ Have an option to update a chain next to each in Inventory -->
     <link rel="stylesheet" href="..\..\css\gameplay.css">
 </head>
 
-<header>
-<?php include('../../php/navbar.php'); ?>
-</header>
 
 <body>
+    <header>
+    <?php include('../../php/navbar.php'); ?>
+    </header>
 <h1> Inventory! </h1>
 <div class="inventory-container">
     <form action='./addchain.php' method='post'>

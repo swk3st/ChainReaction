@@ -12,16 +12,13 @@
 
 </head>
 
-<header>
 
-<header>
-    <?php include('../php/navbar.php'); ?>
-
-</header>
-
-</header>
 
 <body>
+  <header>
+      <?php include('../php/navbar.php'); ?>
+  
+  </header>
     <h1> Create A Game! </h1>
   <div class="form-container">
   <form class='nice-table' action="./ownerlobby.php" method="post">

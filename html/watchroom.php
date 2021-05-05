@@ -13,13 +13,12 @@
 
 </head>
 
-<header>
-    <?php include('../php/navbar.php'); ?>
-
-</header>
 
 
 <body>
+    <header>
+        <?php include('../php/navbar.php'); ?>
+    </header>
     <h1>Watch Room!</h1>
     <div class='watch-room-container'>
         <div class='half'>

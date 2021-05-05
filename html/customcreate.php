@@ -18,13 +18,13 @@
   // $_SESSION["playerID"] = "aaaaaaaaaa";
 ?>
 
-<header>
-
-  <?php include "../php/navbar.php" ?>
-
-</header>
 
 <body>
+  <header>
+  
+    <?php include "../php/navbar.php" ?>
+  
+  </header>
     <h1 class="big-title"> Custom Create </h1>
     <div>
       <!-- <a href="waitingroom.html"> -->

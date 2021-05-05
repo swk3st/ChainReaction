@@ -14,12 +14,12 @@
 
 
 </head>
-  <header>
-    <?php include('../php/navbar.php'); ?>
-
-  </header>
 
 <body>
+  <header>
+    <?php include('../php/navbar.php'); ?>
+  
+  </header>
   <div class='info'>
     <h2 id='displayName'><?php echo $_SESSION['displayName']?><h2>
     <h2 id='status'></h2>
