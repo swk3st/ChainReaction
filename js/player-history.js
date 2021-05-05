@@ -1,4 +1,4 @@
-import { requestPlayers, requestGame, finishGame } from './request.js';
+import { requestPlayers, requestGame, finishGame, requestAllCompletedGames } from './request.js';
 
 let table = document.getElementById('matches-table');
 let params = new URLSearchParams(location.search);
@@ -27,18 +27,20 @@ const addRow = (displayName, payout, date, link) => {
     table.appendChild(row);
 };
 
-const addRows = (matces) => {
+const addRows = (matches) => {
     for (let match of matches) {
         let displayName = match.display_name;
-        let payout = match.payout;
+        let gameID = match.game_id;
+        let time = match.time;
+        // request data for an indivdiual game
         addRow(displayName, payout);
     }
 };
 
 const writeTable = () => {
-    requestPlayers(gameID).then((players) => {
+    requestAllCompletedGames(playerID).then((matches) => {
         clearTable();
-        addRows(players);
+        addRows(matches);
     });
 }
 
