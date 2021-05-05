@@ -42,6 +42,7 @@ Have an option to update a chain next to each in Inventory -->
           </tr>
       </table>
     </div>
+    <button type='button' id='back'>Back</button>
 </div>
 <script type="module" src="../../js/inventory.js"></script>
 </body>
