@@ -216,10 +216,16 @@ const writeToHistory = () => {
     // make an ajax call to remove a player from the playing table
 };
 
+const cleanTable = () => {
+    writeTable();
+    for (let row of rows) {
+        noHover(row);
+    }
+    writeTable();
+}
+
 const writeTable = () => {
     let i = 0;
-    noHover(row1);
-    noHover(row7);
     for (let word of words) {
         if (game.board[i].current.length == 0) {
             word.innerHTML = '_';
@@ -256,7 +262,7 @@ const clock = setInterval(() => {
 
 const gameTicker = setInterval(() => {
     if (game.isFinished()) {
-        writeTable();
+        cleanTable();
         done = true;
         disableAll();
         clearInterval(gameTicker);

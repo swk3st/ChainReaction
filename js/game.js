@@ -7,7 +7,7 @@ class Word {
     }
 
     equals = (string) => {
-        return this.word == string;
+        return this.word.toLowerCase() == string.toLowerCase();
     }
 
     addLetter = () => {
