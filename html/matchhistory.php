@@ -13,7 +13,11 @@
 
 </head>
 
-<?php
+
+<body>
+    <header>
+        <?php include('../php/navbar.php'); ?>
+    <?php
         // include '../db/database.php';
         include getcwd() . '/../db/database.php';
         $gameID = $_GET['gameID'];
@@ -25,11 +29,7 @@
             $gameInfo = gameInfo($gameID);
             $chainID = $gameInfo[0]['chain_id'];
         }
-        ?>
-
-<body>
-    <header>
-        <?php include('../php/navbar.php'); ?>
+    ?>
     <header>
         <h1>Match History: <?php if (isset($gameID)) echo $gameID; ?></h1>
         <div class='match-history-container'>
