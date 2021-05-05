@@ -542,4 +542,15 @@ function updateCareer($player_id, $earnings, $correct, $guesses) {
     $statement->bindParam(':g', $guesses, PDO::PARAM_INT);
     $statement->execute();
 }
+
+function allCompletedGames($player_id) {
+    global $db;
+    connect();
+    $sql = "SELECT * FROM game WHERE game_id IN 
+        (SELECT game_id FROM history WHERE player_id = :p)";
+    $statement = $db->prepare($sql);
+    $statement->bindParam(':p', $player_id);
+    $statement->execute();
+    return $statement->fetchAll();
+}
 ?>
