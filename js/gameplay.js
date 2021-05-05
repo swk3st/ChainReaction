@@ -335,3 +335,4 @@ const gameTicker = setInterval(() => {
 }, 1000);
 
 const leaveButton = document.getElementById('leave');
+
