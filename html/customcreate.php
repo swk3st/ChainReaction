@@ -30,40 +30,40 @@
       <!-- <a href="waitingroom.html"> -->
         <button id="use-button" class="direction-button use-chain">Use Chain</button>
       <!-- </a> -->
-      <p id="chain-text" class="confirmation-chain">Word 1 - Word 2 - Word 3 - Word 4 - Word 5 - Word 6 - Word 7</p>
+      <p id="chain-text" class="confirmation-chain"></p>
     </div>
     <div class="custom-create-container">
   <div class="left-select chain-table">
     <table>
-      <tr><td id="left1">Word 1</td></tr>
-      <tr><td id="left2">.</td></tr>
-      <tr><td id="left3">L#</td></tr>
-      <tr><td id="left4">.</td></tr>
-      <tr><td id="left5">.</td></tr>
-      <tr><td id="left6">.</td></tr>
-      <tr><td id="left7">Word 7</td></tr>
+      <tr><td id="left1">_</td></tr>
+      <tr><td id="left2">_</td></tr>
+      <tr><td id="left3">_</td></tr>
+      <tr><td id="left4">_</td></tr>
+      <tr><td id="left5">_</td></tr>
+      <tr><td id="left6">_</td></tr>
+      <tr><td id="left7">_</td></tr>
     </table>
   </div>
   <div class="middle-select chain-table">
     <table>
-      <tr><td id="mid1">Word 1</td></tr>
-      <tr><td id="mid2">.</td></tr>
-      <tr><td id="mid3">.</td></tr>
-      <tr><td id="mid4">.</td></tr>
-      <tr><td id="mid5">.</td></tr>
-      <tr><td id="mid6">.</td></tr>
-      <tr><td id="mid7">Word 7</td></tr>
+      <tr><td id="mid1">_</td></tr>
+      <tr><td id="mid2">_</td></tr>
+      <tr><td id="mid3">_</td></tr>
+      <tr><td id="mid4">_</td></tr>
+      <tr><td id="mid5">_</td></tr>
+      <tr><td id="mid6">_</td></tr>
+      <tr><td id="mid7">_</td></tr>
     </table>
   </div>
   <div class="right-select chain-table">
     <table>
-      <tr><td id="right1">Word 1</td></tr>
-      <tr><td id="right2">.lol</td></tr>
-      <tr><td id="right3">.this</td></tr>
-      <tr><td id="right4">.is</td></tr>
-      <tr><td id="right5">.fact</td></tr>
-      <tr><td id="right6">.cap</td></tr>
-      <tr><td id="right7">Word 7</td></tr>
+      <tr><td id="right1">_</td></tr>
+      <tr><td id="right2">_</td></tr>
+      <tr><td id="right3">_</td></tr>
+      <tr><td id="right4">_</td></tr>
+      <tr><td id="right5">_</td></tr>
+      <tr><td id="right6">_</td></tr>
+      <tr><td id="right7">_</td></tr>
     </table>
   </div>
   <button class="direction-button" id="rightBtn">←</button>
