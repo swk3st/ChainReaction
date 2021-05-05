@@ -13,6 +13,16 @@
     align-items: center;
 }
 
+.heads-up {
+    display: flex;
+    word-wrap: normal;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    /* border: 1px dotted black; */
+}
+
 .in-game {
     width: 100%;
     margin-left: 5%;
