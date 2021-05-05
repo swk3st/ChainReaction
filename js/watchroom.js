@@ -1,4 +1,4 @@
-import { requestPlayers } from './request.js';
+import { requestPlayers, requestGame } from './request.js';
 
 let table = document.getElementById('in-game');
 let button = document.getElementById('match-button');
@@ -40,6 +40,18 @@ const writeTable = () => {
 const ticker = setInterval(() => {
     if (gameID != undefined) {
         writeTable();
+        requestGame(gameID).then((gameData) => {
+            let gameInfo = gameData[0][0];
+            let status = gameInfo.gameStatus;
+            if (status == 'completed') {
+                let warning = document.createElement('p');
+                warning.style.color = 'red';
+                warning.innerHTML = '<em>THIS GAME IS FINISHED. YOU CAN MOVE ON.</em>';
+                let elems = document.getElementsByClassName('heads-up');
+                elems[0].appendChild(warning);
+                clearInterval(ticker);
+            }
+        });
     }
 }, 1000);
 
