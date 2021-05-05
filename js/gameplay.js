@@ -142,6 +142,19 @@ belowLetterButton.addEventListener('click', bLBHandle);
 aboveGuessButton.addEventListener('click', aGBHandle);
 belowGuessButton.addEventListener('click', bGBHandle);
 
+aboveField.addEventListener('keyup', (event) => {
+    if (event.key == 'Enter') {
+        aboveGuessButton.click();
+    }
+});
+
+belowField.addEventListener('keyup', (event) => {
+    if (event.key == 'Enter') {
+        console.log('here!!!');
+        belowGuessButton.click();
+    }
+})
+
 aboveLetterButton.addEventListener('mouseover', aboveHoverHandle);
 belowLetterButton.addEventListener('mouseover', belowHoverHandle);
 aboveGuessButton.addEventListener('mouseover', aboveHoverHandle);
