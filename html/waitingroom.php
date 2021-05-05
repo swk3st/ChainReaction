@@ -17,7 +17,8 @@
 <header>
     <?php include('../php/navbar.php'); ?>
     <?php
-        include "../db/database.php";
+        // include "../db/database.php";
+        include getcwd() . '/../db/database.php';
         $game_id = $_GET['gameID'];
         $player_id = $_SESSION['playerID'];
         $displayName = $_SESSION['displayName'];

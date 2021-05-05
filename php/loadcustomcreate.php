@@ -5,7 +5,8 @@ header('Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Au
 header('Access-Control-Max-Age: 1000');  
 header('Access-Control-Allow-Methods: POST, GET, OPTIONS, DELETE, PUT');
 
-    include "..\db\database.php";
+    // include "..\db\database.php";
+    include getcwd() . '/../db/database.php';
     if (isset($_GET['playerID'])) {
         echo json_encode(allChains($_GET['playerID']));
     }
