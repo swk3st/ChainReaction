@@ -364,7 +364,7 @@ function requestPlayerID() {
     });
   }
 
-  function matchData(gameID, playerID) {
+  function requestMatchData(gameID, playerID) {
     var xmlhttp = new XMLHttpRequest();
     return new Promise ((resolve, reject) => {
   
@@ -392,4 +392,4 @@ function requestPlayerID() {
   export { requestPlayerID, requestDisplayName, requestChains, 
     requestGame, playerJoin, startGame, requestStatus, 
     requestPlayers, leaveGame, requestChain, saveHistory, 
-    realTimeUpdate, finishGame, updateCareer, requestAllCompletedGames, matchData};
+    realTimeUpdate, finishGame, updateCareer, requestAllCompletedGames, requestMatchData};
