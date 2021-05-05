@@ -13,15 +13,31 @@
 </head>
 
 <header>
-
-<header>
     <?php include('../php/navbar.php'); ?>
 
 </header>
 
-</header>
 
 <body>
+    <div class='watch-room-container'>
+        <div class='half'>
+            <table class='progress'>
+                <tr>
+                    <th>Display Name</th><th>Real Time Payout</th>
+                </tr>
+                <tr>
+                    <td>Bradley Martin</td><td>44</td>
+                </tr>
+            </table>
+        </div>
+        <div class='half'>
+            <h1>Watch Room!</h1>
+            <p>Watch others payouts while they are in the midst of playing!</p>
+            <p>Note: Only <em>in progress</em> games will be shown. Please</p>
+            <p>go to the match history for this game to see the other scores.<p>
+            <button class='big-button'>Match History</button>
+        </div>
 
+    </div>
 </body>
 </html>
