@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS playing (
     game_id VARCHAR(10) NOT NULL,
     player_id VARCHAR(10) NOT NULL,
     display_name VARCHAR(255) NOT NULL,
-    payout VARCHAR(5) NOT NULL,
+    payout VARCHAR(255) NOT NULL,
     FOREIGN KEY (game_id) REFERENCES game(game_id)
 );
 
@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS history (
     game_id VARCHAR(10) NOT NULL,
     player_id VARCHAR(10) NOT NULL,
     display_name VARCHAR(255) NOT NULL,
-    payout VARCHAR(5) NOT NULL,
+    payout VARCHAR(255) NOT NULL,
     FOREIGN KEY (game_id) REFERENCES game(game_id),
     FOREIGN KEY (player_id) REFERENCES player(player_id)
 );
