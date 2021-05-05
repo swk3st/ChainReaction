@@ -5,8 +5,8 @@ let params = new URLSearchParams(location.search);
 let gameID = params.get('gameID');
 
 const clearTable = () => {
-    while(table.firstChild != table.lastChild) {
-        table.removeChild(table.lastChild);
+    for(let i = table.rows.length - 1; i > 0; i--) {
+        table.deleteRow(i);
     }
 };
 
@@ -16,12 +16,14 @@ const addRow = (displayName, payout) => {
     let payoutElem = document.createElement('td');
     displayNameElem.innerHTML = displayName;
     payoutElem.innerHTML = payout;
+    row.appendChild(displayNameElem);
+    row.appendChild(payoutElem);
     table.appendChild(row);
 };
 
 const addRows = (players) => {
     for (let player of players) {
-        let displayName = player.displayName;
+        let displayName = player.display_name;
         let payout = player.payout;
         addRow(displayName, payout);
     }
@@ -29,6 +31,7 @@ const addRows = (players) => {
 
 const writeTable = () => {
     requestPlayers(gameID).then((players) => {
+        console.log(players);
         clearTable();
         addRows(players);
     });
