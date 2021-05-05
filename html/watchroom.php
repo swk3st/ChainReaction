@@ -19,6 +19,7 @@
 
 
 <body>
+    <h1>Watch Room!</h1>
     <div class='watch-room-container'>
         <div class='half'>
             <table class='progress'>
@@ -31,7 +32,6 @@
             </table>
         </div>
         <div class='half'>
-            <h1>Watch Room!</h1>
             <p>Watch others payouts while they are in the midst of playing!</p>
             <p>Note: Only <em>in progress</em> games will be shown. Please</p>
             <p>go to the match history for this game to see the other scores.<p>
