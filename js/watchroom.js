@@ -1,4 +1,4 @@
-import { requestPlayers, requestGame } from './request.js';
+import { requestPlayers, requestGame, finishGame } from './request.js';
 
 let table = document.getElementById('in-game');
 let button = document.getElementById('match-button');
@@ -50,6 +50,23 @@ const ticker = setInterval(() => {
                 let elems = document.getElementsByClassName('heads-up');
                 elems[0].appendChild(warning);
                 clearInterval(ticker);
+            } else {
+                if (status == 'started') {
+                    const now = Math.round(Date.now()/1000);
+                    const gameFinish = gameData[0][0].time;
+                    if (now > gameFinish) {
+                        finishGame(gameID);
+                        clearInterval(ticker);
+                    }
+                    requestPlayers(gameID).then((players) => {
+                        if (players.length == 0) {
+                            finishGame(gameID);
+                            clearInterval(ticker);
+                        }
+                    });
+                } else if (status == 'completed') {
+                    clearInterval(ticker);
+                }
             }
         });
     }
