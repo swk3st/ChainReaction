@@ -520,4 +520,13 @@ function realTimeUpdate($game_id, $player_id, $display_name, $payout) {
     $statement->execute();
 
 }
+
+function finishGame($game_id) {
+    global $db;
+    connect();
+    $sql = "UPDATE game SET gameStatus = 'completed' WHERE game_id = :g";
+    $statement = $db->prepare($sql);
+    $statement->bindParam(':g', $game_id);
+    $statement->execute();
+}
 ?>
