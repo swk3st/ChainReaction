@@ -60,7 +60,7 @@ include getcwd() . '/../db/database.php';
     <p> Career Earnings: <?php echo strval($earnings); ?> </p>&nbsp;&nbsp;&nbsp;&nbsp;
     <p> Guesses: <?php echo strval($guesses); ?> </p>&nbsp;&nbsp;&nbsp;&nbsp;
     <p> Correct Guesses: <?php echo strval($correct); ?> </p>&nbsp;&nbsp;&nbsp;&nbsp;
-    <p> Percent Guessed Correct: <?php echo $percentage; ?> </p>
+    <p> Percentage Guessed Correct: <?php echo $percentage; ?> </p>
   </div>
 </div>
 <form class="change-display-name-container" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
