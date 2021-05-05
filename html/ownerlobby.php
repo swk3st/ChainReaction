@@ -77,6 +77,7 @@
         }
         if (started) {
             clearInterval(ticker);
+            location.href = `./watchroom.php?gameID=${gameId}`;
         }
         requestPlayers(gameId).then((players) => {
             if(!sameLobby(lobby, players)) {
