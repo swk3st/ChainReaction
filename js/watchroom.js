@@ -1,6 +1,7 @@
 import { requestPlayers } from './request.js';
 
 let table = document.getElementById('in-game');
+let button = document.getElementById('match-button');
 let params = new URLSearchParams(location.search);
 let gameID = params.get('gameID');
 
@@ -41,3 +42,8 @@ const ticker = setInterval(() => {
         writeTable();
     }
 }, 1000);
+
+
+button.addEventListener('click', () => {
+    location.href = `./matchhistory.php?gameID=${gameID}`;
+});
