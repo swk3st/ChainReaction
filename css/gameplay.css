@@ -209,3 +209,12 @@ h1 {
     background-color: #E5E4D7;
     padding: 15px;
 }
+
+.matches-container {
+    display: flex;
+    width: 100%;
+}
+
+.matches-table {
+    width: 100%;
+}

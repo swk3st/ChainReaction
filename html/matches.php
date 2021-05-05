@@ -20,7 +20,7 @@
 
 <h1> Player History </h1>
     <div class="matches-container">
-        <table>
+        <table class='nice-table matches-table'>
             <tr>
                 <th>Game Owner</th><th>Payout</th><th>Date</th><th>Link</th>
             </tr>
