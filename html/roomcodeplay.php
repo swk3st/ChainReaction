@@ -23,9 +23,9 @@
   <div class="codeplay-container">
     <img src="../resources/chainreactionlogo.png" alt="Chain Reaction Retro Logo" width="400"
     height="160">
-  <form action=#>
+  <!-- <form action=#> -->
     <input class="code-text" type="text" id="input-code" name="room-code" <?php if (!isset($_SESSION['playerID'])) echo "disabled"?>>
-  </form>
+  <!-- </form> -->
   <!-- <a href="waitingroom.php"> -->
     <button class="big-button" id="join" <?php if (!isset($_SESSION['playerID'])) echo "disabled"?>>JOIN!</button>
   <!-- </a> -->
@@ -62,6 +62,11 @@
       });
     }
     button.onclick = buttonHandler;
+    input.addEventListener('keyup', (event) => {
+    if (event.key == 'Enter') {
+        button.click();
+    }
+});
   }
 </script>
 </html>
