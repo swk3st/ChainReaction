@@ -35,7 +35,7 @@
         <!-- <a class="nav-link" href="http://localhost:4200" Account <span class="sr-only">(current)</span></a> -->
       </li>
       <li class="nav-item<?php echo $nav_current_page == " matches.php" ? " active" : "" ?>">
-        <a class="nav-link" href=<?php if($need_dots) echo "../matches.php" ; else echo "matches.php" ; ?>>
+        <a class="nav-link" href=<?php if($need_dots) echo "../matches.php?playerID=" . $_SESSION['playerID']; else echo "matches.php?playerID=" . $_SESSION['playerID'] ; ?>>
           Match History <span class="sr-only">(current)</span></a>
       </li>
 
