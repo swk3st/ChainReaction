@@ -105,3 +105,7 @@ const loadInventory = () => {
 }
 
 document.addEventListener("DOMContentLoaded", loadInventory(), false);
+let button = document.getElementById('back');
+button.addEventListener('click', () => {
+    location.href = '../normalcreate.php';
+});
